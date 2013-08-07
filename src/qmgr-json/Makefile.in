@@ -14,7 +14,7 @@ TESTSRC	=
 DEFS	= -I. -I$(INC_DIR) -D$(SYSTYPE)
 CFLAGS	= $(DEBUG) $(OPT) $(DEFS)
 TESTPROG= 
-PROG	= qmgr
+PROG	= qmgr-json
 INC_DIR	= ../../include
 LIBS	= ../../lib/libmaster.a ../../lib/libglobal.a ../../lib/libutil.a
 
