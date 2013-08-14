@@ -11,9 +11,9 @@ OBJS	= qmgr.o qmgr_active.o qmgr_transport.o qmgr_queue.o qmgr_entry.o \
 	qmgr_feedback.o
 HDRS	= qmgr.h
 TESTSRC	=
-DEFS	= -I. -I$(INC_DIR) -D$(SYSTYPE)
+DEFS	= -I. -I$(INC_DIR) -D$(SYSTYPE) -I/usr/include
 CFLAGS	= $(DEBUG) $(OPT) $(DEFS)
-TESTPROG= 
+TESTPROG=
 PROG	= qmgr-json
 INC_DIR	= ../../include
 LIBS	= ../../lib/libmaster.a ../../lib/libglobal.a ../../lib/libutil.a
@@ -21,7 +21,7 @@ LIBS	= ../../lib/libmaster.a ../../lib/libglobal.a ../../lib/libutil.a
 .c.o:;	$(CC) $(CFLAGS) -c $*.c
 
 $(PROG):	$(OBJS) $(LIBS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS) $(SYSLIBS)
+	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(OBJS) $(LIBS) $(SYSLIBS)
 
 $(OBJS): ../../conf/makedefs.out
 
@@ -51,7 +51,7 @@ lint:
 	lint $(DEFS) $(SRCS) $(LINTFIX)
 
 clean:
-	rm -f *.o *core $(PROG) $(TESTPROG) junk 
+	rm -f *.o *core $(PROG) $(TESTPROG) junk
 	rm -rf printfck
 
 tidy:	clean

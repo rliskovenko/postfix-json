@@ -1,3 +1,6 @@
+#ifndef QMGR_H_INCLUDED
+#define QMGR_H_INCLUDED
+
 /*++
 /* NAME
 /*	qmgr 3h
@@ -19,6 +22,7 @@
   */
 #include <vstream.h>
 #include <scan_dir.h>
+#include <curl/curl.h>
 
  /*
   * Global library.
@@ -268,7 +272,7 @@ extern void qmgr_queue_suspend(QMGR_QUEUE *, int);
   * "not throttled". It was natural to encode these in the queue window size.
   * After 10 years it's not practical to rip out all the working code and
   * change representations, so we just clean up the names a little.
-  * 
+  *
   * Note: only the "ready" state can reach every state (including itself);
   * non-ready states can reach only the "ready" state. Other transitions are
   * forbidden, because they would result in dangling event handlers.
@@ -534,3 +538,9 @@ extern char *qmgr_error_nexthop(DSN *);
 /*	Modra 6
 /*	155 00, Prague, Czech Republic
 /*--*/
+
+extern char    *var_queue_metadata_url;
+extern char    *var_queue_metadata_path;
+static CURL *curl_handler;
+
+#endif

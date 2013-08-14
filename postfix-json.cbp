@@ -1,0 +1,2997 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="postfix-json" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/postfix-json" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="AAAREADME" />
+		<Unit filename="COMPATIBILITY" />
+		<Unit filename="COPYRIGHT" />
+		<Unit filename="HISTORY" />
+		<Unit filename="INSTALL" />
+		<Unit filename="IPv6-ChangeLog" />
+		<Unit filename="LICENSE" />
+		<Unit filename="Makefile" />
+		<Unit filename="Makefile.in" />
+		<Unit filename="Makefile.init" />
+		<Unit filename="PORTING" />
+		<Unit filename="README_FILES/AAAREADME" />
+		<Unit filename="README_FILES/ADDRESS_CLASS_README" />
+		<Unit filename="README_FILES/ADDRESS_REWRITING_README" />
+		<Unit filename="README_FILES/ADDRESS_VERIFICATION_README" />
+		<Unit filename="README_FILES/BACKSCATTER_README" />
+		<Unit filename="README_FILES/BASIC_CONFIGURATION_README" />
+		<Unit filename="README_FILES/BUILTIN_FILTER_README" />
+		<Unit filename="README_FILES/CDB_README" />
+		<Unit filename="README_FILES/CONNECTION_CACHE_README" />
+		<Unit filename="README_FILES/CONTENT_INSPECTION_README" />
+		<Unit filename="README_FILES/CYRUS_README" />
+		<Unit filename="README_FILES/DATABASE_README" />
+		<Unit filename="README_FILES/DB_README" />
+		<Unit filename="README_FILES/DEBUG_README" />
+		<Unit filename="README_FILES/DSN_README" />
+		<Unit filename="README_FILES/ETRN_README" />
+		<Unit filename="README_FILES/FILTER_README" />
+		<Unit filename="README_FILES/INSTALL" />
+		<Unit filename="README_FILES/IPV6_README" />
+		<Unit filename="README_FILES/LDAP_README" />
+		<Unit filename="README_FILES/LINUX_README" />
+		<Unit filename="README_FILES/LOCAL_RECIPIENT_README" />
+		<Unit filename="README_FILES/MAILDROP_README" />
+		<Unit filename="README_FILES/MEMCACHE_README" />
+		<Unit filename="README_FILES/MILTER_README" />
+		<Unit filename="README_FILES/MULTI_INSTANCE_README" />
+		<Unit filename="README_FILES/MYSQL_README" />
+		<Unit filename="README_FILES/NFS_README" />
+		<Unit filename="README_FILES/OVERVIEW" />
+		<Unit filename="README_FILES/PACKAGE_README" />
+		<Unit filename="README_FILES/PCRE_README" />
+		<Unit filename="README_FILES/PGSQL_README" />
+		<Unit filename="README_FILES/POSTSCREEN_README" />
+		<Unit filename="README_FILES/QMQP_README" />
+		<Unit filename="README_FILES/QSHAPE_README" />
+		<Unit filename="README_FILES/RELEASE_NOTES" />
+		<Unit filename="README_FILES/RESTRICTION_CLASS_README" />
+		<Unit filename="README_FILES/SASL_README" />
+		<Unit filename="README_FILES/SCHEDULER_README" />
+		<Unit filename="README_FILES/SMTPD_ACCESS_README" />
+		<Unit filename="README_FILES/SMTPD_POLICY_README" />
+		<Unit filename="README_FILES/SMTPD_PROXY_README" />
+		<Unit filename="README_FILES/SOHO_README" />
+		<Unit filename="README_FILES/SQLITE_README" />
+		<Unit filename="README_FILES/STANDARD_CONFIGURATION_README" />
+		<Unit filename="README_FILES/STRESS_README" />
+		<Unit filename="README_FILES/TLS_LEGACY_README" />
+		<Unit filename="README_FILES/TLS_README" />
+		<Unit filename="README_FILES/TUNING_README" />
+		<Unit filename="README_FILES/ULTRIX_README" />
+		<Unit filename="README_FILES/UUCP_README" />
+		<Unit filename="README_FILES/VERP_README" />
+		<Unit filename="README_FILES/VIRTUAL_README" />
+		<Unit filename="README_FILES/XCLIENT_README" />
+		<Unit filename="README_FILES/XFORWARD_README" />
+		<Unit filename="RELEASE_NOTES" />
+		<Unit filename="RELEASE_NOTES-1.0" />
+		<Unit filename="RELEASE_NOTES-1.1" />
+		<Unit filename="RELEASE_NOTES-2.0" />
+		<Unit filename="RELEASE_NOTES-2.1" />
+		<Unit filename="RELEASE_NOTES-2.2" />
+		<Unit filename="RELEASE_NOTES-2.3" />
+		<Unit filename="RELEASE_NOTES-2.4" />
+		<Unit filename="RELEASE_NOTES-2.5" />
+		<Unit filename="RELEASE_NOTES-2.6" />
+		<Unit filename="RELEASE_NOTES-2.7" />
+		<Unit filename="RELEASE_NOTES-2.8" />
+		<Unit filename="RELEASE_NOTES-2.9" />
+		<Unit filename="TLS_ACKNOWLEDGEMENTS" />
+		<Unit filename="TLS_CHANGES" />
+		<Unit filename="TLS_LICENSE" />
+		<Unit filename="TLS_TODO" />
+		<Unit filename="US_PATENT_6321267" />
+		<Unit filename="auxiliary/name-addr-test/getaddrinfo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="auxiliary/name-addr-test/gethostbyaddr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="auxiliary/name-addr-test/gethostbyname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="auxiliary/name-addr-test/getnameinfo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="auxiliary/qshape/qshape.pl" />
+		<Unit filename="auxiliary/rmail/rmail" />
+		<Unit filename="conf/LICENSE" />
+		<Unit filename="conf/TLS_LICENSE" />
+		<Unit filename="conf/access" />
+		<Unit filename="conf/aliases" />
+		<Unit filename="conf/canonical" />
+		<Unit filename="conf/generic" />
+		<Unit filename="conf/header_checks" />
+		<Unit filename="conf/main.cf" />
+		<Unit filename="conf/master.cf" />
+		<Unit filename="conf/post-install" />
+		<Unit filename="conf/postfix-files" />
+		<Unit filename="conf/postfix-script" />
+		<Unit filename="conf/postfix-wrapper" />
+		<Unit filename="conf/postmulti-script" />
+		<Unit filename="conf/relocated" />
+		<Unit filename="conf/transport" />
+		<Unit filename="conf/virtual" />
+		<Unit filename="examples/chroot-setup/AIX42" />
+		<Unit filename="examples/chroot-setup/BSDI2" />
+		<Unit filename="examples/chroot-setup/BSDI3" />
+		<Unit filename="examples/chroot-setup/FREEBSD3" />
+		<Unit filename="examples/chroot-setup/FreeBSD2" />
+		<Unit filename="examples/chroot-setup/HPUX10" />
+		<Unit filename="examples/chroot-setup/HPUX9" />
+		<Unit filename="examples/chroot-setup/IRIX5" />
+		<Unit filename="examples/chroot-setup/IRIX6" />
+		<Unit filename="examples/chroot-setup/LINUX2" />
+		<Unit filename="examples/chroot-setup/NETBSD1" />
+		<Unit filename="examples/chroot-setup/NEXTSTEP3" />
+		<Unit filename="examples/chroot-setup/OPENSTEP4" />
+		<Unit filename="examples/chroot-setup/OSF1" />
+		<Unit filename="examples/chroot-setup/Solaris10" />
+		<Unit filename="examples/chroot-setup/Solaris2" />
+		<Unit filename="examples/chroot-setup/Solaris8" />
+		<Unit filename="examples/qmail-local/qmail-local.txt" />
+		<Unit filename="examples/smtpd-policy/README.SPF" />
+		<Unit filename="examples/smtpd-policy/greylist.pl" />
+		<Unit filename="html/ADDRESS_CLASS_README.html" />
+		<Unit filename="html/ADDRESS_REWRITING_README.html" />
+		<Unit filename="html/ADDRESS_VERIFICATION_README.html" />
+		<Unit filename="html/BACKSCATTER_README.html" />
+		<Unit filename="html/BASIC_CONFIGURATION_README.html" />
+		<Unit filename="html/BUILTIN_FILTER_README.html" />
+		<Unit filename="html/CDB_README.html" />
+		<Unit filename="html/CONNECTION_CACHE_README.html" />
+		<Unit filename="html/CONTENT_INSPECTION_README.html" />
+		<Unit filename="html/DATABASE_README.html" />
+		<Unit filename="html/DB_README.html" />
+		<Unit filename="html/DEBUG_README.html" />
+		<Unit filename="html/DSN_README.html" />
+		<Unit filename="html/ETRN_README.html" />
+		<Unit filename="html/FILTER_README.html" />
+		<Unit filename="html/INSTALL.html" />
+		<Unit filename="html/IPV6_README.html" />
+		<Unit filename="html/LDAP_README.html" />
+		<Unit filename="html/LINUX_README.html" />
+		<Unit filename="html/LOCAL_RECIPIENT_README.html" />
+		<Unit filename="html/MAILDROP_README.html" />
+		<Unit filename="html/MEMCACHE_README.html" />
+		<Unit filename="html/MILTER_README.html" />
+		<Unit filename="html/MULTI_INSTANCE_README.html" />
+		<Unit filename="html/MYSQL_README.html" />
+		<Unit filename="html/Makefile.in" />
+		<Unit filename="html/NFS_README.html" />
+		<Unit filename="html/OVERVIEW.html" />
+		<Unit filename="html/PACKAGE_README.html" />
+		<Unit filename="html/PCRE_README.html" />
+		<Unit filename="html/PGSQL_README.html" />
+		<Unit filename="html/POSTSCREEN_README.html" />
+		<Unit filename="html/QSHAPE_README.html" />
+		<Unit filename="html/RESTRICTION_CLASS_README.html" />
+		<Unit filename="html/SASL_README.html" />
+		<Unit filename="html/SCHEDULER_README.html" />
+		<Unit filename="html/SMTPD_ACCESS_README.html" />
+		<Unit filename="html/SMTPD_POLICY_README.html" />
+		<Unit filename="html/SMTPD_PROXY_README.html" />
+		<Unit filename="html/SOHO_README.html" />
+		<Unit filename="html/SQLITE_README.html" />
+		<Unit filename="html/STANDARD_CONFIGURATION_README.html" />
+		<Unit filename="html/STRESS_README.html" />
+		<Unit filename="html/TLS_LEGACY_README.html" />
+		<Unit filename="html/TLS_README.html" />
+		<Unit filename="html/TUNING_README.html" />
+		<Unit filename="html/UUCP_README.html" />
+		<Unit filename="html/VERP_README.html" />
+		<Unit filename="html/VIRTUAL_README.html" />
+		<Unit filename="html/XCLIENT_README.html" />
+		<Unit filename="html/XFORWARD_README.html" />
+		<Unit filename="html/access.5.html" />
+		<Unit filename="html/aliases.5.html" />
+		<Unit filename="html/anvil.8.html" />
+		<Unit filename="html/bounce.5.html" />
+		<Unit filename="html/bounce.8.html" />
+		<Unit filename="html/canonical.5.html" />
+		<Unit filename="html/cidr_table.5.html" />
+		<Unit filename="html/cleanup.8.html" />
+		<Unit filename="html/defer.8.html" />
+		<Unit filename="html/discard.8.html" />
+		<Unit filename="html/dnsblog.8.html" />
+		<Unit filename="html/error.8.html" />
+		<Unit filename="html/flush.8.html" />
+		<Unit filename="html/generic.5.html" />
+		<Unit filename="html/header_checks.5.html" />
+		<Unit filename="html/index.html" />
+		<Unit filename="html/ldap_table.5.html" />
+		<Unit filename="html/lmtp.8.html" />
+		<Unit filename="html/local.8.html" />
+		<Unit filename="html/mailq.1.html" />
+		<Unit filename="html/master.5.html" />
+		<Unit filename="html/master.8.html" />
+		<Unit filename="html/memcache_table.5.html" />
+		<Unit filename="html/mysql_table.5.html" />
+		<Unit filename="html/newaliases.1.html" />
+		<Unit filename="html/nisplus_table.5.html" />
+		<Unit filename="html/oqmgr.8.html" />
+		<Unit filename="html/pcre_table.5.html" />
+		<Unit filename="html/pgsql_table.5.html" />
+		<Unit filename="html/pickup.8.html" />
+		<Unit filename="html/pipe.8.html" />
+		<Unit filename="html/postalias.1.html" />
+		<Unit filename="html/postcat.1.html" />
+		<Unit filename="html/postconf.1.html" />
+		<Unit filename="html/postconf.5.html" />
+		<Unit filename="html/postdrop.1.html" />
+		<Unit filename="html/postfix-logo.jpg" />
+		<Unit filename="html/postfix-manuals.html" />
+		<Unit filename="html/postfix-power.png" />
+		<Unit filename="html/postfix-wrapper.5.html" />
+		<Unit filename="html/postfix.1.html" />
+		<Unit filename="html/postkick.1.html" />
+		<Unit filename="html/postlock.1.html" />
+		<Unit filename="html/postlog.1.html" />
+		<Unit filename="html/postmap.1.html" />
+		<Unit filename="html/postmulti.1.html" />
+		<Unit filename="html/postqueue.1.html" />
+		<Unit filename="html/postscreen.8.html" />
+		<Unit filename="html/postsuper.1.html" />
+		<Unit filename="html/proxymap.8.html" />
+		<Unit filename="html/qmgr.8.html" />
+		<Unit filename="html/qmqp-sink.1.html" />
+		<Unit filename="html/qmqp-source.1.html" />
+		<Unit filename="html/qmqpd.8.html" />
+		<Unit filename="html/qshape.1.html" />
+		<Unit filename="html/regexp_table.5.html" />
+		<Unit filename="html/relocated.5.html" />
+		<Unit filename="html/scache.8.html" />
+		<Unit filename="html/sendmail.1.html" />
+		<Unit filename="html/showq.8.html" />
+		<Unit filename="html/smtp-sink.1.html" />
+		<Unit filename="html/smtp-source.1.html" />
+		<Unit filename="html/smtp.8.html" />
+		<Unit filename="html/smtpd.8.html" />
+		<Unit filename="html/spawn.8.html" />
+		<Unit filename="html/sqlite_table.5.html" />
+		<Unit filename="html/tcp_table.5.html" />
+		<Unit filename="html/tlsmgr.8.html" />
+		<Unit filename="html/tlsproxy.8.html" />
+		<Unit filename="html/trace.8.html" />
+		<Unit filename="html/transport.5.html" />
+		<Unit filename="html/trivial-rewrite.8.html" />
+		<Unit filename="html/verify.8.html" />
+		<Unit filename="html/virtual.5.html" />
+		<Unit filename="html/virtual.8.html" />
+		<Unit filename="implementation-notes/DSN" />
+		<Unit filename="implementation-notes/ENHANCED_STATUS_CODES" />
+		<Unit filename="implementation-notes/MILTER" />
+		<Unit filename="makedefs" />
+		<Unit filename="man/Makefile.in" />
+		<Unit filename="man/man1/mailq.1" />
+		<Unit filename="man/man1/newaliases.1" />
+		<Unit filename="man/man1/postalias.1" />
+		<Unit filename="man/man1/postcat.1" />
+		<Unit filename="man/man1/postconf.1" />
+		<Unit filename="man/man1/postdrop.1" />
+		<Unit filename="man/man1/postfix.1" />
+		<Unit filename="man/man1/postkick.1" />
+		<Unit filename="man/man1/postlock.1" />
+		<Unit filename="man/man1/postlog.1" />
+		<Unit filename="man/man1/postmap.1" />
+		<Unit filename="man/man1/postmulti.1" />
+		<Unit filename="man/man1/postqueue.1" />
+		<Unit filename="man/man1/postsuper.1" />
+		<Unit filename="man/man1/qmqp-sink.1" />
+		<Unit filename="man/man1/qmqp-source.1" />
+		<Unit filename="man/man1/qshape.1" />
+		<Unit filename="man/man1/sendmail.1" />
+		<Unit filename="man/man1/smtp-sink.1" />
+		<Unit filename="man/man1/smtp-source.1" />
+		<Unit filename="man/man5/access.5" />
+		<Unit filename="man/man5/aliases.5" />
+		<Unit filename="man/man5/body_checks.5" />
+		<Unit filename="man/man5/bounce.5" />
+		<Unit filename="man/man5/canonical.5" />
+		<Unit filename="man/man5/cidr_table.5" />
+		<Unit filename="man/man5/generic.5" />
+		<Unit filename="man/man5/header_checks.5" />
+		<Unit filename="man/man5/ldap_table.5" />
+		<Unit filename="man/man5/master.5" />
+		<Unit filename="man/man5/memcache_table.5" />
+		<Unit filename="man/man5/mysql_table.5" />
+		<Unit filename="man/man5/nisplus_table.5" />
+		<Unit filename="man/man5/pcre_table.5" />
+		<Unit filename="man/man5/pgsql_table.5" />
+		<Unit filename="man/man5/postconf.5" />
+		<Unit filename="man/man5/postfix-wrapper.5" />
+		<Unit filename="man/man5/regexp_table.5" />
+		<Unit filename="man/man5/relocated.5" />
+		<Unit filename="man/man5/sqlite_table.5" />
+		<Unit filename="man/man5/tcp_table.5" />
+		<Unit filename="man/man5/transport.5" />
+		<Unit filename="man/man5/virtual.5" />
+		<Unit filename="man/man8/anvil.8" />
+		<Unit filename="man/man8/bounce.8" />
+		<Unit filename="man/man8/cleanup.8" />
+		<Unit filename="man/man8/defer.8" />
+		<Unit filename="man/man8/discard.8" />
+		<Unit filename="man/man8/dnsblog.8" />
+		<Unit filename="man/man8/error.8" />
+		<Unit filename="man/man8/flush.8" />
+		<Unit filename="man/man8/lmtp.8" />
+		<Unit filename="man/man8/local.8" />
+		<Unit filename="man/man8/master.8" />
+		<Unit filename="man/man8/oqmgr.8" />
+		<Unit filename="man/man8/pickup.8" />
+		<Unit filename="man/man8/pipe.8" />
+		<Unit filename="man/man8/postscreen.8" />
+		<Unit filename="man/man8/proxymap.8" />
+		<Unit filename="man/man8/qmgr.8" />
+		<Unit filename="man/man8/qmqpd.8" />
+		<Unit filename="man/man8/scache.8" />
+		<Unit filename="man/man8/showq.8" />
+		<Unit filename="man/man8/smtp.8" />
+		<Unit filename="man/man8/smtpd.8" />
+		<Unit filename="man/man8/spawn.8" />
+		<Unit filename="man/man8/tlsmgr.8" />
+		<Unit filename="man/man8/tlsproxy.8" />
+		<Unit filename="man/man8/trace.8" />
+		<Unit filename="man/man8/trivial-rewrite.8" />
+		<Unit filename="man/man8/verify.8" />
+		<Unit filename="man/man8/virtual.8" />
+		<Unit filename="mantools/README" />
+		<Unit filename="mantools/ccformat" />
+		<Unit filename="mantools/check-postlink" />
+		<Unit filename="mantools/dehtml" />
+		<Unit filename="mantools/docparam" />
+		<Unit filename="mantools/docuseparam" />
+		<Unit filename="mantools/double" />
+		<Unit filename="mantools/enter" />
+		<Unit filename="mantools/find-fluff" />
+		<Unit filename="mantools/fixman" />
+		<Unit filename="mantools/get_anchors.pl" />
+		<Unit filename="mantools/hchangered" />
+		<Unit filename="mantools/html2readme" />
+		<Unit filename="mantools/make-relnotes" />
+		<Unit filename="mantools/make_soho_readme" />
+		<Unit filename="mantools/makemanidx" />
+		<Unit filename="mantools/makepostconf" />
+		<Unit filename="mantools/makepostconflinks" />
+		<Unit filename="mantools/makereadme" />
+		<Unit filename="mantools/man2html" />
+		<Unit filename="mantools/mandouble" />
+		<Unit filename="mantools/manlint" />
+		<Unit filename="mantools/manlint.stop" />
+		<Unit filename="mantools/mansect" />
+		<Unit filename="mantools/manspell" />
+		<Unit filename="mantools/postconf2html" />
+		<Unit filename="mantools/postconf2man" />
+		<Unit filename="mantools/postconffix" />
+		<Unit filename="mantools/postlink" />
+		<Unit filename="mantools/postlink.sed" />
+		<Unit filename="mantools/readme2html" />
+		<Unit filename="mantools/specmiss" />
+		<Unit filename="mantools/spell" />
+		<Unit filename="mantools/srctoman" />
+		<Unit filename="mantools/useparam" />
+		<Unit filename="mantools/user2var" />
+		<Unit filename="mantools/var2user" />
+		<Unit filename="mantools/xpostconf" />
+		<Unit filename="mantools/xpostdef" />
+		<Unit filename="pflogsumm_quickfix.txt" />
+		<Unit filename="postfix-install" />
+		<Unit filename="postfix-json.cbp.save" />
+		<Unit filename="proto/ADDRESS_CLASS_README.html" />
+		<Unit filename="proto/ADDRESS_REWRITING_README.html" />
+		<Unit filename="proto/ADDRESS_VERIFICATION_README.html" />
+		<Unit filename="proto/BACKSCATTER_README.html" />
+		<Unit filename="proto/BASIC_CONFIGURATION_README.html" />
+		<Unit filename="proto/BUILTIN_FILTER_README.html" />
+		<Unit filename="proto/CDB_README.html" />
+		<Unit filename="proto/CONNECTION_CACHE_README.html" />
+		<Unit filename="proto/CONTENT_INSPECTION_README.html" />
+		<Unit filename="proto/DATABASE_README.html" />
+		<Unit filename="proto/DB_README.html" />
+		<Unit filename="proto/DEBUG_README.html" />
+		<Unit filename="proto/DSN_README.html" />
+		<Unit filename="proto/ETRN_README.html" />
+		<Unit filename="proto/FILTER_README.html" />
+		<Unit filename="proto/INSTALL.html" />
+		<Unit filename="proto/IPV6_README.html" />
+		<Unit filename="proto/LDAP_README.html" />
+		<Unit filename="proto/LINUX_README.html" />
+		<Unit filename="proto/LOCAL_RECIPIENT_README.html" />
+		<Unit filename="proto/MAILDROP_README.html" />
+		<Unit filename="proto/MEMCACHE_README.html" />
+		<Unit filename="proto/MILTER_README.html" />
+		<Unit filename="proto/MULTI_INSTANCE_README.html" />
+		<Unit filename="proto/MYSQL_README.html" />
+		<Unit filename="proto/Makefile.in" />
+		<Unit filename="proto/NFS_README.html" />
+		<Unit filename="proto/OVERVIEW.html" />
+		<Unit filename="proto/PACKAGE_README.html" />
+		<Unit filename="proto/PCRE_README.html" />
+		<Unit filename="proto/PGSQL_README.html" />
+		<Unit filename="proto/POSTSCREEN_README.html" />
+		<Unit filename="proto/QSHAPE_README.html" />
+		<Unit filename="proto/README" />
+		<Unit filename="proto/RESTRICTION_CLASS_README.html" />
+		<Unit filename="proto/SASL_README.html" />
+		<Unit filename="proto/SCHEDULER_README.html" />
+		<Unit filename="proto/SMTPD_ACCESS_README.html" />
+		<Unit filename="proto/SMTPD_POLICY_README.html" />
+		<Unit filename="proto/SMTPD_PROXY_README.html" />
+		<Unit filename="proto/SQLITE_README.html" />
+		<Unit filename="proto/STANDARD_CONFIGURATION_README.html" />
+		<Unit filename="proto/STRESS_README.html" />
+		<Unit filename="proto/TLS_LEGACY_README.html" />
+		<Unit filename="proto/TLS_README.html" />
+		<Unit filename="proto/TUNING_README.html" />
+		<Unit filename="proto/UUCP_README.html" />
+		<Unit filename="proto/VERP_README.html" />
+		<Unit filename="proto/VIRTUAL_README.html" />
+		<Unit filename="proto/XCLIENT_README.html" />
+		<Unit filename="proto/XFORWARD_README.html" />
+		<Unit filename="proto/access" />
+		<Unit filename="proto/aliases" />
+		<Unit filename="proto/aliases0" />
+		<Unit filename="proto/bounce" />
+		<Unit filename="proto/canonical" />
+		<Unit filename="proto/cidr_table" />
+		<Unit filename="proto/generic" />
+		<Unit filename="proto/header_checks" />
+		<Unit filename="proto/html2text.rc" />
+		<Unit filename="proto/ldap_table" />
+		<Unit filename="proto/manual-format" />
+		<Unit filename="proto/master" />
+		<Unit filename="proto/memcache_table" />
+		<Unit filename="proto/mysql_table" />
+		<Unit filename="proto/nisplus_table" />
+		<Unit filename="proto/pcre_table" />
+		<Unit filename="proto/pgsql_table" />
+		<Unit filename="proto/postconf.html.epilog" />
+		<Unit filename="proto/postconf.html.prolog" />
+		<Unit filename="proto/postconf.man.epilog" />
+		<Unit filename="proto/postconf.man.prolog" />
+		<Unit filename="proto/postconf.proto" />
+		<Unit filename="proto/postfix-wrapper" />
+		<Unit filename="proto/regexp_table" />
+		<Unit filename="proto/relocated" />
+		<Unit filename="proto/sqlite_table" />
+		<Unit filename="proto/stop" />
+		<Unit filename="proto/tcp_table" />
+		<Unit filename="proto/transport" />
+		<Unit filename="proto/virtual" />
+		<Unit filename="src/anvil/Makefile.in" />
+		<Unit filename="src/anvil/anvil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/2template_test.in" />
+		<Unit filename="src/bounce/Makefile.in" />
+		<Unit filename="src/bounce/annotate.sh" />
+		<Unit filename="src/bounce/bounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_append_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_cleanup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_notify_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_notify_util.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_notify_verp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_one_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_service.h" />
+		<Unit filename="src/bounce/bounce_template.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_template.h" />
+		<Unit filename="src/bounce/bounce_templates.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_trace_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/bounce_warn_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bounce/template_test.ref" />
+		<Unit filename="src/cleanup/Makefile.in" />
+		<Unit filename="src/cleanup/bug1.file" />
+		<Unit filename="src/cleanup/bug1.file.ref" />
+		<Unit filename="src/cleanup/bug1.in" />
+		<Unit filename="src/cleanup/bug1.ref" />
+		<Unit filename="src/cleanup/bug1.text.ref" />
+		<Unit filename="src/cleanup/bug2.file" />
+		<Unit filename="src/cleanup/bug2.in" />
+		<Unit filename="src/cleanup/bug2.ref" />
+		<Unit filename="src/cleanup/bug2.text.ref" />
+		<Unit filename="src/cleanup/bug3.file" />
+		<Unit filename="src/cleanup/bug3.in" />
+		<Unit filename="src/cleanup/bug3.ref" />
+		<Unit filename="src/cleanup/bug3.text.ref" />
+		<Unit filename="src/cleanup/cleanup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup.h" />
+		<Unit filename="src/cleanup/cleanup_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_api.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_body_edit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_bounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_envelope.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_extracted.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_final.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_map11.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_map1n.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_masq.ref" />
+		<Unit filename="src/cleanup/cleanup_masquerade.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_message.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_milter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_milter.in1" />
+		<Unit filename="src/cleanup/cleanup_milter.in10a" />
+		<Unit filename="src/cleanup/cleanup_milter.in10b" />
+		<Unit filename="src/cleanup/cleanup_milter.in10c" />
+		<Unit filename="src/cleanup/cleanup_milter.in10d" />
+		<Unit filename="src/cleanup/cleanup_milter.in10e" />
+		<Unit filename="src/cleanup/cleanup_milter.in11" />
+		<Unit filename="src/cleanup/cleanup_milter.in12" />
+		<Unit filename="src/cleanup/cleanup_milter.in13a" />
+		<Unit filename="src/cleanup/cleanup_milter.in13b" />
+		<Unit filename="src/cleanup/cleanup_milter.in13c" />
+		<Unit filename="src/cleanup/cleanup_milter.in13d" />
+		<Unit filename="src/cleanup/cleanup_milter.in14a" />
+		<Unit filename="src/cleanup/cleanup_milter.in14b" />
+		<Unit filename="src/cleanup/cleanup_milter.in14c" />
+		<Unit filename="src/cleanup/cleanup_milter.in14d" />
+		<Unit filename="src/cleanup/cleanup_milter.in14e" />
+		<Unit filename="src/cleanup/cleanup_milter.in14f" />
+		<Unit filename="src/cleanup/cleanup_milter.in14g" />
+		<Unit filename="src/cleanup/cleanup_milter.in15a" />
+		<Unit filename="src/cleanup/cleanup_milter.in15b" />
+		<Unit filename="src/cleanup/cleanup_milter.in15c" />
+		<Unit filename="src/cleanup/cleanup_milter.in15d" />
+		<Unit filename="src/cleanup/cleanup_milter.in15e" />
+		<Unit filename="src/cleanup/cleanup_milter.in15f" />
+		<Unit filename="src/cleanup/cleanup_milter.in15g" />
+		<Unit filename="src/cleanup/cleanup_milter.in15h" />
+		<Unit filename="src/cleanup/cleanup_milter.in15i" />
+		<Unit filename="src/cleanup/cleanup_milter.in2" />
+		<Unit filename="src/cleanup/cleanup_milter.in3" />
+		<Unit filename="src/cleanup/cleanup_milter.in4a" />
+		<Unit filename="src/cleanup/cleanup_milter.in4b" />
+		<Unit filename="src/cleanup/cleanup_milter.in4c" />
+		<Unit filename="src/cleanup/cleanup_milter.in5" />
+		<Unit filename="src/cleanup/cleanup_milter.in6a" />
+		<Unit filename="src/cleanup/cleanup_milter.in6b" />
+		<Unit filename="src/cleanup/cleanup_milter.in6c" />
+		<Unit filename="src/cleanup/cleanup_milter.in7" />
+		<Unit filename="src/cleanup/cleanup_milter.in8" />
+		<Unit filename="src/cleanup/cleanup_milter.in9" />
+		<Unit filename="src/cleanup/cleanup_milter.ref1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref10a" />
+		<Unit filename="src/cleanup/cleanup_milter.ref10b" />
+		<Unit filename="src/cleanup/cleanup_milter.ref10c" />
+		<Unit filename="src/cleanup/cleanup_milter.ref10d" />
+		<Unit filename="src/cleanup/cleanup_milter.ref10e" />
+		<Unit filename="src/cleanup/cleanup_milter.ref11" />
+		<Unit filename="src/cleanup/cleanup_milter.ref12" />
+		<Unit filename="src/cleanup/cleanup_milter.ref13a" />
+		<Unit filename="src/cleanup/cleanup_milter.ref13b" />
+		<Unit filename="src/cleanup/cleanup_milter.ref13c" />
+		<Unit filename="src/cleanup/cleanup_milter.ref13d" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14a1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14a2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14b1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14b2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14c1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14c2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14d1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14d2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14e1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14e2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14f1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14f2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14g1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref14g2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15a1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15a2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15b1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15b2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15c1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15c2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15d1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15d2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15e1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15e2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15f1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15f2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15g1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15g2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15h1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15h2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15i1" />
+		<Unit filename="src/cleanup/cleanup_milter.ref15i2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref2" />
+		<Unit filename="src/cleanup/cleanup_milter.ref3" />
+		<Unit filename="src/cleanup/cleanup_milter.ref4" />
+		<Unit filename="src/cleanup/cleanup_milter.ref5" />
+		<Unit filename="src/cleanup/cleanup_milter.ref6a" />
+		<Unit filename="src/cleanup/cleanup_milter.ref6b" />
+		<Unit filename="src/cleanup/cleanup_milter.ref6c" />
+		<Unit filename="src/cleanup/cleanup_milter.ref7" />
+		<Unit filename="src/cleanup/cleanup_milter.ref8" />
+		<Unit filename="src/cleanup/cleanup_milter.ref9" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14a" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14b" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14c" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14d" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14e" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14f" />
+		<Unit filename="src/cleanup/cleanup_milter.reg14g" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15a" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15b" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15c" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15d" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15e" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15f" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15g" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15h" />
+		<Unit filename="src/cleanup/cleanup_milter.reg15i" />
+		<Unit filename="src/cleanup/cleanup_out.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_out_recipient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_region.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_rewrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/cleanup_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cleanup/loremipsum" />
+		<Unit filename="src/cleanup/loremipsum2" />
+		<Unit filename="src/cleanup/test-queue-file" />
+		<Unit filename="src/cleanup/test-queue-file10" />
+		<Unit filename="src/cleanup/test-queue-file11" />
+		<Unit filename="src/cleanup/test-queue-file12" />
+		<Unit filename="src/cleanup/test-queue-file13a" />
+		<Unit filename="src/cleanup/test-queue-file13b" />
+		<Unit filename="src/cleanup/test-queue-file13c" />
+		<Unit filename="src/cleanup/test-queue-file13d" />
+		<Unit filename="src/cleanup/test-queue-file14" />
+		<Unit filename="src/cleanup/test-queue-file15" />
+		<Unit filename="src/cleanup/test-queue-file2" />
+		<Unit filename="src/cleanup/test-queue-file3" />
+		<Unit filename="src/cleanup/test-queue-file4" />
+		<Unit filename="src/cleanup/test-queue-file5" />
+		<Unit filename="src/cleanup/test-queue-file6" />
+		<Unit filename="src/cleanup/test-queue-file7" />
+		<Unit filename="src/cleanup/test-queue-file8" />
+		<Unit filename="src/cleanup/test-queue-file9" />
+		<Unit filename="src/discard/Makefile.in" />
+		<Unit filename="src/discard/discard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/Makefile.in" />
+		<Unit filename="src/dns/dns.h" />
+		<Unit filename="src/dns/dns_lookup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_rr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_rr_eq_sa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_rr_eq_sa.in" />
+		<Unit filename="src/dns/dns_rr_eq_sa.ref" />
+		<Unit filename="src/dns/dns_rr_to_pa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_rr_to_pa.in" />
+		<Unit filename="src/dns/dns_rr_to_pa.ref" />
+		<Unit filename="src/dns/dns_rr_to_sa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_rr_to_sa.in" />
+		<Unit filename="src/dns/dns_rr_to_sa.ref" />
+		<Unit filename="src/dns/dns_sa_to_rr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_sa_to_rr.in" />
+		<Unit filename="src/dns/dns_sa_to_rr.ref" />
+		<Unit filename="src/dns/dns_strerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/dns_strtype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dns/test_dns_lookup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/dnsblog/Makefile.in" />
+		<Unit filename="src/dnsblog/dnsblog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/error/Makefile.in" />
+		<Unit filename="src/error/error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/flush/Makefile.in" />
+		<Unit filename="src/flush/flush.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/fsstone/Makefile.in" />
+		<Unit filename="src/fsstone/fsstone.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/Makefile.in" />
+		<Unit filename="src/global/abounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/abounce.h" />
+		<Unit filename="src/global/addr_match_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/addr_match_list.h" />
+		<Unit filename="src/global/anvil_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/anvil_clnt.h" />
+		<Unit filename="src/global/been_here.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/been_here.h" />
+		<Unit filename="src/global/bounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/bounce.h" />
+		<Unit filename="src/global/bounce_log.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/bounce_log.h" />
+		<Unit filename="src/global/canon_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/canon_addr.h" />
+		<Unit filename="src/global/cfg_parser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/cfg_parser.h" />
+		<Unit filename="src/global/cleanup_strerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/cleanup_strflags.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/cleanup_user.h" />
+		<Unit filename="src/global/clnt_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/clnt_stream.h" />
+		<Unit filename="src/global/config.h" />
+		<Unit filename="src/global/conv_time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/conv_time.h" />
+		<Unit filename="src/global/data_redirect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/data_redirect.h" />
+		<Unit filename="src/global/db_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/db_common.h" />
+		<Unit filename="src/global/debug_peer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/debug_peer.h" />
+		<Unit filename="src/global/debug_process.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/debug_process.h" />
+		<Unit filename="src/global/defer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/defer.h" />
+		<Unit filename="src/global/deliver_completed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/deliver_completed.h" />
+		<Unit filename="src/global/deliver_flock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/deliver_flock.h" />
+		<Unit filename="src/global/deliver_pass.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/deliver_pass.h" />
+		<Unit filename="src/global/deliver_request.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/deliver_request.h" />
+		<Unit filename="src/global/delivered_hdr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/delivered_hdr.h" />
+		<Unit filename="src/global/dict_ldap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dict_ldap.h" />
+		<Unit filename="src/global/dict_memcache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dict_memcache.h" />
+		<Unit filename="src/global/dict_mysql.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dict_mysql.h" />
+		<Unit filename="src/global/dict_pgsql.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dict_pgsql.h" />
+		<Unit filename="src/global/dict_proxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dict_proxy.h" />
+		<Unit filename="src/global/dict_sqlite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dict_sqlite.h" />
+		<Unit filename="src/global/domain_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/domain_list.h" />
+		<Unit filename="src/global/dot_lockfile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dot_lockfile.h" />
+		<Unit filename="src/global/dot_lockfile_as.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dot_lockfile_as.h" />
+		<Unit filename="src/global/dsb_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dsb_scan.h" />
+		<Unit filename="src/global/dsn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dsn.h" />
+		<Unit filename="src/global/dsn_buf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dsn_buf.h" />
+		<Unit filename="src/global/dsn_mask.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dsn_mask.h" />
+		<Unit filename="src/global/dsn_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dsn_print.h" />
+		<Unit filename="src/global/dsn_util.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/dsn_util.h" />
+		<Unit filename="src/global/ehlo_mask.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/ehlo_mask.h" />
+		<Unit filename="src/global/ehlo_mask.in" />
+		<Unit filename="src/global/ehlo_mask.ref" />
+		<Unit filename="src/global/ext_prop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/ext_prop.h" />
+		<Unit filename="src/global/file_id.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/file_id.h" />
+		<Unit filename="src/global/flush_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/flush_clnt.h" />
+		<Unit filename="src/global/fold_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/fold_addr.h" />
+		<Unit filename="src/global/haproxy_srvr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/haproxy_srvr.h" />
+		<Unit filename="src/global/header_body_checks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/header_body_checks.h" />
+		<Unit filename="src/global/header_body_checks_ignore.ref" />
+		<Unit filename="src/global/header_body_checks_null.ref" />
+		<Unit filename="src/global/header_body_checks_prepend.ref" />
+		<Unit filename="src/global/header_body_checks_replace.ref" />
+		<Unit filename="src/global/header_body_checks_warn.ref" />
+		<Unit filename="src/global/header_opts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/header_opts.h" />
+		<Unit filename="src/global/header_token.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/header_token.h" />
+		<Unit filename="src/global/input_transp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/input_transp.h" />
+		<Unit filename="src/global/int_filt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/int_filt.h" />
+		<Unit filename="src/global/is_header.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/is_header.h" />
+		<Unit filename="src/global/lex_822.h" />
+		<Unit filename="src/global/log_adhoc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/log_adhoc.h" />
+		<Unit filename="src/global/mail_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_addr.h" />
+		<Unit filename="src/global/mail_addr_crunch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_addr_crunch.h" />
+		<Unit filename="src/global/mail_addr_find.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_addr_find.h" />
+		<Unit filename="src/global/mail_addr_map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_addr_map.h" />
+		<Unit filename="src/global/mail_command_client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_command_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf.h" />
+		<Unit filename="src/global/mail_conf_bool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_int.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_long.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_nbool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_nint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_raw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_str.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_conf_time.ref" />
+		<Unit filename="src/global/mail_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_copy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_copy.h" />
+		<Unit filename="src/global/mail_date.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_date.h" />
+		<Unit filename="src/global/mail_dict.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_dict.h" />
+		<Unit filename="src/global/mail_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_error.h" />
+		<Unit filename="src/global/mail_flush.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_flush.h" />
+		<Unit filename="src/global/mail_open_ok.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_open_ok.h" />
+		<Unit filename="src/global/mail_params.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_params.h" />
+		<Unit filename="src/global/mail_pathname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_proto.h" />
+		<Unit filename="src/global/mail_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_queue.h" />
+		<Unit filename="src/global/mail_run.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_run.h" />
+		<Unit filename="src/global/mail_scan_dir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_scan_dir.h" />
+		<Unit filename="src/global/mail_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_stream.h" />
+		<Unit filename="src/global/mail_task.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_task.h" />
+		<Unit filename="src/global/mail_trigger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mail_version.h" />
+		<Unit filename="src/global/mail_version.in" />
+		<Unit filename="src/global/mail_version.ref" />
+		<Unit filename="src/global/maps.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/maps.h" />
+		<Unit filename="src/global/maps.in" />
+		<Unit filename="src/global/maps.ref" />
+		<Unit filename="src/global/mark_corrupt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mark_corrupt.h" />
+		<Unit filename="src/global/match_parent_style.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/match_parent_style.h" />
+		<Unit filename="src/global/match_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/match_service.h" />
+		<Unit filename="src/global/mbox_conf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mbox_conf.h" />
+		<Unit filename="src/global/mbox_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mbox_open.h" />
+		<Unit filename="src/global/memcache_proto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/memcache_proto.h" />
+		<Unit filename="src/global/mime_8bit.in" />
+		<Unit filename="src/global/mime_8bit.ref" />
+		<Unit filename="src/global/mime_cvt.in" />
+		<Unit filename="src/global/mime_cvt.in2" />
+		<Unit filename="src/global/mime_cvt.in3" />
+		<Unit filename="src/global/mime_cvt.ref" />
+		<Unit filename="src/global/mime_cvt.ref2" />
+		<Unit filename="src/global/mime_cvt.ref3" />
+		<Unit filename="src/global/mime_dom.in" />
+		<Unit filename="src/global/mime_dom.ref" />
+		<Unit filename="src/global/mime_garb1.in" />
+		<Unit filename="src/global/mime_garb1.ref" />
+		<Unit filename="src/global/mime_garb2.in" />
+		<Unit filename="src/global/mime_garb2.ref" />
+		<Unit filename="src/global/mime_garb3.in" />
+		<Unit filename="src/global/mime_garb3.ref" />
+		<Unit filename="src/global/mime_garb4.in" />
+		<Unit filename="src/global/mime_garb4.ref" />
+		<Unit filename="src/global/mime_nest.in" />
+		<Unit filename="src/global/mime_nest.ref" />
+		<Unit filename="src/global/mime_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mime_state.h" />
+		<Unit filename="src/global/mime_test.in" />
+		<Unit filename="src/global/mime_test.ref" />
+		<Unit filename="src/global/mime_trunc.in" />
+		<Unit filename="src/global/mime_trunc.ref" />
+		<Unit filename="src/global/mkmap.h" />
+		<Unit filename="src/global/mkmap_cdb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mkmap_db.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mkmap_dbm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mkmap_fail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mkmap_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mkmap_proxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mkmap_sdbm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/msg_stats.h" />
+		<Unit filename="src/global/msg_stats_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/msg_stats_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mynetworks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mynetworks.h" />
+		<Unit filename="src/global/mypwd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/mypwd.h" />
+		<Unit filename="src/global/namadr_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/namadr_list.h" />
+		<Unit filename="src/global/namadr_list.in" />
+		<Unit filename="src/global/namadr_list.ref" />
+		<Unit filename="src/global/off_cvt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/off_cvt.h" />
+		<Unit filename="src/global/opened.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/opened.h" />
+		<Unit filename="src/global/own_inet_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/own_inet_addr.h" />
+		<Unit filename="src/global/pipe_command.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/pipe_command.h" />
+		<Unit filename="src/global/post_mail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/post_mail.h" />
+		<Unit filename="src/global/qmgr_user.h" />
+		<Unit filename="src/global/qmqp_proto.h" />
+		<Unit filename="src/global/quote_821_local.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/quote_821_local.h" />
+		<Unit filename="src/global/quote_822_local.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/quote_822_local.h" />
+		<Unit filename="src/global/quote_flags.h" />
+		<Unit filename="src/global/rcpt_buf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rcpt_buf.h" />
+		<Unit filename="src/global/rcpt_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rcpt_print.h" />
+		<Unit filename="src/global/rec2stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rec_attr_map.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rec_attr_map.h" />
+		<Unit filename="src/global/rec_streamlf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rec_streamlf.h" />
+		<Unit filename="src/global/rec_type.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rec_type.h" />
+		<Unit filename="src/global/recdump.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/recipient_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/recipient_list.h" />
+		<Unit filename="src/global/record.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/record.h" />
+		<Unit filename="src/global/remove.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/resolve_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/resolve_clnt.h" />
+		<Unit filename="src/global/resolve_clnt.in" />
+		<Unit filename="src/global/resolve_clnt.ref" />
+		<Unit filename="src/global/resolve_local.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/resolve_local.h" />
+		<Unit filename="src/global/resolve_local.in" />
+		<Unit filename="src/global/resolve_local.ref" />
+		<Unit filename="src/global/rewrite_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rewrite_clnt.h" />
+		<Unit filename="src/global/rewrite_clnt.in" />
+		<Unit filename="src/global/rewrite_clnt.ref" />
+		<Unit filename="src/global/safe_ultostr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/safe_ultostr.h" />
+		<Unit filename="src/global/scache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/scache.h" />
+		<Unit filename="src/global/scache_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/scache_multi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/scache_multi.in" />
+		<Unit filename="src/global/scache_multi.ref" />
+		<Unit filename="src/global/scache_single.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/sent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/sent.h" />
+		<Unit filename="src/global/server_acl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/server_acl.h" />
+		<Unit filename="src/global/server_acl.in" />
+		<Unit filename="src/global/server_acl.ref" />
+		<Unit filename="src/global/smtp_reply_footer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/smtp_reply_footer.h" />
+		<Unit filename="src/global/smtp_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/smtp_stream.h" />
+		<Unit filename="src/global/split_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/split_addr.h" />
+		<Unit filename="src/global/stream2rec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/string_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/string_list.h" />
+		<Unit filename="src/global/strip_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/strip_addr.h" />
+		<Unit filename="src/global/strip_addr.ref" />
+		<Unit filename="src/global/surrogate.ref" />
+		<Unit filename="src/global/sys_exits.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/sys_exits.h" />
+		<Unit filename="src/global/timed_ipc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/timed_ipc.h" />
+		<Unit filename="src/global/tok822.h" />
+		<Unit filename="src/global/tok822_find.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/tok822_limit.in" />
+		<Unit filename="src/global/tok822_limit.ref" />
+		<Unit filename="src/global/tok822_node.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/tok822_parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/tok822_parse.in" />
+		<Unit filename="src/global/tok822_parse.ref" />
+		<Unit filename="src/global/tok822_resolve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/tok822_rewrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/tok822_tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/trace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/trace.h" />
+		<Unit filename="src/global/user_acl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/user_acl.h" />
+		<Unit filename="src/global/valid_mailhost_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/valid_mailhost_addr.h" />
+		<Unit filename="src/global/verify.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/verify.h" />
+		<Unit filename="src/global/verify_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/verify_clnt.h" />
+		<Unit filename="src/global/verify_sender_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/verify_sender_addr.h" />
+		<Unit filename="src/global/verify_sender_addr.ref" />
+		<Unit filename="src/global/verp_sender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/verp_sender.h" />
+		<Unit filename="src/global/wildcard_inet_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/wildcard_inet_addr.h" />
+		<Unit filename="src/global/xtext.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/xtext.h" />
+		<Unit filename="src/local/Makefile.in" />
+		<Unit filename="src/local/Musings" />
+		<Unit filename="src/local/alias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/biff_notify.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/biff_notify.h" />
+		<Unit filename="src/local/bounce_workaround.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/command.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/deliver_attr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/dotforward.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/forward.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/include.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/indirect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/local.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/local.h" />
+		<Unit filename="src/local/local_expand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/mailbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/maildir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/recipient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/resolve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/token.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/local/unknown.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/Makefile.in" />
+		<Unit filename="src/master/event_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/mail_flow.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/mail_flow.h" />
+		<Unit filename="src/master/mail_server.h" />
+		<Unit filename="src/master/master.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master.h" />
+		<Unit filename="src/master/master_avail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_conf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_ent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_flow.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_listen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_monitor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_proto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_proto.h" />
+		<Unit filename="src/master/master_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_sig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_spawn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_status.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_vars.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_wakeup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/master_watch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/multi_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/single_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/master/trigger_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/milter/Makefile.in" />
+		<Unit filename="src/milter/milter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/milter/milter.h" />
+		<Unit filename="src/milter/milter8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/milter/milter_macros.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/milter/test-list" />
+		<Unit filename="src/milter/test-milter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/Makefile.in" />
+		<Unit filename="src/oqmgr/qmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr.h" />
+		<Unit filename="src/oqmgr/qmgr_active.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_bounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_defer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_deliver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_enable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_entry.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_feedback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_message.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_move.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/oqmgr/qmgr_transport.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pickup/Makefile.in" />
+		<Unit filename="src/pickup/pickup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pipe/Makefile.in" />
+		<Unit filename="src/pipe/pipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postalias/Makefile.in" />
+		<Unit filename="src/postalias/aliases" />
+		<Unit filename="src/postalias/fail_test.in" />
+		<Unit filename="src/postalias/fail_test.ref" />
+		<Unit filename="src/postalias/map-abc1.ref" />
+		<Unit filename="src/postalias/map-abc2.ref" />
+		<Unit filename="src/postalias/map-ghi1.ref" />
+		<Unit filename="src/postalias/map-ghi2.ref" />
+		<Unit filename="src/postalias/map-uABC1.ref" />
+		<Unit filename="src/postalias/map-uABC2.ref" />
+		<Unit filename="src/postalias/map.in" />
+		<Unit filename="src/postalias/postalias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postcat/Makefile.in" />
+		<Unit filename="src/postcat/b_test.ref" />
+		<Unit filename="src/postcat/bh_test.ref" />
+		<Unit filename="src/postcat/default_test.ref" />
+		<Unit filename="src/postcat/e_test.ref" />
+		<Unit filename="src/postcat/eb_test.ref" />
+		<Unit filename="src/postcat/eh_test.ref" />
+		<Unit filename="src/postcat/h_test.ref" />
+		<Unit filename="src/postcat/postcat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postcat/test-queue-file" />
+		<Unit filename="src/postconf/Makefile.in" />
+		<Unit filename="src/postconf/extract.awk" />
+		<Unit filename="src/postconf/install_table.h" />
+		<Unit filename="src/postconf/install_vars.h" />
+		<Unit filename="src/postconf/postconf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf.h" />
+		<Unit filename="src/postconf/postconf_builtin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_dbms.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_edit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_lookup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_master.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_node.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_other.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_service.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_unused.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/postconf_user.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postconf/test1.ref" />
+		<Unit filename="src/postconf/test10.ref" />
+		<Unit filename="src/postconf/test11.ref" />
+		<Unit filename="src/postconf/test12.ref" />
+		<Unit filename="src/postconf/test13.ref" />
+		<Unit filename="src/postconf/test14.ref" />
+		<Unit filename="src/postconf/test15.ref" />
+		<Unit filename="src/postconf/test16.ref" />
+		<Unit filename="src/postconf/test17.ref" />
+		<Unit filename="src/postconf/test18.ref" />
+		<Unit filename="src/postconf/test19.ref" />
+		<Unit filename="src/postconf/test2.ref" />
+		<Unit filename="src/postconf/test20.ref" />
+		<Unit filename="src/postconf/test21.ref" />
+		<Unit filename="src/postconf/test22.ref" />
+		<Unit filename="src/postconf/test23.ref" />
+		<Unit filename="src/postconf/test24.ref" />
+		<Unit filename="src/postconf/test25.ref" />
+		<Unit filename="src/postconf/test26.ref" />
+		<Unit filename="src/postconf/test27.ref" />
+		<Unit filename="src/postconf/test28.ref" />
+		<Unit filename="src/postconf/test29.ref" />
+		<Unit filename="src/postconf/test3.ref" />
+		<Unit filename="src/postconf/test30.ref" />
+		<Unit filename="src/postconf/test31.ref" />
+		<Unit filename="src/postconf/test32.ref" />
+		<Unit filename="src/postconf/test33.ref" />
+		<Unit filename="src/postconf/test34.ref" />
+		<Unit filename="src/postconf/test35.ref" />
+		<Unit filename="src/postconf/test36.ref" />
+		<Unit filename="src/postconf/test37.ref" />
+		<Unit filename="src/postconf/test38.ref" />
+		<Unit filename="src/postconf/test39.ref" />
+		<Unit filename="src/postconf/test4.ref" />
+		<Unit filename="src/postconf/test40.ref" />
+		<Unit filename="src/postconf/test4b.ref" />
+		<Unit filename="src/postconf/test5.ref" />
+		<Unit filename="src/postconf/test6.ref" />
+		<Unit filename="src/postconf/test7.ref" />
+		<Unit filename="src/postconf/test8.ref" />
+		<Unit filename="src/postconf/test9.ref" />
+		<Unit filename="src/postdrop/Makefile.in" />
+		<Unit filename="src/postdrop/postdrop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postfix/Makefile.in" />
+		<Unit filename="src/postfix/postfix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postkick/Makefile.in" />
+		<Unit filename="src/postkick/postkick.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postlock/Makefile.in" />
+		<Unit filename="src/postlock/postlock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postlog/Makefile.in" />
+		<Unit filename="src/postlog/postlog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postmap/Makefile.in" />
+		<Unit filename="src/postmap/aliases" />
+		<Unit filename="src/postmap/fail_test.in" />
+		<Unit filename="src/postmap/fail_test.ref" />
+		<Unit filename="src/postmap/map-abc1.ref" />
+		<Unit filename="src/postmap/map-abc2.ref" />
+		<Unit filename="src/postmap/map-ghi1.ref" />
+		<Unit filename="src/postmap/map-ghi2.ref" />
+		<Unit filename="src/postmap/map-uABC1.ref" />
+		<Unit filename="src/postmap/map-uABC2.ref" />
+		<Unit filename="src/postmap/map.in" />
+		<Unit filename="src/postmap/postmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postmulti/Makefile.in" />
+		<Unit filename="src/postmulti/postmulti.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postqueue/Makefile.in" />
+		<Unit filename="src/postqueue/postqueue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/Makefile.in" />
+		<Unit filename="src/postscreen/postscreen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen.h" />
+		<Unit filename="src/postscreen/postscreen_dict.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_dnsbl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_early.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_endpt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_expand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_haproxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_haproxy.h" />
+		<Unit filename="src/postscreen/postscreen_misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_send.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_smtpd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_starttls.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postscreen/postscreen_tests.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/postsuper/Makefile.in" />
+		<Unit filename="src/postsuper/postsuper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/proxymap/Makefile.in" />
+		<Unit filename="src/proxymap/proxymap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/Makefile.in" />
+		<Unit filename="src/qmgr-json/cJSON.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/cJSON.h" />
+		<Unit filename="src/qmgr-json/qmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr.h" />
+		<Unit filename="src/qmgr-json/qmgr_active.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_bounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_defer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_deliver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_enable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_entry.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_feedback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_job.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_message.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_move.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_peer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr-json/qmgr_transport.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/Makefile.in" />
+		<Unit filename="src/qmgr/qmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr.h" />
+		<Unit filename="src/qmgr/qmgr_active.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_bounce.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_defer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_deliver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_enable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_entry.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_feedback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_job.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_message.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_move.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_peer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmgr/qmgr_transport.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmqpd/Makefile.in" />
+		<Unit filename="src/qmqpd/qmqpd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmqpd/qmqpd.h" />
+		<Unit filename="src/qmqpd/qmqpd_peer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/qmqpd/qmqpd_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/scache/Makefile.in" />
+		<Unit filename="src/scache/scache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sendmail/Makefile.in" />
+		<Unit filename="src/sendmail/sendmail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/showq/Makefile.in" />
+		<Unit filename="src/showq/showq.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/Makefile.in" />
+		<Unit filename="src/smtp/lmtp_params.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/map11_map" />
+		<Unit filename="src/smtp/smtp-only" />
+		<Unit filename="src/smtp/smtp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp.h" />
+		<Unit filename="src/smtp/smtp_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_addr.h" />
+		<Unit filename="src/smtp/smtp_chat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_map11.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_map11.ref" />
+		<Unit filename="src/smtp/smtp_params.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_proto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_rcpt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_reuse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_reuse.h" />
+		<Unit filename="src/smtp/smtp_sasl.h" />
+		<Unit filename="src/smtp/smtp_sasl_auth_cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_sasl_auth_cache.h" />
+		<Unit filename="src/smtp/smtp_sasl_glue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_sasl_proto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_session.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_trouble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/smtp_unalias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtp/tls_policy.in" />
+		<Unit filename="src/smtp/tls_policy.ref" />
+		<Unit filename="src/smtpd/Makefile.in" />
+		<Unit filename="src/smtpd/smtpd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd.h" />
+		<Unit filename="src/smtpd/smtpd_acl.in" />
+		<Unit filename="src/smtpd/smtpd_acl.ref" />
+		<Unit filename="src/smtpd/smtpd_chat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_chat.h" />
+		<Unit filename="src/smtpd/smtpd_check.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_check.h" />
+		<Unit filename="src/smtpd/smtpd_check.in" />
+		<Unit filename="src/smtpd/smtpd_check.in2" />
+		<Unit filename="src/smtpd/smtpd_check.in3" />
+		<Unit filename="src/smtpd/smtpd_check.in4" />
+		<Unit filename="src/smtpd/smtpd_check.ref" />
+		<Unit filename="src/smtpd/smtpd_check.ref2" />
+		<Unit filename="src/smtpd/smtpd_check.ref4" />
+		<Unit filename="src/smtpd/smtpd_check_access" />
+		<Unit filename="src/smtpd/smtpd_check_backup.in" />
+		<Unit filename="src/smtpd/smtpd_check_backup.ref" />
+		<Unit filename="src/smtpd/smtpd_check_dsn.in" />
+		<Unit filename="src/smtpd/smtpd_check_dsn.ref" />
+		<Unit filename="src/smtpd/smtpd_dnswl.in" />
+		<Unit filename="src/smtpd/smtpd_dnswl.ref" />
+		<Unit filename="src/smtpd/smtpd_dsn_fix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_dsn_fix.h" />
+		<Unit filename="src/smtpd/smtpd_error.in" />
+		<Unit filename="src/smtpd/smtpd_error.ref" />
+		<Unit filename="src/smtpd/smtpd_exp.in" />
+		<Unit filename="src/smtpd/smtpd_exp.ref" />
+		<Unit filename="src/smtpd/smtpd_expand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_expand.h" />
+		<Unit filename="src/smtpd/smtpd_haproxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_milter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_milter.h" />
+		<Unit filename="src/smtpd/smtpd_peer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_proxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_proxy.h" />
+		<Unit filename="src/smtpd/smtpd_resolve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_resolve.h" />
+		<Unit filename="src/smtpd/smtpd_sasl_glue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_sasl_glue.h" />
+		<Unit filename="src/smtpd/smtpd_sasl_proto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_sasl_proto.h" />
+		<Unit filename="src/smtpd/smtpd_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_token.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpd/smtpd_token.h" />
+		<Unit filename="src/smtpd/smtpd_token.in" />
+		<Unit filename="src/smtpd/smtpd_token.ref" />
+		<Unit filename="src/smtpd/smtpd_xforward.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpstone/Makefile.in" />
+		<Unit filename="src/smtpstone/hashed-deferred" />
+		<Unit filename="src/smtpstone/hashed-incoming" />
+		<Unit filename="src/smtpstone/mx-deliver" />
+		<Unit filename="src/smtpstone/mx-explode" />
+		<Unit filename="src/smtpstone/mx-relay" />
+		<Unit filename="src/smtpstone/performance" />
+		<Unit filename="src/smtpstone/qmail-deliver" />
+		<Unit filename="src/smtpstone/qmail-explode" />
+		<Unit filename="src/smtpstone/qmail-relay" />
+		<Unit filename="src/smtpstone/qmqp-sink.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpstone/qmqp-source.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpstone/smtp-sink.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpstone/smtp-source.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smtpstone/throughput" />
+		<Unit filename="src/smtpstone/vmail-local" />
+		<Unit filename="src/smtpstone/vmail-relay" />
+		<Unit filename="src/spawn/Makefile.in" />
+		<Unit filename="src/spawn/spawn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/Makefile.in" />
+		<Unit filename="src/tls/tls.h" />
+		<Unit filename="src/tls/tls_bio_ops.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_certkey.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_dh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_level.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_mgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_mgr.h" />
+		<Unit filename="src/tls/tls_misc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_prng.h" />
+		<Unit filename="src/tls/tls_prng_dev.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_prng_egd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_prng_exch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_prng_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_proxy.h" />
+		<Unit filename="src/tls/tls_proxy_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_proxy_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_proxy_scan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_rsa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_scache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_scache.h" />
+		<Unit filename="src/tls/tls_seed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_session.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tls/tls_verify.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tlsmgr/Makefile.in" />
+		<Unit filename="src/tlsmgr/tlsmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tlsproxy/Makefile.in" />
+		<Unit filename="src/tlsproxy/tlsproxy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/tlsproxy/tlsproxy.h" />
+		<Unit filename="src/tlsproxy/tlsproxy_state.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/trivial-rewrite/Makefile.in" />
+		<Unit filename="src/trivial-rewrite/resolve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/trivial-rewrite/rewrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/trivial-rewrite/transport.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/trivial-rewrite/transport.h" />
+		<Unit filename="src/trivial-rewrite/trivial-rewrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/trivial-rewrite/trivial-rewrite.h" />
+		<Unit filename="src/util/Makefile.in" />
+		<Unit filename="src/util/allascii.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/alldig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/allprint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/allspace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/argv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/argv.h" />
+		<Unit filename="src/util/argv_split.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr.h" />
+		<Unit filename="src/util/attr_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_clnt.h" />
+		<Unit filename="src/util/attr_print0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_print64.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_print_plain.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_scan.ref" />
+		<Unit filename="src/util/attr_scan0.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_scan0.ref" />
+		<Unit filename="src/util/attr_scan64.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_scan64.ref" />
+		<Unit filename="src/util/attr_scan_plain.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/attr_scan_plain.ref" />
+		<Unit filename="src/util/auto_clnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/auto_clnt.h" />
+		<Unit filename="src/util/base32_code.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/base32_code.h" />
+		<Unit filename="src/util/base64_code.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/base64_code.h" />
+		<Unit filename="src/util/basename.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/binhash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/binhash.h" />
+		<Unit filename="src/util/cache.in" />
+		<Unit filename="src/util/chroot_uid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/chroot_uid.h" />
+		<Unit filename="src/util/cidr_match.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/cidr_match.h" />
+		<Unit filename="src/util/clean_env.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/clean_env.h" />
+		<Unit filename="src/util/close_on_exec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/concatenate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/connect.h" />
+		<Unit filename="src/util/ctable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/ctable.h" />
+		<Unit filename="src/util/ctable.in" />
+		<Unit filename="src/util/ctable.ref" />
+		<Unit filename="src/util/dict.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict.h" />
+		<Unit filename="src/util/dict_alloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_cache.h" />
+		<Unit filename="src/util/dict_cdb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_cdb.h" />
+		<Unit filename="src/util/dict_cidr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_cidr.h" />
+		<Unit filename="src/util/dict_cidr.in" />
+		<Unit filename="src/util/dict_cidr.map" />
+		<Unit filename="src/util/dict_cidr.ref" />
+		<Unit filename="src/util/dict_db.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_db.h" />
+		<Unit filename="src/util/dict_dbm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_dbm.h" />
+		<Unit filename="src/util/dict_debug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_env.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_env.h" />
+		<Unit filename="src/util/dict_fail.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_fail.h" />
+		<Unit filename="src/util/dict_ht.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_ht.h" />
+		<Unit filename="src/util/dict_ni.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_ni.h" />
+		<Unit filename="src/util/dict_nis.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_nis.h" />
+		<Unit filename="src/util/dict_nisplus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_nisplus.h" />
+		<Unit filename="src/util/dict_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_pcre.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_pcre.h" />
+		<Unit filename="src/util/dict_pcre.in" />
+		<Unit filename="src/util/dict_pcre.map" />
+		<Unit filename="src/util/dict_pcre.ref" />
+		<Unit filename="src/util/dict_regexp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_regexp.h" />
+		<Unit filename="src/util/dict_regexp.in" />
+		<Unit filename="src/util/dict_regexp.map" />
+		<Unit filename="src/util/dict_regexp.ref" />
+		<Unit filename="src/util/dict_sdbm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_sdbm.h" />
+		<Unit filename="src/util/dict_seq.in" />
+		<Unit filename="src/util/dict_seq.ref" />
+		<Unit filename="src/util/dict_sockmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_sockmap.h" />
+		<Unit filename="src/util/dict_static.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_static.h" />
+		<Unit filename="src/util/dict_surrogate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_tcp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_tcp.h" />
+		<Unit filename="src/util/dict_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_test.in" />
+		<Unit filename="src/util/dict_test.ref" />
+		<Unit filename="src/util/dict_thash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_thash.h" />
+		<Unit filename="src/util/dict_thash.map" />
+		<Unit filename="src/util/dict_unix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dict_unix.h" />
+		<Unit filename="src/util/dir_forest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dir_forest.h" />
+		<Unit filename="src/util/doze.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dummy_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dummy_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/dup2_pass_on_exec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/duplex_pipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/edit_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/edit_file.h" />
+		<Unit filename="src/util/environ.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/events.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/events.h" />
+		<Unit filename="src/util/exec_command.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/exec_command.h" />
+		<Unit filename="src/util/fifo_listen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/fifo_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/fifo_rdonly_bug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/fifo_rdwr_bug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/fifo_trigger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/file_limit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/find_inet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/find_inet.h" />
+		<Unit filename="src/util/format_tv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/format_tv.h" />
+		<Unit filename="src/util/format_tv.in" />
+		<Unit filename="src/util/format_tv.ref" />
+		<Unit filename="src/util/fsspace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/fsspace.h" />
+		<Unit filename="src/util/fullname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/fullname.h" />
+		<Unit filename="src/util/gccw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/gccw.ref" />
+		<Unit filename="src/util/get_domainname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/get_domainname.h" />
+		<Unit filename="src/util/get_hostname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/get_hostname.h" />
+		<Unit filename="src/util/hex_code.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/hex_code.h" />
+		<Unit filename="src/util/hex_quote.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/hex_quote.h" />
+		<Unit filename="src/util/host_port.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/host_port.h" />
+		<Unit filename="src/util/host_port.in" />
+		<Unit filename="src/util/host_port.ref" />
+		<Unit filename="src/util/htable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/htable.h" />
+		<Unit filename="src/util/inet_addr_host.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_addr_host.h" />
+		<Unit filename="src/util/inet_addr_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_addr_list.h" />
+		<Unit filename="src/util/inet_addr_list.in" />
+		<Unit filename="src/util/inet_addr_list.ref" />
+		<Unit filename="src/util/inet_addr_local.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_addr_local.h" />
+		<Unit filename="src/util/inet_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_listen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_proto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_proto.h" />
+		<Unit filename="src/util/inet_trigger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/inet_windowsize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/iostuff.h" />
+		<Unit filename="src/util/ip_match.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/ip_match.h" />
+		<Unit filename="src/util/ip_match.in" />
+		<Unit filename="src/util/ip_match.ref" />
+		<Unit filename="src/util/killme_after.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/killme_after.h" />
+		<Unit filename="src/util/line_number.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/line_number.h" />
+		<Unit filename="src/util/line_wrap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/line_wrap.h" />
+		<Unit filename="src/util/listen.h" />
+		<Unit filename="src/util/load_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/load_file.h" />
+		<Unit filename="src/util/lowercase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/lstat_as.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/lstat_as.h" />
+		<Unit filename="src/util/mac_expand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/mac_expand.h" />
+		<Unit filename="src/util/mac_expand.in" />
+		<Unit filename="src/util/mac_expand.ref" />
+		<Unit filename="src/util/mac_parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/mac_parse.h" />
+		<Unit filename="src/util/make_dirs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/make_dirs.h" />
+		<Unit filename="src/util/mask_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/mask_addr.h" />
+		<Unit filename="src/util/match_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/match_list.h" />
+		<Unit filename="src/util/match_ops.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/msg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/msg.h" />
+		<Unit filename="src/util/msg_output.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/msg_output.h" />
+		<Unit filename="src/util/msg_rate_delay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/msg_syslog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/msg_syslog.h" />
+		<Unit filename="src/util/msg_vstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/msg_vstream.h" />
+		<Unit filename="src/util/mvect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/mvect.h" />
+		<Unit filename="src/util/myaddrinfo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/myaddrinfo.h" />
+		<Unit filename="src/util/myaddrinfo.ref" />
+		<Unit filename="src/util/myaddrinfo.ref2" />
+		<Unit filename="src/util/myaddrinfo4.ref" />
+		<Unit filename="src/util/myaddrinfo4.ref2" />
+		<Unit filename="src/util/myflock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/myflock.h" />
+		<Unit filename="src/util/mymalloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/mymalloc.h" />
+		<Unit filename="src/util/myrand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/myrand.h" />
+		<Unit filename="src/util/mystrtok.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/name_code.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/name_code.h" />
+		<Unit filename="src/util/name_mask.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/name_mask.h" />
+		<Unit filename="src/util/name_mask.in" />
+		<Unit filename="src/util/name_mask.ref0" />
+		<Unit filename="src/util/name_mask.ref1" />
+		<Unit filename="src/util/name_mask.ref2" />
+		<Unit filename="src/util/name_mask.ref3" />
+		<Unit filename="src/util/name_mask.ref4" />
+		<Unit filename="src/util/name_mask.ref5" />
+		<Unit filename="src/util/name_mask.ref6" />
+		<Unit filename="src/util/name_mask.ref7" />
+		<Unit filename="src/util/name_mask.ref8" />
+		<Unit filename="src/util/name_mask.ref9" />
+		<Unit filename="src/util/nbbio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/nbbio.h" />
+		<Unit filename="src/util/netstring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/netstring.h" />
+		<Unit filename="src/util/neuter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/non_blocking.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/nvtable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/nvtable.h" />
+		<Unit filename="src/util/open_as.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/open_as.h" />
+		<Unit filename="src/util/open_limit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/open_lock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/open_lock.h" />
+		<Unit filename="src/util/pass_accept.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/pass_trigger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/peekfd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/percentm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/percentm.h" />
+		<Unit filename="src/util/posix_signals.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/posix_signals.h" />
+		<Unit filename="src/util/printable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/rand_sleep.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/read_wait.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/readable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/readlline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/readlline.h" />
+		<Unit filename="src/util/recv_pass_attr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/ring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/ring.h" />
+		<Unit filename="src/util/safe.h" />
+		<Unit filename="src/util/safe_getenv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/safe_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/safe_open.h" />
+		<Unit filename="src/util/sane_accept.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_accept.h" />
+		<Unit filename="src/util/sane_basename.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_basename.in" />
+		<Unit filename="src/util/sane_basename.ref" />
+		<Unit filename="src/util/sane_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_connect.h" />
+		<Unit filename="src/util/sane_fsops.h" />
+		<Unit filename="src/util/sane_link.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_rename.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_socketpair.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_socketpair.h" />
+		<Unit filename="src/util/sane_time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sane_time.h" />
+		<Unit filename="src/util/scan_dir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/scan_dir.h" />
+		<Unit filename="src/util/select_bug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/set_eugid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/set_eugid.h" />
+		<Unit filename="src/util/set_ugid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/set_ugid.h" />
+		<Unit filename="src/util/sigdelay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sigdelay.h" />
+		<Unit filename="src/util/skipblanks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sock_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sock_addr.h" />
+		<Unit filename="src/util/spawn_command.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/spawn_command.h" />
+		<Unit filename="src/util/split_at.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/split_at.h" />
+		<Unit filename="src/util/split_nameval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stat_as.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stat_as.h" />
+		<Unit filename="src/util/strcasecmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stream_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stream_listen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stream_recv_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stream_send_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stream_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stream_trigger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/stringops.h" />
+		<Unit filename="src/util/surrogate.ref" />
+		<Unit filename="src/util/sys_compat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/sys_defs.h" />
+		<Unit filename="src/util/testdb" />
+		<Unit filename="src/util/timed_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/timed_connect.h" />
+		<Unit filename="src/util/timed_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/timed_wait.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/timed_wait.h" />
+		<Unit filename="src/util/timed_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/translit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/trigger.h" />
+		<Unit filename="src/util/trimblanks.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unescape.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unescape.in" />
+		<Unit filename="src/util/unescape.ref" />
+		<Unit filename="src/util/unix_connect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unix_listen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unix_pass_fd_fix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unix_recv_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unix_send_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unix_trigger.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/unsafe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/uppercase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/username.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/username.h" />
+		<Unit filename="src/util/valid_hostname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/valid_hostname.h" />
+		<Unit filename="src/util/valid_hostname.in" />
+		<Unit filename="src/util/valid_hostname.ref" />
+		<Unit filename="src/util/valid_utf_8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vbuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vbuf.h" />
+		<Unit filename="src/util/vbuf_print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vbuf_print.h" />
+		<Unit filename="src/util/vstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vstream.h" />
+		<Unit filename="src/util/vstream_popen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vstream_tweak.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vstring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vstring.h" />
+		<Unit filename="src/util/vstring_vstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/vstring_vstream.h" />
+		<Unit filename="src/util/warn_stat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/warn_stat.h" />
+		<Unit filename="src/util/watchdog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/watchdog.h" />
+		<Unit filename="src/util/writable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/write_buf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/util/write_wait.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/verify/Makefile.in" />
+		<Unit filename="src/verify/verify.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/Makefile.in" />
+		<Unit filename="src/virtual/deliver_attr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/mailbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/maildir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/recipient.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/unknown.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/virtual.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/virtual/virtual.h" />
+		<Unit filename="src/xsasl/Makefile.in" />
+		<Unit filename="src/xsasl/README" />
+		<Unit filename="src/xsasl/xsasl.h" />
+		<Unit filename="src/xsasl/xsasl_client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/xsasl/xsasl_cyrus.h" />
+		<Unit filename="src/xsasl/xsasl_cyrus_client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/xsasl/xsasl_cyrus_common.h" />
+		<Unit filename="src/xsasl/xsasl_cyrus_log.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/xsasl/xsasl_cyrus_security.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/xsasl/xsasl_cyrus_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/xsasl/xsasl_dovecot.h" />
+		<Unit filename="src/xsasl/xsasl_dovecot_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/xsasl/xsasl_server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

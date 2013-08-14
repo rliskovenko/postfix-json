@@ -406,6 +406,7 @@
 /* Application-specific. */
 
 #include "qmgr.h"
+#include "rest.h"
 
  /*
   * Tunables.
@@ -444,6 +445,8 @@ int     var_dest_rate_delay;
 char   *var_def_filter_nexthop;
 int     var_qmgr_daemon_timeout;
 int     var_qmgr_ipc_timeout;
+char    *var_queue_metadata_url;
+char    *var_queue_metadata_path;
 
 static QMGR_SCAN *qmgr_scans[2];
 
@@ -557,7 +560,7 @@ static int qmgr_loop(char *unused_name, char **unused_argv)
     /*
      * Let some new blood into the active queue when the queue size is
      * smaller than some configurable limit.
-     * 
+     *
      * We import one message per interrupt, to optimally tune the input count
      * for the number of delivery agent protocol wait states, as explained in
      * qmgr_transport.c.
@@ -677,13 +680,15 @@ MAIL_VERSION_STAMP_DECLARE;
 
 /* main - the main program */
 
-int     main(int argc, char **argv)
+int     main(int argc, char **argv, char **env)
 {
     static const CONFIG_STR_TABLE str_table[] = {
 	VAR_DEFER_XPORTS, DEF_DEFER_XPORTS, &var_defer_xports, 0, 0,
 	VAR_CONC_POS_FDBACK, DEF_CONC_POS_FDBACK, &var_conc_pos_feedback, 1, 0,
 	VAR_CONC_NEG_FDBACK, DEF_CONC_NEG_FDBACK, &var_conc_neg_feedback, 1, 0,
 	VAR_DEF_FILTER_NEXTHOP, DEF_DEF_FILTER_NEXTHOP, &var_def_filter_nexthop, 0, 0,
+	VAR_QUEUE_METADATA_URL, DEF_QUEUE_METADATA_URL, &var_queue_metadata_url, 1, 0,
+	VAR_QUEUE_METADATA_PATH, DEF_QUEUE_METADATA_PATH, &var_queue_metadata_path, 1, 0,
 	0,
     };
     static const CONFIG_TIME_TABLE time_table[] = {
@@ -696,8 +701,8 @@ int     main(int argc, char **argv)
 	VAR_QMGR_CLOG_WARN_TIME, DEF_QMGR_CLOG_WARN_TIME, &var_qmgr_clog_warn_time, 0, 0,
 	VAR_XPORT_REFILL_DELAY, DEF_XPORT_REFILL_DELAY, &var_xport_refill_delay, 1, 0,
 	VAR_DEST_RATE_DELAY, DEF_DEST_RATE_DELAY, &var_dest_rate_delay, 0, 0,
-	VAR_QMGR_DAEMON_TIMEOUT, DEF_QMGR_DAEMON_TIMEOUT, &var_qmgr_daemon_timeout, 1, 0,
-	VAR_QMGR_IPC_TIMEOUT, DEF_QMGR_IPC_TIMEOUT, &var_qmgr_ipc_timeout, 1, 0,
+	VAR_QMGR_DAEMON_TIMEOUT, DEF_QMGR_DAEMON_TIMEOUT, &var_qmgr_daemon_timeout, 0, 0,
+	VAR_QMGR_IPC_TIMEOUT, DEF_QMGR_IPC_TIMEOUT, &var_qmgr_ipc_timeout, 0, 0,
 	0,
     };
     static const CONFIG_INT_TABLE int_table[] = {

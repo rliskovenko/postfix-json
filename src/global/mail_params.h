@@ -41,7 +41,7 @@ extern bool var_show_unk_rcpt_table;
   * What problem classes should be reported to the postmaster via email.
   * Default is bad problems only. See mail_error(3). Even when mail notices
   * are disabled, problems are still logged to the syslog daemon.
-  * 
+  *
   * Do not add "protocol" to the default setting. It gives Postfix a bad
   * reputation: people get mail whenever spam software makes a mistake.
   */
@@ -332,7 +332,7 @@ extern char *var_always_bcc;
 
  /*
   * What to put in the To: header when no recipients were disclosed.
-  * 
+  *
   * XXX 2822: When no recipient headers remain, a system should insert a Bcc:
   * header without additional information. That is not so great given that
   * MTAs routinely strip Bcc: headers from message headers.
@@ -933,7 +933,7 @@ extern char *var_inet_protocols;
   * determines how many recipient addresses the SMTP client sends along with
   * each message. Unfortunately, some mailers misbehave and disconnect (smap)
   * when given more recipients than they are willing to handle.
-  * 
+  *
   * XXX 2821: A mail system is supposed to use EHLO instead of HELO, and to fall
   * back to HELO if EHLO is not supported.
   */
@@ -3659,6 +3659,17 @@ extern char *var_sm_fix_eol;
 #define VAR_DAEMON_OPEN_FATAL	"daemon_table_open_error_is_fatal"
 #define DEF_DAEMON_OPEN_FATAL	0
 extern bool var_daemon_open_fatal;
+
+/*
+ * JSON URL and index name
+ */
+#define VAR_QUEUE_METADATA_URL  "queue_metadata_url"
+#define DEF_QUEUE_METADATA_URL  "http://localhost:9300/"
+extern char *var_queue_metadata_url;
+
+#define VAR_QUEUE_METADATA_PATH "queue_metadata_path"
+#define DEF_QUEUE_METADATA_PATH "postfix_queue/message/"
+extern char *var_queue_metadata_path;
 
 /* LICENSE
 /* .ad

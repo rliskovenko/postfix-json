@@ -32,7 +32,7 @@ SRCS	= abounce.c anvil_clnt.c been_here.c bounce.c bounce_log.c \
 	match_service.c mail_conf_nint.c addr_match_list.c mail_conf_nbool.c \
 	smtp_reply_footer.c safe_ultostr.c verify_sender_addr.c \
 	dict_memcache.c mail_version.c memcache_proto.c server_acl.c \
-	mkmap_fail.c haproxy_srvr.c
+	mkmap_fail.c haproxy_srvr.cJSON.c rest.c
 OBJS	= abounce.o anvil_clnt.o been_here.o bounce.o bounce_log.o \
 	canon_addr.o cfg_parser.o cleanup_strerror.o cleanup_strflags.o \
 	clnt_stream.o conv_time.o db_common.o debug_peer.o debug_process.o \
@@ -66,7 +66,7 @@ OBJS	= abounce.o anvil_clnt.o been_here.o bounce.o bounce_log.o \
 	match_service.o mail_conf_nint.o addr_match_list.o mail_conf_nbool.o \
 	smtp_reply_footer.o safe_ultostr.o verify_sender_addr.o \
 	dict_memcache.o mail_version.o memcache_proto.o server_acl.o \
-	mkmap_fail.o haproxy_srvr.o
+	mkmap_fail.o haproxy_srvr.o cJSON.o rest.o
 HDRS	= abounce.h anvil_clnt.h been_here.h bounce.h bounce_log.h \
 	canon_addr.h cfg_parser.h cleanup_user.h clnt_stream.h config.h \
 	conv_time.h db_common.h debug_peer.h debug_process.h defer.h \
@@ -93,10 +93,12 @@ HDRS	= abounce.h anvil_clnt.h been_here.h bounce.h bounce_log.h \
 	fold_addr.h header_body_checks.h data_redirect.h match_service.h \
 	addr_match_list.h smtp_reply_footer.h safe_ultostr.h \
 	verify_sender_addr.h dict_memcache.h memcache_proto.h server_acl.h \
-	haproxy_srvr.h
+	haproxy_srvr.h cJSON.h rest.h
 TESTSRC	= rec2stream.c stream2rec.c recdump.c
 DEFS	= -I. -I$(INC_DIR) -D$(SYSTYPE)
 CFLAGS	= $(DEBUG) $(OPT) $(DEFS)
+LDFLAGS :=  $(shell curl-config --libs)
+SYSLIBS += -lcurl -lm
 INCL	=
 LIB	= libglobal.a
 TESTPROG= domain_list dot_lockfile mail_addr_crunch mail_addr_find \
@@ -114,7 +116,7 @@ LIB_DIR	= ../../lib
 INC_DIR	= ../../include
 MAKES	=
 
-.c.o:;	$(CC) $(CFLAGS) -c $*.c
+.c.o:;	$(CC) $(LDFLAGS) $(CFLAGS) -c $*.c
 
 all: $(LIB)
 
@@ -472,7 +474,7 @@ resolve_clnt_test: resolve_clnt resolve_clnt.in resolve_clnt.ref
 	    resolve_clnt.ref | diff - resolve_clnt.tmp
 	rm -f resolve_clnt.tmp
 
-# Requires: Postfix, root, append_dot_mydomain=yes 
+# Requires: Postfix, root, append_dot_mydomain=yes
 
 verify_sender_addr_test: verify_sender_addr verify_sender_addr.ref
 	@set -- `id`; case "$$1" in \
