@@ -276,6 +276,7 @@ int     mail_queue_rename(const char *queue_id, const char *old_queue,
 
 int     mail_queue_remove(const char *queue_name, const char *queue_id)
 {
+//    restlog_message_sent( queue_name, queue_id );
     return (REMOVE(mail_queue_path((VSTRING *) 0, queue_name, queue_id)));
 }
 

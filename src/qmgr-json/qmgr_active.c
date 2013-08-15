@@ -111,6 +111,7 @@
 /* Application-specific. */
 
 #include "qmgr.h"
+#include "rest.h"
 
  /*
   * A bunch of call-back routines.
@@ -198,6 +199,7 @@ int     qmgr_active_feed(QMGR_SCAN *scan_info, const char *queue_id)
 	if (msg_verbose)
 	    msg_info("%s: skip %s (%ld seconds)", myname, queue_id,
 		     (long) (st.st_mtime - event_time()));
+    restlog_change_wait_time( queue_id, (size_t) (st.st_mtime - event_time()) );
 	return (0);
     }
 
@@ -362,14 +364,14 @@ static void qmgr_active_done_2_generic(QMGR_MESSAGE *message)
      * directory for further inspection by a human being.
      */
     if (message->rcpt_offset > 0) {
-	if (qmgr_message_realloc(message) == 0) {
-	    qmgr_active_corrupt(message->queue_id);
-	    qmgr_message_free(message);
-	} else {
-	    if (message->refcount == 0)
-		qmgr_active_done(message);	/* recurse for consistency */
-	}
-	return;
+        if (qmgr_message_realloc(message) == 0) {
+            qmgr_active_corrupt(message->queue_id);
+            qmgr_message_free(message);
+        } else {
+            if (message->refcount == 0)
+            qmgr_active_done(message);	/* recurse for consistency */
+        }
+        return;
     }
 
     /*
@@ -384,17 +386,17 @@ static void qmgr_active_done_2_generic(QMGR_MESSAGE *message)
      * See also comments in bounce/bounce_notify_util.c.
      */
     if ((message->tflags & (DEL_REQ_FLAG_USR_VRFY | DEL_REQ_FLAG_RECORD))
-	|| (message->rflags & QMGR_READ_FLAG_NOTIFY_SUCCESS)) {
-	atrace_flush(message->tflags,
-		     message->queue_name,
-		     message->queue_id,
-		     message->encoding,
-		     message->sender,
-		     message->dsn_envid,
-		     message->dsn_ret,
-		     qmgr_active_done_25_trace_flush,
-		     (char *) message);
-	return;
+        || (message->rflags & QMGR_READ_FLAG_NOTIFY_SUCCESS)) {
+        atrace_flush(message->tflags,
+                 message->queue_name,
+                 message->queue_id,
+                 message->encoding,
+                 message->sender,
+                 message->dsn_envid,
+                 message->dsn_ret,
+                 qmgr_active_done_25_trace_flush,
+                 (char *) message);
+        return;
     }
 
     /*
@@ -552,6 +554,7 @@ static void qmgr_active_done_3_generic(QMGR_MESSAGE *message)
 		     message->queue_id, message->queue_name);
 	} else {
 	    /* Same format as logged by postsuper. */
+	    restlog_message_sent( message->queue_name, message->queue_id );
 	    msg_info("%s: removed", message->queue_id);
 	}
     }

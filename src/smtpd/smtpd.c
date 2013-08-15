@@ -1612,7 +1612,7 @@ static int ehlo_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
      * XXX 2821 new feature: Section 4.1.4 specifies that a server must clear
      * all buffers and reset the state exactly as if a RSET command had been
      * issued.
-     * 
+     *
      * RFC 2034: the text part of all 2xx, 4xx, and 5xx SMTP responses other
      * than the initial greeting and any response to HELO or EHLO are
      * prefaced with a status code as defined in RFC 3463.
@@ -1663,7 +1663,7 @@ static int ehlo_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
      * XXX reject_unauth_pipelining depends on the following. If the user
      * sends EHLO then we announce PIPELINING and we can't accuse them of
      * using pipelining in places where it is allowed.
-     * 
+     *
      * XXX The reject_unauth_pipelining test needs to change and also account
      * for mechanisms that disable PIPELINING selectively.
      */
@@ -1854,10 +1854,10 @@ static int mail_open_stream(SMTPD_STATE *state)
     /*
      * If running from the master or from inetd, connect to the cleanup
      * service.
-     * 
+     *
      * XXX 2821: An SMTP server is not allowed to "clean up" mail except in the
      * case of original submissions.
-     * 
+     *
      * We implement this by distinguishing between mail that we are willing to
      * rewrite (the local rewrite context) and mail from elsewhere.
      */
@@ -1896,11 +1896,11 @@ static int mail_open_stream(SMTPD_STATE *state)
      * Record the time of arrival, the SASL-related stuff if applicable, the
      * sender envelope address, some session information, and some additional
      * attributes.
-     * 
+     *
      * XXX Send Milter information first, because this will hang when cleanup
      * goes into "throw away" mode. Also, cleanup needs to know early on
      * whether or not it has to do its own SMTP event emulation.
-     * 
+     *
      * XXX At this point we send only dummy information to keep the cleanup
      * server from using its non_smtpd_milters settings. We have to send
      * up-to-date Milter information after DATA so that the cleanup server
@@ -1939,15 +1939,15 @@ static int mail_open_stream(SMTPD_STATE *state)
 	    /*
 	     * Record DSN related information that was received with the MAIL
 	     * FROM command.
-	     * 
+	     *
 	     * RFC 3461 Section 5.2.1. If no ENVID parameter was included in the
 	     * MAIL command when the message was received, the ENVID
 	     * parameter MUST NOT be supplied when the message is relayed.
 	     * Ditto for the RET parameter.
-	     * 
+	     *
 	     * In other words, we can't simply make up our default ENVID or RET
 	     * values. We have to remember whether the client sent any.
-	     * 
+	     *
 	     * We store DSN information as named attribute records so that we
 	     * don't have to pollute the queue file with records that are
 	     * incompatible with past Postfix versions. Preferably, people
@@ -1973,7 +1973,7 @@ static int mail_open_stream(SMTPD_STATE *state)
 
 	    /*
 	     * Attributes for logging, also used for XFORWARD.
-	     * 
+	     *
 	     * We store all client attributes, including ones with unknown
 	     * values. Otherwise, an unknown client hostname would be treated
 	     * as a non-existent hostname (i.e. local submission).
@@ -2082,11 +2082,11 @@ static int extract_addr(SMTPD_STATE *state, SMTPD_TOKEN *arg,
      * Some mailers send RFC822-style address forms (with comments and such)
      * in SMTP envelopes. We cannot blame users for this: the blame is with
      * programmers violating the RFC, and with sendmail for being permissive.
-     * 
+     *
      * XXX The SMTP command tokenizer must leave the address in externalized
      * (quoted) form, so that the address parser can correctly extract the
      * address from surrounding junk.
-     * 
+     *
      * XXX We have only one address parser, written according to the rules of
      * RFC 822. That standard differs subtly from RFC 821.
      */
@@ -2125,7 +2125,7 @@ static int extract_addr(SMTPD_STATE *state, SMTPD_TOKEN *arg,
     /*
      * Report trouble. XXX Should log a warning only if we are going to
      * sleep+reject so that attackers can't flood our logfiles.
-     * 
+     *
      * XXX Unfortunately, the sleep-before-reject feature had to be abandoned
      * (at least for small error counts) because servers were DOS-ing
      * themselves when flooded by backscatter traffic.
@@ -2214,7 +2214,7 @@ static int mail_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
 
     /*
      * Sanity checks.
-     * 
+     *
      * XXX 2821 pedantism: Section 4.1.2 says that SMTP servers that receive a
      * command in which invalid character codes have been employed, and for
      * which there are no other reasons for rejection, MUST reject that
@@ -2539,7 +2539,7 @@ static int rcpt_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
 
     /*
      * Sanity checks.
-     * 
+     *
      * XXX 2821 pedantism: Section 4.1.2 says that SMTP servers that receive a
      * command in which invalid character codes have been employed, and for
      * which there are no other reasons for rejection, MUST reject that
@@ -2694,40 +2694,40 @@ static int rcpt_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
 
     /*
      * Store the recipient. Remember the first one.
-     * 
+     *
      * Flush recipients to maintain a stiffer coupling with the next stage and
      * to better utilize parallelism.
-     * 
+     *
      * RFC 3461 Section 5.2.1: If the NOTIFY parameter was not supplied for a
      * recipient when the message was received, the NOTIFY parameter MUST NOT
      * be supplied for that recipient when the message is relayed.
-     * 
+     *
      * In other words, we can't simply make up our default NOTIFY value. We have
      * to remember whether the client sent any.
-     * 
+     *
      * RFC 3461 Section 5.2.1: If no ORCPT parameter was present when the
      * message was received, an ORCPT parameter MAY be added to the RCPT
      * command when the message is relayed.  If an ORCPT parameter is added
      * by the relaying MTA, it MUST contain the recipient address from the
      * RCPT command used when the message was received by that MTA.
-     * 
+     *
      * In other words, it is OK to make up our own DSN original recipient when
      * the client didn't send one. Although the RFC mentions mail relaying
      * only, we also make up our own original recipient for the purpose of
      * final delivery. For now, we do this here, rather than on the fly.
-     * 
+     *
      * XXX We use REC_TYPE_ATTR for DSN-related recipient attributes even though
      * 1) REC_TYPE_ATTR is not meant for multiple instances of the same named
      * attribute, and 2) mixing REC_TYPE_ATTR with REC_TYPE_(not attr)
      * requires that we map attributes with rec_attr_map() in order to
      * simplify the recipient record processing loops in the cleanup and qmgr
      * servers.
-     * 
+     *
      * Another possibility, yet to be explored, is to leave the additional
      * recipient information in the queue file and just pass queue file
      * offsets along with the delivery request. This is a trade off between
      * memory allocation versus numeric conversion overhead.
-     * 
+     *
      * Since we have no record grouping mechanism, all recipient-specific
      * parameters must be sent to the cleanup server before the actual
      * recipient address.
@@ -2785,20 +2785,20 @@ static VSTRING *rfc2047_comment_encode(const char *str, const char *charset)
 
     /*
      * XXX This is problematic code.
-     * 
+     *
      * XXX Most of the RFC 2047 "especials" are not special in RFC*822 comments,
      * but we encode them anyway to avoid complaints.
-     * 
+     *
      * XXX In Received: header comments we enclose peer and issuer common names
      * with "" quotes (inherited from the Lutz Jaenicke patch). This is the
      * cause of several quirks.
-     * 
+     *
      * 1) We encode text that contains the " character, even though that
      * character is not special for RFC*822 comments.
-     * 
+     *
      * 2) We ignore the recommended limit of 75 characters per encoded word,
      * because long comments look ugly when folded in-between quotes.
-     * 
+     *
      * 3) We encode the enclosing quotes, to avoid producing invalid encoded
      * words. Microsoft abuses RFC 2047 encoding with attachment names, but
      * we have no information on what decoders do with malformed encoding in
@@ -2962,7 +2962,7 @@ static int data_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
      * Flush out a first batch of access table actions that are delegated to
      * the cleanup server, and that may trigger before we accept the first
      * valid recipient. There will be more after end-of-data.
-     * 
+     *
      * Terminate the message envelope segment. Start the message content
      * segment, and prepend our own Received: header. If there is only one
      * recipient, list the recipient address.
@@ -3083,11 +3083,11 @@ static int data_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
      * Copy the message content. If the cleanup process has a problem, keep
      * reading until the remote stops sending, then complain. Produce typed
      * records from the SMTP stream so we can handle data that spans buffers.
-     * 
+     *
      * XXX Force an empty record when the queue file content begins with
      * whitespace, so that it won't be considered as being part of our own
      * Received: header. What an ugly Kluge.
-     * 
+     *
      * XXX Deal with UNIX-style From_ lines at the start of message content
      * because sendmail permits it.
      */
@@ -3155,7 +3155,7 @@ static int data_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
     /*
      * Flush out access table actions that are delegated to the cleanup
      * server. There is similar code at the beginning of the DATA command.
-     * 
+     *
      * Send the end-of-segment markers and finish the queue file record stream.
      */
     else {
@@ -3208,22 +3208,22 @@ static int data_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
      * maintenance. Workaround: force the Postfix SMTP server to hang up with
      * a 421 response in the rare case that the cleanup server breaks AND
      * that the remote SMTP client continues the session after end-of-data.
-     * 
+     *
      * XXX Should use something other than CLEANUP_STAT_WRITE when we lose
      * contact with the cleanup server. This requires changes to the
      * mail_stream module and its users (smtpd, qmqpd, perhaps sendmail).
-     * 
+     *
      * XXX See exception below in code that overrides state->access_denied for
      * compliance with RFC 2821 Sec 3.1.
      */
     if (smtpd_milters != 0 && (state->err & CLEANUP_STAT_WRITE) != 0)
-	state->access_denied = mystrdup("421 4.3.0 Mail system error");
+        state->access_denied = mystrdup("421 4.3.0 Mail system error");
 
     /*
      * Handle any errors. One message may suffer from multiple errors, so
      * complain only about the most severe error. Forgive any previous client
      * errors when a message was received successfully.
-     * 
+     *
      * See also: qmqpd.c
      */
 #define IS_SMTP_REJECT(s) \
@@ -3232,14 +3232,15 @@ static int data_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
 	 && ((s)[3] == '\0' || (s)[3] == ' ' || (s)[3] == '-'))
 
     if (state->err == CLEANUP_STAT_OK) {
-	state->error_count = 0;
-	state->error_mask = 0;
-	state->junk_cmds = 0;
-	if (proxy)
-	    smtpd_chat_reply(state, "%s", STR(proxy->buffer));
-	else
-	    smtpd_chat_reply(state,
-			     "250 2.0.0 Ok: queued as %s", state->queue_id);
+        state->error_count = 0;
+        state->error_mask = 0;
+        state->junk_cmds = 0;
+        if (proxy)
+            smtpd_chat_reply(state, "%s", STR(proxy->buffer));
+        else
+            smtpd_chat_reply(state,
+                     "250 2.0.0 Ok: queued as %s", state->queue_id);
+//        restlog_queued( state->queue_id, state->name, state->rcpt_count, state->recipient, (unsigned long)state->msg_size );
     } else if (why && IS_SMTP_REJECT(STR(why))) {
 	state->error_mask |= MAIL_ERROR_POLICY;
 	smtpd_chat_reply(state, "%s", STR(why));
@@ -3348,7 +3349,7 @@ static int noop_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
      * XXX 2821 incompatibility: Section 4.1.1.9 says that NOOP can have a
      * parameter string which is to be ignored. NOOP instructions with
      * parameters? Go figure.
-     * 
+     *
      * RFC 2821 violates RFC 821, which says that NOOP takes no parameters.
      */
 #ifdef RFC821_SYNTAX
@@ -3376,18 +3377,18 @@ static int vrfy_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
      * The SMTP standard (RFC 821) disallows unquoted special characters in
      * the VRFY argument. Common practice violates the standard, however.
      * Postfix accomodates common practice where it violates the standard.
-     * 
+     *
      * XXX Impedance mismatch! The SMTP command tokenizer preserves quoting,
      * whereas the recipient restrictions checks expect unquoted (internal)
      * address forms. Therefore we must parse out the address, or we must
      * stop doing recipient restriction checks and lose the opportunity to
      * say "user unknown" at the SMTP port.
-     * 
+     *
      * XXX 2821 incompatibility and brain damage: Section 4.5.1 requires that
      * VRFY is implemented. RFC 821 specifies that VRFY is optional. It gets
      * even worse: section 3.5.3 says that a 502 (command recognized but not
      * implemented) reply is not fully compliant.
-     * 
+     *
      * Thus, an RFC 2821 compliant implementation cannot refuse to supply
      * information in reply to VRFY queries. That is simply bogus. The only
      * reply we could supply is a generic 252 reply. This causes spammers to
@@ -3431,7 +3432,7 @@ static int vrfy_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
      * either "full name <user@domain>" or "user@domain". Postfix replies
      * with the string that was provided by the client, whether or not it is
      * in fully qualified domain form and the address is in <>.
-     * 
+     *
      * Reply code 250 is reserved for the case where the address is verified;
      * reply code 252 should be used when no definitive certainty exists.
      */
@@ -3534,7 +3535,7 @@ static int quit_cmd(SMTPD_STATE *state, int unused_argc, SMTPD_TOKEN *unused_arg
      * When the "." and quit replies are pipelined, make sure they are
      * flushed now, to avoid repeated mail deliveries in case of a crash in
      * the "clean up before disconnect" code.
-     * 
+     *
      * XXX When this was added in Postfix 2.1 we used vstream_fflush(). As of
      * Postfix 2.3 we use smtp_flush() for better error reporting.
      */
@@ -3570,7 +3571,7 @@ static int xclient_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
 
     /*
      * Sanity checks.
-     * 
+     *
      * XXX The XCLIENT command will override its own access control, so that
      * connection count/rate restrictions can be correctly simulated.
      */
@@ -3801,16 +3802,16 @@ static int xclient_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *argv)
      * back to initial server greeting stage, otherwise we can't correctly
      * simulate smtpd_client_restrictions (with smtpd_delay_reject=0) and
      * Milter connect restrictions.
-     * 
+     *
      * XXX Compatibility: for accurate simulation we must also reset the HELO
      * information. We keep the information if it was specified in the
      * XCLIENT command.
-     * 
+     *
      * XXX The client connection count/rate control must be consistent in its
      * use of client address information in connect and disconnect events. We
      * re-evaluate xclient so that we correctly simulate connection
      * concurrency and connection rate restrictions.
-     * 
+     *
      * XXX Duplicated from smtpd_proto().
      */
     xclient_allowed =
@@ -4121,12 +4122,12 @@ static void smtpd_start_tls(SMTPD_STATE *state)
      * This is non-production code, for tlsproxy(8) load testing only. It
      * implements enough to enable some Postfix features that depend on TLS
      * encryption.
-     * 
+     *
      * To insert tlsproxy(8) between this process and the SMTP client, we swap
      * the file descriptors between the state->tlsproxy and state->client
      * VSTREAMS, so that we don't lose all the user-configurable
      * state->client attributes (such as longjump buffers or timeouts).
-     * 
+     *
      * As we implement tlsproy support in the Postfix SMTP client we should
      * develop a usable abstraction that encapsulates this stream plumbing in
      * a library module.
@@ -4160,14 +4161,14 @@ static void smtpd_start_tls(SMTPD_STATE *state)
 
     /*
      * Wrapper mode uses a dedicated port and always requires TLS.
-     * 
+     *
      * XXX In non-wrapper mode, it is possible to require client certificate
      * verification without requiring TLS. Since certificates can be verified
      * only while TLS is turned on, this means that Postfix will happily
      * perform SMTP transactions when the client does not use the STARTTLS
      * command. For this reason, Postfix does not require client certificate
      * verification unless TLS is required.
-     * 
+     *
      * The cipher grade and exclusions don't change between sessions. Compute
      * just once and cache.
      */
@@ -4217,7 +4218,7 @@ static void smtpd_start_tls(SMTPD_STATE *state)
      * save the CPU that was already burnt on PKI ops. The real safety
      * mechanism applies with future STARTTLS commands (or wrappermode
      * connections), prior to the SSL handshake.
-     * 
+     *
      * XXX The client event count/rate control must be consistent in its use of
      * client address information in connect and disconnect events. For now
      * we exclude xclient authorized hosts from event count/rate control.
@@ -4277,7 +4278,7 @@ static void smtpd_start_tls(SMTPD_STATE *state)
     /*
      * When TLS is turned on, we may offer AUTH methods that would not be
      * offered within a plain-text session.
-     * 
+     *
      * XXX Always refresh SASL the mechanism list after STARTTLS. Dovecot
      * responses may depend on whether the SMTP connection is encrypted.
      */
@@ -4362,7 +4363,7 @@ static int starttls_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
     /*
      * Enforce TLS handshake rate limit when this client negotiated too many
      * new TLS sessions in the recent past.
-     * 
+     *
      * XXX The client event count/rate control must be consistent in its use of
      * client address information in connect and disconnect events. For now
      * we exclude xclient authorized hosts from event count/rate control.
@@ -4395,7 +4396,7 @@ static int starttls_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
 
     /*
      * Reset all inputs to the initial state.
-     * 
+     *
      * XXX RFC 2487 does not forbid the use of STARTTLS while mail transfer is
      * in progress, so we have to allow it even when it makes no sense.
      */
@@ -4494,13 +4495,13 @@ static void smtpd_proto(SMTPD_STATE *state)
      * one line at a time. According to the standard, a sender or recipient
      * address could contain an escaped newline. I think this is perverse,
      * and anyone depending on this is really asking for trouble.
-     * 
+     *
      * In case of mail protocol trouble, the program jumps back to this place,
      * so that it can perform the necessary cleanup before talking to the
      * next client. The setjmp/longjmp primitives are like a sharp tool: use
      * with care. I would certainly recommend against the use of
      * setjmp/longjmp in programs that change privilege levels.
-     * 
+     *
      * In case of file system trouble the program terminates after logging the
      * error and after informing the client. In all other cases (out of
      * memory, panic) the error is logged, and the msg_cleanup() exit handler
@@ -4549,10 +4550,10 @@ static void smtpd_proto(SMTPD_STATE *state)
 	 * In TLS wrapper mode, turn on TLS using code that is shared with
 	 * the STARTTLS command. This code does not return when the handshake
 	 * fails.
-	 * 
+	 *
 	 * Enforce TLS handshake rate limit when this client negotiated too many
 	 * new TLS sessions in the recent past.
-	 * 
+	 *
 	 * XXX This means we don't complete a TLS handshake just to tell the
 	 * client that we don't provide service. TLS wrapper mode is
 	 * obsolete, so we don't have to provide perfect support.
@@ -4602,7 +4603,7 @@ static void smtpd_proto(SMTPD_STATE *state)
 	 * its use of client address information in connect and disconnect
 	 * events. For now we exclude xclient authorized hosts from
 	 * connection count/rate control.
-	 * 
+	 *
 	 * XXX Must send connect/disconnect events to the anvil server even when
 	 * this service is not connection count or rate limited, otherwise it
 	 * will discard client message or recipient rate information too
@@ -4697,10 +4698,10 @@ static void smtpd_proto(SMTPD_STATE *state)
 
 	/*
 	 * SASL initialization for plaintext mode.
-	 * 
+	 *
 	 * XXX Backwards compatibility: allow AUTH commands when the AUTH
 	 * announcement is suppressed via smtpd_sasl_exceptions_networks.
-	 * 
+	 *
 	 * XXX Safety: don't enable SASL with "smtpd_tls_auth_only = yes" and
 	 * non-TLS build.
 	 */
@@ -4840,7 +4841,7 @@ static void smtpd_proto(SMTPD_STATE *state)
      * use of client address information in connect and disconnect events.
      * For now we exclude xclient authorized hosts from connection count/rate
      * control.
-     * 
+     *
      * XXX Must send connect/disconnect events to the anvil server even when
      * this service is not connection count or rate limited, otherwise it
      * will discard client message or recipient rate information too early or
@@ -4875,7 +4876,7 @@ static void smtpd_proto(SMTPD_STATE *state)
     /*
      * Cleanup whatever information the client gave us during the SMTP
      * dialog.
-     * 
+     *
      * XXX Duplicated in xclient_cmd().
      */
 #ifdef USE_TLS
@@ -4920,7 +4921,7 @@ static void smtpd_service(VSTREAM *stream, char *service, char **argv)
     /*
      * This routine runs when a client has connected to our network port, or
      * when the smtp server is run in stand-alone mode (input from pipe).
-     * 
+     *
      * Look up and sanitize the peer name, then initialize some connection-
      * specific state. When the name service is hosed, hostname lookup will
      * take a while. This is why I always run a local name server on critical
@@ -5000,7 +5001,7 @@ static void pre_jail_init(char *unused_name, char **unused_argv)
 
     /*
      * Open maps before dropping privileges so we can read passwords etc.
-     * 
+     *
      * XXX We should not do this in stand-alone (sendmail -bs) mode, but we
      * can't use SMTPD_STAND_ALONE(state) here. This means "sendmail -bs"
      * will try to connect to proxymap when invoked by root for mail
@@ -5035,7 +5036,7 @@ static void pre_jail_init(char *unused_name, char **unused_argv)
      * security levels. We implement only a subset for now. If we implement
      * more levels, wrappermode should override only weaker TLS security
      * levels.
-     * 
+     *
      * Note: tls_level_lookup() logs no warning.
      */
     if (!var_smtpd_tls_wrappermode && *var_smtpd_tls_level) {
@@ -5067,7 +5068,7 @@ static void pre_jail_init(char *unused_name, char **unused_argv)
      * With TLS wrapper mode, we run on a dedicated port and turn on TLS
      * before actually speaking the SMTP protocol. This implies TLS enforce
      * mode.
-     * 
+     *
      * With non-wrapper mode, TLS enforce mode implies that we don't advertise
      * AUTH before the client issues STARTTLS.
      */
@@ -5093,7 +5094,7 @@ static void pre_jail_init(char *unused_name, char **unused_argv)
 	    /*
 	     * Can't use anonymous ciphers if we want client certificates.
 	     * Must use anonymous ciphers if we have no certificates.
-	     * 
+	     *
 	     * XXX: Ugh! Too many booleans!
 	     */
 	    ask_client_cert = require_server_cert =
@@ -5195,10 +5196,10 @@ static void post_jail_init(char *unused_name, char **unused_argv)
 
     /*
      * Sendmail mail filters.
-     * 
+     *
      * XXX Should not do this when running in stand-alone mode. But that test
      * looks at VSTREAM_IN which is not available at this point.
-     * 
+     *
      * XXX Disable non_smtpd_milters when not sending our own mail filter list.
      */
     if ((smtpd_input_transp_mask & INPUT_TRANSP_MILTER) == 0) {

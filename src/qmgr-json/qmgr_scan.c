@@ -117,7 +117,7 @@ void    qmgr_scan_request(QMGR_SCAN *scan_info, int flags)
      * dead transports and queues at the earliest opportunity: preferably
      * during an already ongoing queue scan, otherwise the throttling will
      * have to wait until a "start scan" trigger arrives.
-     * 
+     *
      * The QMGR_FLUSH_ONCE request always comes with QMGR_FLUSH_DFXP, and
      * sometimes it also comes with QMGR_SCAN_ALL. It becomes a completely
      * different story when a flush request is encoded in file permissions.
@@ -160,13 +160,13 @@ char   *qmgr_scan_next(QMGR_SCAN *scan_info)
      * arrived in the mean time.
      */
     if (scan_info->handle && (path = mail_scan_dir_next(scan_info->handle)) == 0) {
-	scan_info->handle = scan_dir_close(scan_info->handle);
-	if (msg_verbose && (scan_info->nflags & QMGR_SCAN_START) == 0)
-	    msg_info("done %s queue scan", scan_info->queue);
+        scan_info->handle = scan_dir_close(scan_info->handle);
+        if (msg_verbose && (scan_info->nflags & QMGR_SCAN_START) == 0)
+            msg_info("done %s queue scan", scan_info->queue);
     }
     if (!scan_info->handle && (scan_info->nflags & QMGR_SCAN_START)) {
-	qmgr_scan_start(scan_info);
-	path = mail_scan_dir_next(scan_info->handle);
+        qmgr_scan_start(scan_info);
+        path = mail_scan_dir_next(scan_info->handle);
     }
     return (path);
 }
