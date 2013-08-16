@@ -546,17 +546,17 @@ static void qmgr_active_done_3_generic(QMGR_MESSAGE *message)
      * All recipients done. Remove the queue file.
      */
     else {
-	if (mail_queue_remove(message->queue_name, message->queue_id)) {
-	    if (errno != ENOENT)
-		msg_fatal("%s: remove %s from %s: %m", myname,
-			  message->queue_id, message->queue_name);
-	    msg_warn("%s: remove %s from %s: %m", myname,
-		     message->queue_id, message->queue_name);
-	} else {
-	    /* Same format as logged by postsuper. */
-	    restlog_message_sent( message->queue_name, message->queue_id );
-	    msg_info("%s: removed", message->queue_id);
-	}
+        if (mail_queue_remove(message->queue_name, message->queue_id)) {
+            if (errno != ENOENT)
+                msg_fatal("%s: remove %s from %s: %m", myname,
+                    message->queue_id, message->queue_name);
+            msg_warn("%s: remove %s from %s: %m", myname,
+                message->queue_id, message->queue_name);
+        } else {
+            /* Same format as logged by postsuper. */
+            msg_info("%s: removed", message->queue_id);
+        }
+        restlog_message_sent( message->queue_name, message->queue_id );
     }
 
     /*

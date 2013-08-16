@@ -54,6 +54,7 @@ typedef struct CLEANUP_STATE {
     MAIL_STREAM *handle;		/* mail stream handle */
     char   *queue_name;			/* queue name */
     char   *queue_id;			/* queue file basename */
+    char    *msg_subject;   /* saved message subject */
     struct timeval arrival_time;	/* arrival time */
     char   *fullname;			/* envelope sender full name */
     char   *sender;			/* envelope sender address */

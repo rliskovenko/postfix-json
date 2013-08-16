@@ -3240,7 +3240,6 @@ static int data_cmd(SMTPD_STATE *state, int argc, SMTPD_TOKEN *unused_argv)
         else
             smtpd_chat_reply(state,
                      "250 2.0.0 Ok: queued as %s", state->queue_id);
-//        restlog_queued( state->queue_id, state->name, state->rcpt_count, state->recipient, (unsigned long)state->msg_size );
     } else if (why && IS_SMTP_REJECT(STR(why))) {
 	state->error_mask |= MAIL_ERROR_POLICY;
 	smtpd_chat_reply(state, "%s", STR(why));

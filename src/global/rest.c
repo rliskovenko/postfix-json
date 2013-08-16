@@ -71,8 +71,9 @@ void restlog_change_queue( const char *queue_from, const char *queue_to, const c
     cJSON_AddItemToObject( root, "queue_from", cJSON_CreateString( queue_from ) );
     cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
     cJSON_AddItemToObject( root, "queue_to", cJSON_CreateString( queue_to ) );
+    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_queue_changed" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/change_queue", root );
+    res = perform_put( "http://127.0.0.1:9300/", root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -89,8 +90,9 @@ void restlog_change_wait_time( const char *queue_id, size_t wait_time) {
     root = cJSON_CreateObject();
     cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
     cJSON_AddItemToObject( root, "wait_time", cJSON_CreateNumber( wait_time ) );
+    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_next_retry" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/wait_time", root );
+    res = perform_put( "http://127.0.0.1:9300/", root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -99,12 +101,9 @@ void restlog_change_wait_time( const char *queue_id, size_t wait_time) {
     cJSON_Delete( root );
 }
 
-//const char*orig_rcpt
-//const char *reason
-//const char *smtp_reply
 void restlog_queued( const char *queue_id, const char *queue_name,
-    const char *env_sender, const int rcpt_count,
-    const unsigned long msg_size ) {
+    const char *env_sender, const char* recip, const int rcpt_count,
+    const char *subject, const unsigned long msg_size ) {
     cJSON *root;
     CURLcode res;
 
@@ -112,14 +111,14 @@ void restlog_queued( const char *queue_id, const char *queue_name,
     root = cJSON_CreateObject();
     cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
     cJSON_AddItemToObject( root, "queue_name", cJSON_CreateString( queue_name ) );
-    cJSON_AddItemToObject( root, "sender_envelope", cJSON_CreateString( env_sender ) );
+    cJSON_AddItemToObject( root, "sender", cJSON_CreateString( env_sender ) );
+    cJSON_AddItemToObject( root, "recipient", cJSON_CreateString( recip ) );
     cJSON_AddItemToObject( root, "rcpt_count", cJSON_CreateNumber( rcpt_count ) );
     cJSON_AddItemToObject( root, "msg_size", cJSON_CreateNumber( msg_size ) );
-    //cJSON_AddItemToObject( root, "smtp_reply", cJSON_CreateString( smtp_reply ) );
-    //cJSON_AddItemToObject( root, "recipient", cJSON_CreateString( orig_rcpt ) );
-    //cJSON_AddItemToObject( root, "failure_reason", cJSON_CreateString( reason ) );
+    cJSON_AddItemToObject( root, "subject", cJSON_CreateString( subject ) );
+    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_added" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/add", root );
+    res = perform_put( "http://127.0.0.1:9300/", root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -137,8 +136,9 @@ void restlog_message_sent( const char *queue_name, const char *queue_id ) {
     cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
     cJSON_AddItemToObject( root, "queue", cJSON_CreateString( queue_name ) );
     cJSON_AddItemToObject( root, "finished", cJSON_CreateNumber( 1 ) );
+    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_sent" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/postfix/message/sent", root );
+    res = perform_put( "http://127.0.0.1:9300/", root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }

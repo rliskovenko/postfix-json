@@ -47,7 +47,7 @@
  /*
   * Header names are given in the preferred capitalization. The lookups are
   * case-insensitive.
-  * 
+  *
   * XXX Removing Return-Path: headers should probably be done only with mail
   * that enters via a non-SMTP channel. Changing this now could break other
   * software. See also comments in bounce_notify_util.c.
@@ -84,6 +84,7 @@ static const HEADER_OPTS header_opts[] = {
     "Return-Receipt-To", HDR_RETURN_RECEIPT_TO, HDR_OPT_SENDER,
     "Sender", HDR_SENDER, HDR_OPT_SENDER,
     "To", HDR_TO, HDR_OPT_XRECIP,
+    "Subject", HDR_SUBJECT, HDR_OPT_SUBJECT
 };
 
 #define HEADER_OPTS_SIZE (sizeof(header_opts) / sizeof(header_opts[0]))

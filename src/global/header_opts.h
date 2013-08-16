@@ -54,6 +54,7 @@ typedef struct {
 #define HDR_CONTENT_ID			29
 #define HDR_MIME_VERSION		30
 #define HDR_DISP_NOTIFICATION		31
+#define HDR_SUBJECT     32
 
  /*
   * Header flags.
@@ -64,6 +65,7 @@ typedef struct {
 #define HDR_OPT_RR	(1<<3)		/* Resent- header */
 #define HDR_OPT_EXTRACT	(1<<4)		/* extract flag */
 #define HDR_OPT_MIME	(1<<5)		/* MIME header */
+#define HDR_OPT_SUBJECT (1<<6)  /* Subject line */
 
 #define HDR_OPT_XRECIP	(HDR_OPT_RECIP | HDR_OPT_EXTRACT)
 

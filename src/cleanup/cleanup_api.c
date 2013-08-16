@@ -239,14 +239,11 @@ int     cleanup_flush(CLEANUP_STATE *state)
      * Update the preliminary message size and count fields with the actual
      * values.
      */
-    restlog_queued( state->queue_id, state->queue_name, state->sender,
-        state->rcpt_count, (unsigned long)state->cont_length);
     if (CLEANUP_OUT_OK(state))
         cleanup_final(state);
-
-//    restlog_queued( state->queue_id, state->queue_name, state->sender,
-//        state->orig_rcpt, state->rcpt_count,
-//        state->reason, (unsigned long)state->cont_length, state->smtp_reply );
+    restlog_queued( state->queue_id, state->queue_name, state->sender,
+        state->recip, state->rcpt_count, state->msg_subject,
+        (unsigned long)state->cont_length);
 
     /*
      * If there was an error that requires us to generate a bounce message
