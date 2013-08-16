@@ -406,6 +406,7 @@
 /* Application-specific. */
 
 #include "qmgr.h"
+#include "rest.h"
 
  /*
   * Tunables.
@@ -677,7 +678,7 @@ MAIL_VERSION_STAMP_DECLARE;
 
 /* main - the main program */
 
-int     main(int argc, char **argv)
+int     main(int argc, char **argv, char **env)
 {
     static const CONFIG_STR_TABLE str_table[] = {
 	VAR_DEFER_XPORTS, DEF_DEFER_XPORTS, &var_defer_xports, 0, 0,

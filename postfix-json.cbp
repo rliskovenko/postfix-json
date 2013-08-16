@@ -812,6 +812,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/global/bounce_log.h" />
+		<Unit filename="src/global/cJSON.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/cJSON.h" />
 		<Unit filename="src/global/canon_addr.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1292,6 +1296,10 @@
 		<Unit filename="src/global/resolve_local.h" />
 		<Unit filename="src/global/resolve_local.in" />
 		<Unit filename="src/global/resolve_local.ref" />
+		<Unit filename="src/global/rest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/global/rest.h" />
 		<Unit filename="src/global/rewrite_clnt.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1814,10 +1822,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/qmgr-json/Makefile.in" />
-		<Unit filename="src/qmgr-json/cJSON.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/qmgr-json/cJSON.h" />
 		<Unit filename="src/qmgr-json/qmgr.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -2989,6 +2993,7 @@
 		<Unit filename="src/xsasl/xsasl_server.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="tools/JSON-debug-server.pl" />
 		<Extensions>
 			<code_completion />
 			<debugger />

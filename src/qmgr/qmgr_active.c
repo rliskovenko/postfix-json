@@ -111,6 +111,7 @@
 /* Application-specific. */
 
 #include "qmgr.h"
+#include "rest.h"
 
  /*
   * A bunch of call-back routines.
@@ -198,6 +199,7 @@ int     qmgr_active_feed(QMGR_SCAN *scan_info, const char *queue_id)
 	if (msg_verbose)
 	    msg_info("%s: skip %s (%ld seconds)", myname, queue_id,
 		     (long) (st.st_mtime - event_time()));
+    restlog_change_wait_time( queue_id, (size_t) (st.st_mtime - event_time()) );
 	return (0);
     }
 
@@ -554,6 +556,7 @@ static void qmgr_active_done_3_generic(QMGR_MESSAGE *message)
 	    /* Same format as logged by postsuper. */
 	    msg_info("%s: removed", message->queue_id);
 	}
+        restlog_message_sent( message->queue_name, message->queue_id );
     }
 
     /*

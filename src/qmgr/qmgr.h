@@ -1,3 +1,6 @@
+#ifndef QMGR_H_INCLUDED
+#define QMGR_H_INCLUDED
+
 /*++
 /* NAME
 /*	qmgr 3h
@@ -534,3 +537,4 @@ extern char *qmgr_error_nexthop(DSN *);
 /*	Modra 6
 /*	155 00, Prague, Czech Republic
 /*--*/
+#endif
