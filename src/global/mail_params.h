@@ -3667,9 +3667,21 @@ extern bool var_daemon_open_fatal;
 #define DEF_QUEUE_METADATA_URL  "http://localhost:9300/"
 extern char *var_queue_metadata_url;
 
-#define VAR_QUEUE_METADATA_PATH "queue_metadata_path"
-#define DEF_QUEUE_METADATA_PATH "postfix_queue/message/"
-extern char *var_queue_metadata_path;
+#define VAR_QUEUE_METADATA_CHANGEQ_PATH "queue_metadata_changeq_path"
+#define DEF_QUEUE_METADATA_CHANGEQ_PATH "/message/change_queue"
+extern char *var_queue_metadata_changeq_path;
+
+#define VAR_QUEUE_METADATA_CHANGEWT_PATH "queue_metadata_changewt_path"
+#define DEF_QUEUE_METADATA_CHANGEWT_PATH "/message/change_waittime"
+extern char *var_queue_metadata_changewt_path;
+
+#define VAR_QUEUE_METADATA_ADDQ_PATH "queue_metadata_addq_path"
+#define DEF_QUEUE_METADATA_ADDQ_PATH "/message/add"
+extern char *var_queue_metadata_addq_path;
+
+#define VAR_QUEUE_METADATA_RMQ_PATH "queue_metadata_rmq_path"
+#define DEF_QUEUE_METADATA_RMQ_PATH "/message/remove"
+extern char *var_queue_metadata_rmq_path;
 
 /* LICENSE
 /* .ad

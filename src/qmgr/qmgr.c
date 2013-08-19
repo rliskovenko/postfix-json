@@ -445,6 +445,14 @@ int     var_dest_rate_delay;
 char   *var_def_filter_nexthop;
 int     var_qmgr_daemon_timeout;
 int     var_qmgr_ipc_timeout;
+char    *var_queue_metadata_url;
+char    *var_queue_metadata_changeq_path;
+char    *var_queue_metadata_addq_path;
+char    *var_queue_metadata_changewt_path;
+
+char    *rename_url;
+char    *wt_url;
+char    *sent_url;
 
 static QMGR_SCAN *qmgr_scans[2];
 
@@ -558,7 +566,7 @@ static int qmgr_loop(char *unused_name, char **unused_argv)
     /*
      * Let some new blood into the active queue when the queue size is
      * smaller than some configurable limit.
-     * 
+     *
      * We import one message per interrupt, to optimally tune the input count
      * for the number of delivery agent protocol wait states, as explained in
      * qmgr_transport.c.
@@ -626,6 +634,17 @@ static void qmgr_pre_init(char *unused_name, char **unused_argv)
 static void qmgr_post_init(char *name, char **unused_argv)
 {
 
+    /* Initialize rename_url */
+    rename_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changeq_path ) + 2 );
+    rename_url = mystrdup( var_queue_metadata_url );
+    rename_url = strcat(rename_url, var_queue_metadata_changeq_path);
+    wt_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changewt_path ) + 2 );
+    wt_url = mystrdup( var_queue_metadata_url );
+    wt_url = strcat( wt_url, var_queue_metadata_changewt_path );
+    sent_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
+    sent_url = mystrdup( var_queue_metadata_url );
+    sent_url = strcat( sent_url, var_queue_metadata_addq_path );
+
     /*
      * Backwards compatibility.
      */
@@ -685,6 +704,10 @@ int     main(int argc, char **argv, char **env)
 	VAR_CONC_POS_FDBACK, DEF_CONC_POS_FDBACK, &var_conc_pos_feedback, 1, 0,
 	VAR_CONC_NEG_FDBACK, DEF_CONC_NEG_FDBACK, &var_conc_neg_feedback, 1, 0,
 	VAR_DEF_FILTER_NEXTHOP, DEF_DEF_FILTER_NEXTHOP, &var_def_filter_nexthop, 0, 0,
+	VAR_QUEUE_METADATA_URL, DEF_QUEUE_METADATA_URL, &var_queue_metadata_url, 1, 0,
+	VAR_QUEUE_METADATA_CHANGEQ_PATH, DEF_QUEUE_METADATA_CHANGEQ_PATH, &var_queue_metadata_changeq_path, 1, 0,
+	VAR_QUEUE_METADATA_CHANGEWT_PATH, DEF_QUEUE_METADATA_CHANGEWT_PATH, &var_queue_metadata_changewt_path, 1, 0,
+	VAR_QUEUE_METADATA_ADDQ_PATH, DEF_QUEUE_METADATA_ADDQ_PATH, &var_queue_metadata_addq_path, 1, 0,
 	0,
     };
     static const CONFIG_TIME_TABLE time_table[] = {

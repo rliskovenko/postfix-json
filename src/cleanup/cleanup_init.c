@@ -165,6 +165,10 @@ char   *var_milt_head_checks;		/* post-Milter header checks */
 int     var_auto_8bit_enc_hdr;		/* auto-detect 8bit encoding header */
 int     var_always_add_hdrs;		/* always add missing headers */
 
+char *new_url;
+char    *var_queue_metadata_url;
+char    *var_queue_metadata_addq_path;
+
 CONFIG_INT_TABLE cleanup_int_table[] = {
     VAR_HOPCOUNT_LIMIT, DEF_HOPCOUNT_LIMIT, &var_hopcount_limit, 1, 0,
     VAR_DUP_FILTER_LIMIT, DEF_DUP_FILTER_LIMIT, &var_dup_filter_limit, 0, 0,
@@ -283,7 +287,7 @@ void    cleanup_sig(int sig)
     /*
      * msg_fatal() is safe against calling itself recursively, but signals
      * need extra safety.
-     * 
+     *
      * XXX While running as a signal handler, can't ask the memory manager to
      * release VSTRING storage.
      */
@@ -305,6 +309,12 @@ void    cleanup_sig(int sig)
 
 void    cleanup_pre_jail(char *unused_name, char **unused_argv)
 {
+    /* Initialize new message url */
+    new_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
+    new_url = mystrdup( var_queue_metadata_url );
+    new_url = strcat(new_url, var_queue_metadata_addq_path);
+    msg_info("URL for new messages: %s", new_url);
+
     static const NAME_MASK send_canon_class_table[] = {
 	CANON_CLASS_ENV_FROM, CLEANUP_CANON_FLAG_ENV_FROM,
 	CANON_CLASS_HDR_FROM, CLEANUP_CANON_FLAG_HDR_FROM,

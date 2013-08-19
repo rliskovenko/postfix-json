@@ -665,4 +665,8 @@ setgid_group = postdrop
 inet_protocols = ipv4
 
 queue_metadata_url = http://localhost:9300/
-queue_metadata_path = postfix_queue/message
+queue_metadata_changeq_path = /message/change_queue
+queue_metadata_changewt_path = /message/change_waittime
+queue_metadata_addq_path = /message/add
+queue_metadata_rmq_path = /message/remove
+

@@ -19,7 +19,7 @@
 
 static CURL *curl_handler;
 
-static size_t read_callback( void *out, size_t size, size_t nmemb, void *in) {
+static size_t read_callback( const void *out, const size_t size, const size_t nmemb, const void *in) {
     struct inmem_s *in_data = (struct inmem_s *)in;
     size_t in_size = 0;
 
@@ -35,7 +35,7 @@ static size_t read_callback( void *out, size_t size, size_t nmemb, void *in) {
     return in_size;
 }
 
-CURLcode perform_put( char *url, cJSON *json ) {
+CURLcode perform_put( const char *url, const cJSON *json ) {
     struct inmem_s json_data;
     CURLcode res;
 
@@ -62,7 +62,7 @@ CURLcode perform_put( char *url, cJSON *json ) {
     return res;
 }
 
-void restlog_change_queue( const char *queue_from, const char *queue_to, const char *queue_id ) {
+void restlog_change_queue( const char *url, const char *queue_from, const char *queue_to, const char *queue_id ) {
     cJSON *root;
     CURLcode res;
 
@@ -73,7 +73,7 @@ void restlog_change_queue( const char *queue_from, const char *queue_to, const c
     cJSON_AddItemToObject( root, "queue_to", cJSON_CreateString( queue_to ) );
     cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_queue_changed" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/", root );
+    res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -82,7 +82,7 @@ void restlog_change_queue( const char *queue_from, const char *queue_to, const c
     cJSON_Delete( root );
 }
 
-void restlog_change_wait_time( const char *queue_id, size_t wait_time) {
+void restlog_change_wait_time( const char *url, const char *queue_id, size_t wait_time) {
     cJSON *root;
     CURLcode res;
 
@@ -92,7 +92,7 @@ void restlog_change_wait_time( const char *queue_id, size_t wait_time) {
     cJSON_AddItemToObject( root, "wait_time", cJSON_CreateNumber( wait_time ) );
     cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_next_retry" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/", root );
+    res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -101,9 +101,10 @@ void restlog_change_wait_time( const char *queue_id, size_t wait_time) {
     cJSON_Delete( root );
 }
 
-void restlog_queued( const char *queue_id, const char *queue_name,
-    const char *env_sender, const char* recip, const int rcpt_count,
-    const char *subject, const unsigned long msg_size ) {
+void restlog_queued( const char *url, const char *queue_id,
+    const char *queue_name, const char *env_sender,
+    const char* recip, const int rcpt_count, const char *subject,
+    const unsigned long msg_size ) {
     cJSON *root;
     CURLcode res;
 
@@ -118,7 +119,7 @@ void restlog_queued( const char *queue_id, const char *queue_name,
     cJSON_AddItemToObject( root, "subject", cJSON_CreateString( subject ) );
     cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_added" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/", root );
+    res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -127,7 +128,7 @@ void restlog_queued( const char *queue_id, const char *queue_name,
     cJSON_Delete( root );
 }
 
-void restlog_message_sent( const char *queue_name, const char *queue_id ) {
+void restlog_message_sent( const char *url, const char *queue_name, const char *queue_id ) {
     cJSON *root;
     CURLcode res;
 
@@ -138,7 +139,7 @@ void restlog_message_sent( const char *queue_name, const char *queue_id ) {
     cJSON_AddItemToObject( root, "finished", cJSON_CreateNumber( 1 ) );
     cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_sent" ) );
 
-    res = perform_put( "http://127.0.0.1:9300/", root );
+    res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }

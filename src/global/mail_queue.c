@@ -253,7 +253,34 @@ int     mail_queue_rename(const char *queue_id, const char *old_queue,
     VSTRING *new_buf = vstring_alloc(100);
     int     error;
 
-    restlog_change_queue( old_queue, new_queue, queue_id );
+    /*
+     * Try the operation. If it fails, see if it is because of missing
+     * intermediate directories.
+     */
+    error = sane_rename(mail_queue_path(old_buf, old_queue, queue_id),
+			mail_queue_path(new_buf, new_queue, queue_id));
+    if (error != 0 && mail_queue_mkdirs(STR(new_buf)) == 0)
+        error = sane_rename(STR(old_buf), STR(new_buf));
+
+    /*
+     * Cleanup.
+     */
+    vstring_free(old_buf);
+    vstring_free(new_buf);
+
+    return (error);
+}
+
+/* mail_queue_rename - move message to another queue */
+
+int     mail_queue_rename_log(const char *queue_id, const char *old_queue,
+			          const char *new_queue, const char *url)
+{
+    VSTRING *old_buf = vstring_alloc(100);
+    VSTRING *new_buf = vstring_alloc(100);
+    int     error;
+
+    restlog_change_queue( url, old_queue, new_queue, queue_id );
     /*
      * Try the operation. If it fails, see if it is because of missing
      * intermediate directories.
