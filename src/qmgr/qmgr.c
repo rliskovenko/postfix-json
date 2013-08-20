@@ -635,14 +635,14 @@ static void qmgr_post_init(char *name, char **unused_argv)
 {
 
     /* Initialize rename_url */
-    rename_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changeq_path ) + 2 );
-    rename_url = mystrdup( var_queue_metadata_url );
+    rename_url = (char *) mystrdup( var_queue_metadata_url );
+    rename_url = (char *) myrealloc( rename_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changeq_path ) + 2 );
     rename_url = strcat(rename_url, var_queue_metadata_changeq_path);
-    wt_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changewt_path ) + 2 );
-    wt_url = mystrdup( var_queue_metadata_url );
+    wt_url = (char *) mystrdup( var_queue_metadata_url );
+    wt_url = (char *) myrealloc( wt_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changewt_path ) + 2 );
     wt_url = strcat( wt_url, var_queue_metadata_changewt_path );
-    sent_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
-    sent_url = mystrdup( var_queue_metadata_url );
+    sent_url = (char *) mystrdup( var_queue_metadata_url );
+    sent_url = (char *) myrealloc( sent_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
     sent_url = strcat( sent_url, var_queue_metadata_addq_path );
 
     /*

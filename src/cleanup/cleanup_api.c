@@ -121,6 +121,8 @@
 
 #include "cleanup.h"
 
+extern char* new_url;
+
 /* cleanup_open - open queue file and initialize */
 
 CLEANUP_STATE *cleanup_open(VSTREAM *src)
@@ -241,7 +243,11 @@ int     cleanup_flush(CLEANUP_STATE *state)
      */
     if (CLEANUP_OUT_OK(state))
         cleanup_final(state);
-    restlog_queued( state->queue_id, state->queue_name, state->sender,
+
+    // Workarounf for empty subject line
+    if ( state->msg_subject == 0 )
+        state->msg_subject = mystrdup("");
+    restlog_queued( new_url, state->queue_id, state->queue_name, state->sender,
         state->recip, state->rcpt_count, state->msg_subject,
         (unsigned long)state->cont_length);
 

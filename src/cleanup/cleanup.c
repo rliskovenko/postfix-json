@@ -424,10 +424,10 @@
 
 #include "cleanup.h"
 
-char    *var_queue_metadata_url;
-char    *var_queue_metadata_addq_path;
-
-char *new_url;
+//extern char    *var_queue_metadata_url;
+//extern char    *var_queue_metadata_addq_path;
+//
+//extern char *new_url;
 
 /* cleanup_service - process one request to inject a message into the queue */
 
@@ -550,11 +550,6 @@ MAIL_VERSION_STAMP_DECLARE;
 
 int     main(int argc, char **argv)
 {
-    static const CONFIG_STR_TABLE str_table[] = {
-        VAR_QUEUE_METADATA_URL, DEF_QUEUE_METADATA_URL, &var_queue_metadata_url, 1, 0,
-        VAR_QUEUE_METADATA_ADDQ_PATH, DEF_QUEUE_METADATA_ADDQ_PATH, &var_queue_metadata_addq_path, 1, 0,
-        0
-    };
     /*
      * Fingerprint executables and core dumps.
      */
@@ -571,7 +566,6 @@ int     main(int argc, char **argv)
      * Pass control to the single-threaded service skeleton.
      */
     single_server_main(argc, argv, cleanup_service,
-                MAIL_SERVER_STR_TABLE, str_table,
 		       MAIL_SERVER_INT_TABLE, cleanup_int_table,
 		       MAIL_SERVER_BOOL_TABLE, cleanup_bool_table,
 		       MAIL_SERVER_STR_TABLE, cleanup_str_table,

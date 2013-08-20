@@ -233,6 +233,8 @@ CONFIG_STR_TABLE cleanup_str_table[] = {
     VAR_MILT_UNK_MACROS, DEF_MILT_UNK_MACROS, &var_milt_unk_macros, 0, 0,
     VAR_CLEANUP_MILTERS, DEF_CLEANUP_MILTERS, &var_cleanup_milters, 0, 0,
     VAR_MILT_HEAD_CHECKS, DEF_MILT_HEAD_CHECKS, &var_milt_head_checks, 0, 0,
+    VAR_QUEUE_METADATA_URL, DEF_QUEUE_METADATA_URL, &var_queue_metadata_url, 1, 0,
+    VAR_QUEUE_METADATA_ADDQ_PATH, DEF_QUEUE_METADATA_ADDQ_PATH, &var_queue_metadata_addq_path, 1, 0,
     0,
 };
 
@@ -310,10 +312,9 @@ void    cleanup_sig(int sig)
 void    cleanup_pre_jail(char *unused_name, char **unused_argv)
 {
     /* Initialize new message url */
-    new_url = (char *) mymalloc( strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
     new_url = mystrdup( var_queue_metadata_url );
-    new_url = strcat(new_url, var_queue_metadata_addq_path);
-    msg_info("URL for new messages: %s", new_url);
+    new_url = (char *) myrealloc( new_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
+    new_url = strcat(new_url, var_queue_metadata_addq_path );
 
     static const NAME_MASK send_canon_class_table[] = {
 	CANON_CLASS_ENV_FROM, CLEANUP_CANON_FLAG_ENV_FROM,

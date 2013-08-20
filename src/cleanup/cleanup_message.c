@@ -575,7 +575,7 @@ static void cleanup_header_callback(void *context, int header_class,
     else {
         state->headers_seen |= (1 << hdr_opts->type);
         // Save Subject header
-        if (hdr_opts->type == HDR_SUBJECT) {
+        if (hdr_opts->type == HDR_SUBJECT ) {
             state->msg_subject = mystrdup( hdrval );
             msg_info("%s: subject=%s", state->queue_id, hdrval);
         }
