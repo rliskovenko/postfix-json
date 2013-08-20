@@ -424,11 +424,6 @@
 
 #include "cleanup.h"
 
-//extern char    *var_queue_metadata_url;
-//extern char    *var_queue_metadata_addq_path;
-//
-//extern char *new_url;
-
 /* cleanup_service - process one request to inject a message into the queue */
 
 static void cleanup_service(VSTREAM *src, char *unused_service, char **argv)
@@ -468,7 +463,7 @@ static void cleanup_service(VSTREAM *src, char *unused_service, char **argv)
 
     /*
      * XXX Rely on the front-end programs to enforce record size limits.
-     *
+     * 
      * First, copy the envelope records to the queue file. Then, copy the
      * message content (headers and body). Finally, attach any information
      * extracted from message headers.
@@ -550,6 +545,7 @@ MAIL_VERSION_STAMP_DECLARE;
 
 int     main(int argc, char **argv)
 {
+
     /*
      * Fingerprint executables and core dumps.
      */

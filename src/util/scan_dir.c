@@ -179,13 +179,13 @@ char   *scan_dir_next(SCAN_DIR *scan)
     if (info) {
 	while ((dp = readdir(info->dir)) != 0) {
 	    if (STREQ(dp->d_name, ".") || STREQ(dp->d_name, "..")) {
-            if (msg_verbose > 1)
-                msg_info("%s: skip %s", myname, dp->d_name);
-            continue;
+		if (msg_verbose > 1)
+		    msg_info("%s: skip %s", myname, dp->d_name);
+		continue;
 	    } else {
-            if (msg_verbose > 1)
-                msg_info("%s: found %s", myname, dp->d_name);
-            return (dp->d_name);
+		if (msg_verbose > 1)
+		    msg_info("%s: found %s", myname, dp->d_name);
+		return (dp->d_name);
 	    }
 	}
     }

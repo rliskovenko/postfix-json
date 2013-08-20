@@ -566,7 +566,7 @@ static int qmgr_loop(char *unused_name, char **unused_argv)
     /*
      * Let some new blood into the active queue when the queue size is
      * smaller than some configurable limit.
-     *
+     * 
      * We import one message per interrupt, to optimally tune the input count
      * for the number of delivery agent protocol wait states, as explained in
      * qmgr_transport.c.
@@ -697,7 +697,7 @@ MAIL_VERSION_STAMP_DECLARE;
 
 /* main - the main program */
 
-int     main(int argc, char **argv, char **env)
+int     main(int argc, char **argv)
 {
     static const CONFIG_STR_TABLE str_table[] = {
 	VAR_DEFER_XPORTS, DEF_DEFER_XPORTS, &var_defer_xports, 0, 0,

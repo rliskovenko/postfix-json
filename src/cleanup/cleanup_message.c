@@ -451,23 +451,23 @@ static void cleanup_header_callback(void *context, int header_class,
     const char *myname = "cleanup_header_callback";
     char   *hdrval;
     struct code_map {
-        const char *name;
-        const char *encoding;
+	const char *name;
+	const char *encoding;
     };
     static struct code_map code_map[] = {	/* RFC 2045 */
-        "7bit", MAIL_ATTR_ENC_7BIT,
-        "8bit", MAIL_ATTR_ENC_8BIT,
-        "binary", MAIL_ATTR_ENC_8BIT,	/* XXX Violation */
-        "quoted-printable", MAIL_ATTR_ENC_7BIT,
-        "base64", MAIL_ATTR_ENC_7BIT,
-        0,
+	"7bit", MAIL_ATTR_ENC_7BIT,
+	"8bit", MAIL_ATTR_ENC_8BIT,
+	"binary", MAIL_ATTR_ENC_8BIT,	/* XXX Violation */
+	"quoted-printable", MAIL_ATTR_ENC_7BIT,
+	"base64", MAIL_ATTR_ENC_7BIT,
+	0,
     };
     struct code_map *cmp;
     MAPS   *checks;
     const char *map_class;
 
     if (msg_verbose)
-        msg_info("%s: '%.200s'", myname, vstring_str(header_buf));
+	msg_info("%s: '%.200s'", myname, vstring_str(header_buf));
 
     /*
      * Crude header filtering. This stops malware that isn't sophisticated
@@ -477,32 +477,32 @@ static void cleanup_header_callback(void *context, int header_class,
 	(header_class == class && (map_class = var_name, checks = maps) != 0)
 
     if (hdr_opts && (hdr_opts->flags & HDR_OPT_MIME))
-        header_class = MIME_HDR_MULTIPART;
+	header_class = MIME_HDR_MULTIPART;
 
     if ((state->flags & CLEANUP_FLAG_FILTER)
-        && (CHECK(MIME_HDR_PRIMARY, cleanup_header_checks, VAR_HEADER_CHECKS)
-        || CHECK(MIME_HDR_MULTIPART, cleanup_mimehdr_checks, VAR_MIMEHDR_CHECKS)
-        || CHECK(MIME_HDR_NESTED, cleanup_nesthdr_checks, VAR_NESTHDR_CHECKS))) {
-        char   *header = vstring_str(header_buf);
-        const char *value;
+	&& (CHECK(MIME_HDR_PRIMARY, cleanup_header_checks, VAR_HEADER_CHECKS)
+    || CHECK(MIME_HDR_MULTIPART, cleanup_mimehdr_checks, VAR_MIMEHDR_CHECKS)
+    || CHECK(MIME_HDR_NESTED, cleanup_nesthdr_checks, VAR_NESTHDR_CHECKS))) {
+	char   *header = vstring_str(header_buf);
+	const char *value;
 
-        if ((value = maps_find(checks, header, 0)) != 0) {
-            const char *result;
+	if ((value = maps_find(checks, header, 0)) != 0) {
+	    const char *result;
 
-            if ((result = cleanup_act(state, CLEANUP_ACT_CTXT_HEADER,
-                          header, value, map_class))
-            == CLEANUP_ACT_DROP) {
-                return;
-            } else if (result != header) {
-                vstring_strcpy(header_buf, result);
-                hdr_opts = header_opts_find(result);
-                myfree((char *) result);
-            }
-        } else if (checks->error) {
-            msg_warn("%s: %s map lookup problem -- deferring delivery",
-                 state->queue_id, checks->title);
-            state->errs |= CLEANUP_STAT_WRITE;
-        }
+	    if ((result = cleanup_act(state, CLEANUP_ACT_CTXT_HEADER,
+				      header, value, map_class))
+		== CLEANUP_ACT_DROP) {
+		return;
+	    } else if (result != header) {
+		vstring_strcpy(header_buf, result);
+		hdr_opts = header_opts_find(result);
+		myfree((char *) result);
+	    }
+	} else if (checks->error) {
+	    msg_warn("%s: %s map lookup problem -- deferring delivery",
+		     state->queue_id, checks->title);
+	    state->errs |= CLEANUP_STAT_WRITE;
+	}
     }
 
     /*
@@ -511,8 +511,8 @@ static void cleanup_header_callback(void *context, int header_class,
      * headers that do not fit a REC_TYPE_NORM record.
      */
     if (hdr_opts == 0) {
-        cleanup_out_header(state, header_buf);
-        return;
+	cleanup_out_header(state, header_buf);
+	return;
     }
 
     /*
@@ -521,7 +521,7 @@ static void cleanup_header_callback(void *context, int header_class,
      */
     hdrval = vstring_str(header_buf) + strlen(hdr_opts->name) + 1;
     while (ISSPACE(*hdrval))
-        hdrval++;
+	hdrval++;
     /* trimblanks(hdrval, 0)[0] = 0; */
     if (var_auto_8bit_enc_hdr
 	&& hdr_opts->type == HDR_CONTENT_TRANSFER_ENCODING) {
@@ -539,8 +539,8 @@ static void cleanup_header_callback(void *context, int header_class,
      * Copy attachment etc. header blocks without further inspection.
      */
     if (header_class != MIME_HDR_PRIMARY) {
-        cleanup_out_header(state, header_buf);
-        return;
+	cleanup_out_header(state, header_buf);
+	return;
     }
 
     /*
@@ -548,9 +548,9 @@ static void cleanup_header_callback(void *context, int header_class,
      * we should do with this header: delete, count, rewrite. Note that we
      * should examine headers even when they will be deleted from the output,
      * because the addresses in those headers might be needed elsewhere.
-     *
+     * 
      * XXX 2821: Return-path breakage.
-     *
+     * 
      * RFC 821 specifies: When the receiver-SMTP makes the "final delivery" of a
      * message it inserts at the beginning of the mail data a return path
      * line.  The return path line preserves the information in the
@@ -558,13 +558,13 @@ static void cleanup_header_callback(void *context, int header_class,
      * message leaves the SMTP world.  Normally, this would mean it has been
      * delivered to the destination user, but in some cases it may be further
      * processed and transmitted by another mail system.
-     *
+     * 
      * And that is what Postfix implements. Delivery agents prepend
      * Return-Path:. In order to avoid cluttering up the message with
      * possibly inconsistent Return-Path: information (the sender can change
      * as the result of mail forwarding or mailing list delivery), Postfix
      * removes any existing Return-Path: headers.
-     *
+     * 
      * RFC 2821 Section 4.4 specifies:    A message-originating SMTP system
      * SHOULD NOT send a message that already contains a Return-path header.
      * SMTP servers performing a relay function MUST NOT inspect the message
@@ -573,32 +573,32 @@ static void cleanup_header_callback(void *context, int header_class,
      * MAY remove Return-path headers before adding their own.
      */
     else {
-        state->headers_seen |= (1 << hdr_opts->type);
+	state->headers_seen |= (1 << hdr_opts->type);
         // Save Subject header
         if (hdr_opts->type == HDR_SUBJECT ) {
             state->msg_subject = mystrdup( hdrval );
             msg_info("%s: subject=%s", state->queue_id, hdrval);
         }
-        if (hdr_opts->type == HDR_MESSAGE_ID)
-            msg_info("%s: message-id=%s", state->queue_id, hdrval);
-        if (hdr_opts->type == HDR_RESENT_MESSAGE_ID)
-            msg_info("%s: resent-message-id=%s", state->queue_id, hdrval);
-        if (hdr_opts->type == HDR_RECEIVED)
-            if (++state->hop_count >= var_hopcount_limit)
-            state->errs |= CLEANUP_STAT_HOPS;
-        if (CLEANUP_OUT_OK(state)) {
-            if (hdr_opts->flags & HDR_OPT_RR)
-            state->resent = "Resent-";
-            if ((hdr_opts->flags & HDR_OPT_SENDER)
-            && state->hdr_rewrite_context) {
-            cleanup_rewrite_sender(state, hdr_opts, header_buf);
-            } else if ((hdr_opts->flags & HDR_OPT_RECIP)
-                   && state->hdr_rewrite_context) {
-            cleanup_rewrite_recip(state, hdr_opts, header_buf);
-            } else if ((hdr_opts->flags & HDR_OPT_DROP) == 0) {
-            cleanup_out_header(state, header_buf);
-            }
-        }
+	if (hdr_opts->type == HDR_MESSAGE_ID)
+	    msg_info("%s: message-id=%s", state->queue_id, hdrval);
+	if (hdr_opts->type == HDR_RESENT_MESSAGE_ID)
+	    msg_info("%s: resent-message-id=%s", state->queue_id, hdrval);
+	if (hdr_opts->type == HDR_RECEIVED)
+	    if (++state->hop_count >= var_hopcount_limit)
+		state->errs |= CLEANUP_STAT_HOPS;
+	if (CLEANUP_OUT_OK(state)) {
+	    if (hdr_opts->flags & HDR_OPT_RR)
+		state->resent = "Resent-";
+	    if ((hdr_opts->flags & HDR_OPT_SENDER)
+		&& state->hdr_rewrite_context) {
+		cleanup_rewrite_sender(state, hdr_opts, header_buf);
+	    } else if ((hdr_opts->flags & HDR_OPT_RECIP)
+		       && state->hdr_rewrite_context) {
+		cleanup_rewrite_recip(state, hdr_opts, header_buf);
+	    } else if ((hdr_opts->flags & HDR_OPT_DROP) == 0) {
+		cleanup_out_header(state, header_buf);
+	    }
+	}
     }
 }
 
@@ -626,18 +626,18 @@ static void cleanup_header_done_callback(void *context)
     /*
      * Add a missing (Resent-)Message-Id: header. The message ID gives the
      * time in GMT units, plus the local queue ID.
-     *
+     * 
      * XXX Message-Id is not a required message header (RFC 822 and RFC 2822).
-     *
+     * 
      * XXX It is the queue ID non-inode bits that prevent messages from getting
      * the same Message-Id within the same second.
-     *
+     * 
      * XXX An arbitrary amount of time may pass between the start of the mail
      * transaction and the creation of a queue file. Since we guarantee queue
      * ID uniqueness only within a second, we must ensure that the time in
      * the message ID matches the queue ID creation time, as long as we use
      * the queue ID in the message ID.
-     *
+     * 
      * XXX We log a dummy name=value record so that we (hopefully) don't break
      * compatibility with existing logfile analyzers, and so that we don't
      * complicate future code that wants to log more name=value attributes.
@@ -705,17 +705,17 @@ static void cleanup_header_done_callback(void *context)
      * header field if it is different from the address in the From header
      * field.  (Any Sender field that was already there SHOULD be removed.)
      * Similar wording appears in RFC 2822 section 3.6.2.
-     *
+     * 
      * Postfix presently does not insert a Sender: header if envelope and From:
      * address differ. Older Postfix versions assumed that the envelope
      * sender address specifies the system identity and inserted Sender:
      * whenever envelope and From: differed. This was wrong with relayed
      * mail, and was often not even desirable with original submissions.
-     *
+     * 
      * XXX 2822 Section 3.6.2, as well as RFC 822 Section 4.1: FROM headers can
      * contain multiple addresses. If this is the case, then a Sender: header
      * must be provided with a single address.
-     *
+     * 
      * Postfix does not count the number of addresses in a From: header
      * (although doing so is trivial, once the address is parsed).
      */
@@ -814,7 +814,7 @@ static void cleanup_message_headerbody(CLEANUP_STATE *state, int type,
 
     /*
      * Reject unwanted characters.
-     *
+     * 
      * XXX Possible optimization: simplify the loop when the "reject" set
      * contains only one character.
      */
@@ -833,12 +833,12 @@ static void cleanup_message_headerbody(CLEANUP_STATE *state, int type,
 
     /*
      * Strip unwanted characters. Don't overwrite the input.
-     *
+     * 
      * XXX Possible space+time optimization: use a bitset.
-     *
+     * 
      * XXX Possible optimization: simplify the loop when the "strip" set
      * contains only one character.
-     *
+     * 
      * XXX Possible optimization: copy the input only if we really have to.
      */
     if ((state->flags & CLEANUP_FLAG_FILTER) && cleanup_strip_chars) {

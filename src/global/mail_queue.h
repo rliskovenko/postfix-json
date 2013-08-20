@@ -39,7 +39,7 @@
 
  /*
   * Queue file modes.
-  *
+  * 
   * 4.4BSD-like systems don't allow (sticky AND executable) together, so we use
   * group read permission bits instead. These are more portable, but they
   * also are more likely to be turned on by accident. It would not be the end
@@ -83,13 +83,13 @@ extern int mail_queue_id_ok(const char *);
   * 21 upper-case characters, and 21 or fewer lower-case characters. The
   * alphabet is made "safe" by removing all the vowels (AEIOUaeiou). The ID
   * is the concatenation of:
-  *
+  * 
   * - the time in seconds (base 52 encoded, six or more chars),
-  *
+  * 
   * - the time in microseconds (base 52 encoded, exactly four chars),
-  *
+  * 
   * - the 'z' character to separate the time and inode information,
-  *
+  * 
   * - the inode number (base 51 encoded so that it contains no 'z').
   */
 #define MQID_LG_SEC_BASE	52	/* seconds safe alphabet base */
@@ -150,9 +150,9 @@ extern int mail_queue_id_ok(const char *);
  /*
   * The short repeating queue ID is encoded in upper-case hexadecimal, and is
   * the concatenation of:
-  *
+  * 
   * - the time in microseconds (exactly five chars),
-  *
+  * 
   * - the inode number.
   */
 #define MQID_SH_USEC_PAD	5	/* microseconds exact field width */

@@ -312,7 +312,7 @@ case "$SYSTEM.$RELEASE" in
 		# Kernel 2.6 added EPOLL
 		case "$RELEASE" in
 		2.[0-5].*) CCARGS="$CCARGS -DNO_EPOLL";;
-		    # Workaround for retarded libc
+		    # Workaround for retarded libc 
 		    2.6.*)
 		       if [ `expr "X$CCARGS" : "X.*-DNO_EPOLL"` -gt 0 ]
                        then
@@ -529,7 +529,7 @@ ReliantUNIX-?.5.43) SYSTYPE=ReliantUnix543
 #}
 #EOF
 #			  $CC -o makedefs.test makedefs.test.c || exit 1
-#			  ./makedefs.test 2>/dev/null ||
+#			  ./makedefs.test 2>/dev/null || 
 #				CCARGS="$CCARGS -DNO_KQUEUE"
 #			  rm -f makedefs.test makedefs.test.[co];;
 #		esac

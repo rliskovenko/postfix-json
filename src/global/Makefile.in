@@ -474,7 +474,7 @@ resolve_clnt_test: resolve_clnt resolve_clnt.in resolve_clnt.ref
 	    resolve_clnt.ref | diff - resolve_clnt.tmp
 	rm -f resolve_clnt.tmp
 
-# Requires: Postfix, root, append_dot_mydomain=yes
+# Requires: Postfix, root, append_dot_mydomain=yes 
 
 verify_sender_addr_test: verify_sender_addr verify_sender_addr.ref
 	@set -- `id`; case "$$1" in \

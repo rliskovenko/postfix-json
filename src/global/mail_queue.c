@@ -260,7 +260,7 @@ int     mail_queue_rename(const char *queue_id, const char *old_queue,
     error = sane_rename(mail_queue_path(old_buf, old_queue, queue_id),
 			mail_queue_path(new_buf, new_queue, queue_id));
     if (error != 0 && mail_queue_mkdirs(STR(new_buf)) == 0)
-        error = sane_rename(STR(old_buf), STR(new_buf));
+	error = sane_rename(STR(old_buf), STR(new_buf));
 
     /*
      * Cleanup.
@@ -382,7 +382,7 @@ VSTREAM *mail_queue_enter(const char *queue_name, mode_t mode,
      * network. Not that I recommend using a network-based queue, or having
      * multiple hosts write to the same queue, but we should try to avoid
      * losing mail if we can.
-     *
+     * 
      * If someone is racing against us, try to win.
      */
     for (;;) {
@@ -406,7 +406,7 @@ VSTREAM *mail_queue_enter(const char *queue_name, mode_t mode,
      * without leaking a significant amount of system information (unlike
      * process ids). Not so nice is that files need to be renamed when they
      * are moved to another file system.
-     *
+     * 
      * If someone is racing against us, try to win.
      */
     file_id = get_file_id_fd(fd, var_long_queue_ids);
