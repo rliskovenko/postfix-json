@@ -43,19 +43,22 @@ CURLcode perform_put( const char *url, cJSON *json ) {
     struct inmem_s json_data;
     CURLcode res;
     int retval;
+    struct curl_slist *headers = NULL;
 
     if ( ! server_name ) {
         server_name = (char *) mymalloc( (ssize_t) 1024 );
         if ( gethostname(server_name, (size_t) 1024) )
             server_name = (char *) mystrdup("undetected");
     }
-    cJSON_AddItemToObject( json, "server_name", cJSON_CreateString( server_name) );
+    cJSON_AddItemToObject( json, "server_name", cJSON_CreateString( server_name ) );
     json_data.ptr = cJSON_PrintUnformatted( json );
     json_data.left = strlen( json_data.ptr );
     if ( msg_verbose )
         msg_info("json_data: %s", json_data.ptr );
     curl_handler = curl_easy_init();
     if ( curl_handler ) {
+        headers = curl_slist_append( headers, "Content-Type: application/json");
+        curl_easy_setopt( curl_handler, CURLOPT_HTTPHEADER, headers );
         curl_easy_setopt( curl_handler, CURLOPT_URL, url );
         curl_easy_setopt( curl_handler, CURLOPT_NOPROGRESS, 1L );
         curl_easy_setopt( curl_handler, CURLOPT_TIMEOUT, 5L );
@@ -64,8 +67,8 @@ CURLcode perform_put( const char *url, cJSON *json ) {
         curl_easy_setopt( curl_handler, CURLOPT_READDATA, &json_data );
         curl_easy_setopt( curl_handler, CURLOPT_READFUNCTION, (curl_read_callback) read_callback );
         curl_easy_setopt( curl_handler, CURLOPT_INFILESIZE, json_data.left );
-        // Still OK until this moment
         res = curl_easy_perform( curl_handler );
+        curl_slist_free_all( headers );
         curl_easy_cleanup( curl_handler );
     } else {
         msg_error("curl_handler BROKEN!");
