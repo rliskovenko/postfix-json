@@ -18,8 +18,9 @@
 #include "rest.h"
 
 static CURL *curl_handler;
+static char *server_name = 0;
 
-static size_t read_callback( const void *out, const size_t size, const size_t nmemb, const void *in) {
+static size_t read_callback( void *out, const size_t size, const size_t nmemb, const void *in) {
     struct inmem_s *in_data = (struct inmem_s *)in;
     size_t in_size = 0;
 
@@ -35,10 +36,20 @@ static size_t read_callback( const void *out, const size_t size, const size_t nm
     return in_size;
 }
 
-CURLcode perform_put( const char *url, const cJSON *json ) {
+/* Perform HTTP PUT to given url with json data,
+/* adding hostname to it */
+
+CURLcode perform_put( const char *url, cJSON *json ) {
     struct inmem_s json_data;
     CURLcode res;
+    int retval;
 
+    if ( ! server_name ) {
+        server_name = (char *) mymalloc( (ssize_t) 1024 );
+        if ( gethostname(server_name, (size_t) 1024) )
+            server_name = (char *) mystrdup("undetected");
+    }
+    cJSON_AddItemToObject( json, "server_name", cJSON_CreateString( server_name) );
     json_data.ptr = cJSON_PrintUnformatted( json );
     json_data.left = strlen( json_data.ptr );
     if ( msg_verbose )
@@ -51,7 +62,7 @@ CURLcode perform_put( const char *url, const cJSON *json ) {
         curl_easy_setopt( curl_handler, CURLOPT_VERBOSE, 0L );
         curl_easy_setopt( curl_handler, CURLOPT_UPLOAD, 1L );
         curl_easy_setopt( curl_handler, CURLOPT_READDATA, &json_data );
-        curl_easy_setopt( curl_handler, CURLOPT_READFUNCTION, read_callback );
+        curl_easy_setopt( curl_handler, CURLOPT_READFUNCTION, (curl_read_callback) read_callback );
         curl_easy_setopt( curl_handler, CURLOPT_INFILESIZE, json_data.left );
         // Still OK until this moment
         res = curl_easy_perform( curl_handler );
@@ -62,6 +73,12 @@ CURLcode perform_put( const char *url, const cJSON *json ) {
     return res;
 }
 
+/*
+/* queue_from -- initial postfix queue
+/* queue_to -- target postfix queue
+/* queue_id -- internal message id
+/* action = "mesage_queue_changed"
+*/
 void restlog_change_queue( const char *url, const char *queue_from, const char *queue_to, const char *queue_id ) {
     cJSON *root;
     CURLcode res;
@@ -82,6 +99,11 @@ void restlog_change_queue( const char *url, const char *queue_from, const char *
     cJSON_Delete( root );
 }
 
+/*
+/* queue_id -- internal message id
+/* wait_time -- seconds until next retry
+/* action = "message_next_retry"
+*/
 void restlog_change_wait_time( const char *url, const char *queue_id, size_t wait_time) {
     cJSON *root;
     CURLcode res;
@@ -101,6 +123,16 @@ void restlog_change_wait_time( const char *url, const char *queue_id, size_t wai
     cJSON_Delete( root );
 }
 
+/*
+/* queue_name -- postfix queue name
+/* queue_id -- internal message id
+/* sender -- mailaddress of the sender
+/* recipient -- mailaddress of recipient
+/* rcpt_count -- number of recipients
+/* msg_size -- message size in bytes
+/* subject -- message subject
+/* action = "message_added"
+*/
 void restlog_queued( const char *url, const char *queue_id,
     const char *queue_name, const char *env_sender,
     const char* recip, const int rcpt_count, const char *subject,
@@ -128,6 +160,11 @@ void restlog_queued( const char *url, const char *queue_id,
     cJSON_Delete( root );
 }
 
+/*
+/* queue -- name of postfix queue
+/* queue_id -- internal message id
+/* action = "message_sent"
+*/
 void restlog_message_sent( const char *url, const char *queue_name, const char *queue_id ) {
     cJSON *root;
     CURLcode res;
@@ -136,7 +173,6 @@ void restlog_message_sent( const char *url, const char *queue_name, const char *
     root = cJSON_CreateObject();
     cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
     cJSON_AddItemToObject( root, "queue", cJSON_CreateString( queue_name ) );
-    cJSON_AddItemToObject( root, "finished", cJSON_CreateNumber( 1 ) );
     cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_sent" ) );
 
     res = perform_put( url, root );

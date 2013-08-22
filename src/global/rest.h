@@ -9,7 +9,7 @@ struct inmem_s {
     size_t left;
 };
 
-CURLcode perform_put( const char *url, const cJSON *json );
+CURLcode perform_put( const char *url, cJSON *json );
 void restlog_change_queue( const char *url, const char *queue_from,
     const char *queue_to, const char *queue_id );
 void restlog_change_wait_time( const char *url, const char *queue_id,
