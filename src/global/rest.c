@@ -168,7 +168,8 @@ void restlog_queued( const char *url, const char *queue_id,
 /* queue_id -- internal message id
 /* action = "message_sent"
 */
-void restlog_message_sent( const char *url, const char *queue_name, const char *queue_id ) {
+void restlog_message_sent( const char *url, const char *queue_name,
+    const char *queue_id, const int flag ) {
     cJSON *root;
     CURLcode res;
 
@@ -176,7 +177,34 @@ void restlog_message_sent( const char *url, const char *queue_name, const char *
     root = cJSON_CreateObject();
     cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
     cJSON_AddItemToObject( root, "queue", cJSON_CreateString( queue_name ) );
-    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_sent" ) );
+    if ( flag == QMSG_SENT )
+        cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_sent" ) );
+    else
+        cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_expired" ) );
+
+    res = perform_put( url, root );
+    if ( res != CURLE_OK ) {
+            msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
+    }
+
+    /* Cleanup JSON object*/
+    cJSON_Delete( root );
+}
+
+/*
+/* queue -- name of postfix queue
+/* queue_id -- internal message id
+/* action = "message_expired"
+*/
+void restlog_message_expired( const char *url, const char *queue_name, const char *queue_id ) {
+    cJSON *root;
+    CURLcode res;
+
+    /* Create JSON object to transfer to index */
+    root = cJSON_CreateObject();
+    cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
+    cJSON_AddItemToObject( root, "queue", cJSON_CreateString( queue_name ) );
+    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_expired" ) );
 
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {

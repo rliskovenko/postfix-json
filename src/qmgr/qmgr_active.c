@@ -442,6 +442,7 @@ static void qmgr_active_done_25_generic(QMGR_MESSAGE *message)
 	    (*message->sender ? var_max_queue_time : var_dsn_queue_time)) {
 	    msg_info("%s: from=<%s>, status=expired, returned to sender",
 		     message->queue_id, message->sender);
+        restlog_message_sent( sent_url, message->queue_name, message->queue_id, QMSG_EXPIRED );
 	    if (message->verp_delims == 0 || var_verp_bounce_off)
 		adefer_flush(BOUNCE_FLAG_KEEP,
 			     message->queue_name,
@@ -560,7 +561,7 @@ static void qmgr_active_done_3_generic(QMGR_MESSAGE *message)
 	    /* Same format as logged by postsuper. */
 	    msg_info("%s: removed", message->queue_id);
 	}
-        restlog_message_sent( sent_url, message->queue_name, message->queue_id );
+        restlog_message_sent( sent_url, message->queue_name, message->queue_id, QMSG_SENT );
     }
 
     /*

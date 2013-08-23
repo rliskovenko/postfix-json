@@ -92,6 +92,7 @@ void cJSON_Delete(cJSON *c)
 	}
 }
 
+// TODO: Refactor
 /* Parse the input text to generate a number, and populate the result into item. */
 static const char *parse_number(cJSON *item,const char *num)
 {

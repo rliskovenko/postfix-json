@@ -4,6 +4,9 @@
 #include <curl/curl.h>
 #include "cJSON.h"
 
+#define QMSG_SENT 1
+#define QMSG_EXPIRED 2
+
 struct inmem_s {
     const char *ptr;
     size_t left;
@@ -19,6 +22,6 @@ void restlog_queued( const char *url, const char *queue_id,
     const char* recip, const int rcpt_count, const char *subject,
     const unsigned long msg_size );
 void restlog_message_sent( const char *url, const char *queue_name,
-    const char *queue_id );
+    const char *queue_id, const int flag );
 
 #endif // REST_H_INCLUDED
