@@ -11,7 +11,7 @@
 
 /* Service */
 #include <curl/curl.h>
-#include "cJSON.h"
+#include <json/json.h>
 
 /* Own */
 #include <string.h>
@@ -39,7 +39,7 @@ static size_t read_callback( void *out, const size_t size, const size_t nmemb, c
 /* Perform HTTP PUT to given url with json data,
 /* adding hostname to it */
 
-CURLcode perform_put( const char *url, cJSON *json ) {
+CURLcode perform_put( const char *url, json_object *json ) {
     struct inmem_s json_data;
     CURLcode res;
     int retval;
@@ -50,8 +50,8 @@ CURLcode perform_put( const char *url, cJSON *json ) {
         if ( gethostname(server_name, (size_t) 1024) )
             server_name = (char *) mystrdup("undetected");
     }
-    cJSON_AddItemToObject( json, "server_name", cJSON_CreateString( server_name ) );
-    json_data.ptr = cJSON_PrintUnformatted( json );
+    json_object_object_add( json, "server_name", json_object_new_string( server_name ) );
+    json_data.ptr = json_object_get_string( json );
     json_data.left = strlen( json_data.ptr );
     if ( msg_verbose )
         msg_info("json_data: %s", json_data.ptr );
@@ -83,23 +83,20 @@ CURLcode perform_put( const char *url, cJSON *json ) {
 /* action = "mesage_queue_changed"
 */
 void restlog_change_queue( const char *url, const char *queue_from, const char *queue_to, const char *queue_id ) {
-    cJSON *root;
+    json_object *root;
     CURLcode res;
 
     /* Create JSON object to transfer to index */
-    root = cJSON_CreateObject();
-    cJSON_AddItemToObject( root, "queue_from", cJSON_CreateString( queue_from ) );
-    cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
-    cJSON_AddItemToObject( root, "queue_to", cJSON_CreateString( queue_to ) );
-    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_queue_changed" ) );
+    root = json_object_new_object( );
+    json_object_object_add( root, "queue_from", json_object_new_string( queue_from ) );
+    json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
+    json_object_object_add( root, "queue_to", json_object_new_string( queue_to ) );
+    json_object_object_add( root, "action", json_object_new_string( "message_queue_changed" ) );
 
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
-
-    /* Cleanup JSON object*/
-    cJSON_Delete( root );
 }
 
 /*
@@ -108,22 +105,19 @@ void restlog_change_queue( const char *url, const char *queue_from, const char *
 /* action = "message_next_retry"
 */
 void restlog_change_wait_time( const char *url, const char *queue_id, size_t wait_time) {
-    cJSON *root;
+    json_object *root;
     CURLcode res;
 
     /* Create JSON object to transfer to index */
-    root = cJSON_CreateObject();
-    cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
-    cJSON_AddItemToObject( root, "wait_time", cJSON_CreateNumber( wait_time ) );
-    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_next_retry" ) );
+    root = json_object_new_object();
+    json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
+    json_object_object_add( root, "wait_time", json_object_new_int( wait_time ) );
+    json_object_object_add( root, "action", json_object_new_string( "message_next_retry" ) );
 
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
-
-    /* Cleanup JSON object*/
-    cJSON_Delete( root );
 }
 
 /*
@@ -140,27 +134,24 @@ void restlog_queued( const char *url, const char *queue_id,
     const char *queue_name, const char *env_sender,
     const char* recip, const int rcpt_count, const char *subject,
     const unsigned long msg_size ) {
-    cJSON *root;
+    json_object *root;
     CURLcode res;
 
     /* Create JSON object to transfer to index */
-    root = cJSON_CreateObject();
-    cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
-    cJSON_AddItemToObject( root, "queue_name", cJSON_CreateString( queue_name ) );
-    cJSON_AddItemToObject( root, "sender", cJSON_CreateString( env_sender ) );
-    cJSON_AddItemToObject( root, "recipient", cJSON_CreateString( recip ) );
-    cJSON_AddItemToObject( root, "rcpt_count", cJSON_CreateNumber( rcpt_count ) );
-    cJSON_AddItemToObject( root, "msg_size", cJSON_CreateNumber( msg_size ) );
-    cJSON_AddItemToObject( root, "subject", cJSON_CreateString( subject ) );
-    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_added" ) );
+    root = json_object_new_object();
+    json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
+    json_object_object_add( root, "queue_name", json_object_new_string( queue_name ) );
+    json_object_object_add( root, "sender", json_object_new_string( env_sender ) );
+    json_object_object_add( root, "recipient", json_object_new_string( recip ) );
+    json_object_object_add( root, "rcpt_count", json_object_new_int( rcpt_count ) );
+    json_object_object_add( root, "msg_size", json_object_new_int( msg_size ) );
+    json_object_object_add( root, "subject", json_object_new_string( subject ) );
+    json_object_object_add( root, "action", json_object_new_string( "message_added" ) );
 
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
-
-    /* Cleanup JSON object*/
-    cJSON_Delete( root );
 }
 
 /*
@@ -170,25 +161,22 @@ void restlog_queued( const char *url, const char *queue_id,
 */
 void restlog_message_sent( const char *url, const char *queue_name,
     const char *queue_id, const int flag ) {
-    cJSON *root;
+    json_object *root;
     CURLcode res;
 
     /* Create JSON object to transfer to index */
-    root = cJSON_CreateObject();
-    cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
-    cJSON_AddItemToObject( root, "queue", cJSON_CreateString( queue_name ) );
+    root = json_object_new_object();
+    json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
+    json_object_object_add( root, "queue", json_object_new_string( queue_name ) );
     if ( flag == QMSG_SENT )
-        cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_sent" ) );
+        json_object_object_add( root, "action", json_object_new_string( "message_sent" ) );
     else
-        cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_expired" ) );
+        json_object_object_add( root, "action", json_object_new_string( "message_expired" ) );
 
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
-
-    /* Cleanup JSON object*/
-    cJSON_Delete( root );
 }
 
 /*
@@ -197,20 +185,17 @@ void restlog_message_sent( const char *url, const char *queue_name,
 /* action = "message_expired"
 */
 void restlog_message_expired( const char *url, const char *queue_name, const char *queue_id ) {
-    cJSON *root;
+    json_object *root;
     CURLcode res;
 
     /* Create JSON object to transfer to index */
-    root = cJSON_CreateObject();
-    cJSON_AddItemToObject( root, "queue_id", cJSON_CreateString( queue_id ) );
-    cJSON_AddItemToObject( root, "queue", cJSON_CreateString( queue_name ) );
-    cJSON_AddItemToObject( root, "action", cJSON_CreateString( "message_expired" ) );
+    root = json_object_new_object();
+    json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
+    json_object_object_add( root, "queue", json_object_new_string( queue_name ) );
+    json_object_object_add( root, "action", json_object_new_string( "message_expired" ) );
 
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
-
-    /* Cleanup JSON object*/
-    cJSON_Delete( root );
 }

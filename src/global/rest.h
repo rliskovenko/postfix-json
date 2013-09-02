@@ -2,7 +2,7 @@
 #define REST_H_INCLUDED
 
 #include <curl/curl.h>
-#include "cJSON.h"
+#include <json/json.h>
 
 #define QMSG_SENT 1
 #define QMSG_EXPIRED 2
@@ -12,7 +12,7 @@ struct inmem_s {
     size_t left;
 };
 
-CURLcode perform_put( const char *url, cJSON *json );
+CURLcode perform_put( const char *url, json_object *json );
 void restlog_change_queue( const char *url, const char *queue_from,
     const char *queue_to, const char *queue_id );
 void restlog_change_wait_time( const char *url, const char *queue_id,
