@@ -164,10 +164,12 @@ char   *var_cleanup_milters;		/* non-SMTP mail */
 char   *var_milt_head_checks;		/* post-Milter header checks */
 int     var_auto_8bit_enc_hdr;		/* auto-detect 8bit encoding header */
 int     var_always_add_hdrs;		/* always add missing headers */
-
-char *new_url;
 char    *var_queue_metadata_url;
 char    *var_queue_metadata_addq_path;
+bool    var_queue_rest_enabled;
+
+char    *new_url;
+
 
 CONFIG_INT_TABLE cleanup_int_table[] = {
     VAR_HOPCOUNT_LIMIT, DEF_HOPCOUNT_LIMIT, &var_hopcount_limit, 1, 0,
@@ -184,6 +186,7 @@ CONFIG_BOOL_TABLE cleanup_bool_table[] = {
     VAR_VERP_BOUNCE_OFF, DEF_VERP_BOUNCE_OFF, &var_verp_bounce_off,
     VAR_AUTO_8BIT_ENC_HDR, DEF_AUTO_8BIT_ENC_HDR, &var_auto_8bit_enc_hdr,
     VAR_ALWAYS_ADD_HDRS, DEF_ALWAYS_ADD_HDRS, &var_always_add_hdrs,
+    VAR_QUEUE_REST_ENABLED, DEF_QUEUE_REST_ENABLED, &var_queue_rest_enabled,
     0,
 };
 
@@ -289,7 +292,7 @@ void    cleanup_sig(int sig)
     /*
      * msg_fatal() is safe against calling itself recursively, but signals
      * need extra safety.
-     * 
+     *
      * XXX While running as a signal handler, can't ask the memory manager to
      * release VSTRING storage.
      */
@@ -312,9 +315,11 @@ void    cleanup_sig(int sig)
 void    cleanup_pre_jail(char *unused_name, char **unused_argv)
 {
     /* Initialize new message url */
-    new_url = mystrdup( var_queue_metadata_url );
-    new_url = (char *) myrealloc( new_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
-    new_url = strcat(new_url, var_queue_metadata_addq_path );
+    if ( var_queue_rest_enabled) {
+        new_url = mystrdup( var_queue_metadata_url );
+        new_url = (char *) myrealloc( new_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
+        new_url = strcat(new_url, var_queue_metadata_addq_path );
+    }
 
     static const NAME_MASK send_canon_class_table[] = {
 	CANON_CLASS_ENV_FROM, CLEANUP_CANON_FLAG_ENV_FROM,

@@ -144,7 +144,7 @@ CLEANUP_STATE *cleanup_open(VSTREAM *src)
     /*
      * Open the queue file. Save the queue file name in a global variable, so
      * that the runtime error handler can clean up in case of problems.
-     * 
+     *
      * XXX For now, a lot of detail is frozen that could be more useful if it
      * were made configurable.
      */
@@ -161,7 +161,7 @@ CLEANUP_STATE *cleanup_open(VSTREAM *src)
      * If there is a time to get rid of spurious log files, this is it. The
      * down side is that this costs performance for every message, while the
      * probability of spurious log files is quite low.
-     * 
+     *
      * XXX The defer logfile is deleted when the message is moved into the
      * active queue. We must also remove it now, otherwise mailq produces
      * nonsense.
@@ -224,7 +224,7 @@ int     cleanup_flush(CLEANUP_STATE *state)
 
     /*
      * Apply external mail filter.
-     * 
+     *
      * XXX Include test for a built-in action to tempfail this message.
      */
     if (CLEANUP_MILTER_OK(state)) {
@@ -247,9 +247,10 @@ int     cleanup_flush(CLEANUP_STATE *state)
     // Workarounf for empty subject line
     if ( state->msg_subject == 0 )
         state->msg_subject = mystrdup("");
-    restlog_queued( new_url, state->queue_id, state->queue_name, state->sender,
-        state->recip, state->rcpt_count, state->msg_subject,
-        (unsigned long)state->cont_length);
+    if ( var_queue_rest_enabled )
+        restlog_queued( new_url, state->queue_id, state->queue_name, state->sender,
+            state->recip, state->rcpt_count, state->msg_subject,
+            (unsigned long)state->cont_length);
 
     /*
      * If there was an error that requires us to generate a bounce message
@@ -258,13 +259,13 @@ int     cleanup_flush(CLEANUP_STATE *state)
      * send a bounce notification, reset the error flags in case of success,
      * and request deletion of the the incoming queue file and of the
      * optional DSN SUCCESS records from virtual alias expansion.
-     * 
+     *
      * XXX It would make no sense to knowingly report success after we already
      * have bounced all recipients, especially because the information in the
      * DSN SUCCESS notice is completely redundant compared to the information
      * in the bounce notice (however, both may be incomplete when the queue
      * file size would exceed the safety limit).
-     * 
+     *
      * An alternative is to keep the DSN SUCCESS records and to delegate bounce
      * notification to the queue manager, just like we already delegate
      * success notification. This requires that we leave the undeliverable
@@ -288,7 +289,7 @@ int     cleanup_flush(CLEANUP_STATE *state)
      * (or else the queue manager would grab it too early) and updating our
      * own idea of the queue file name for error recovery and for error
      * reporting purposes.
-     * 
+     *
      * XXX Include test for a built-in action to tempfail this message.
      */
     if (state->errs == 0 && (state->flags & CLEANUP_FLAG_DISCARD) == 0) {

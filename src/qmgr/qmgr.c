@@ -449,6 +449,7 @@ char    *var_queue_metadata_url;
 char    *var_queue_metadata_changeq_path;
 char    *var_queue_metadata_addq_path;
 char    *var_queue_metadata_changewt_path;
+bool    var_queue_rest_enabled;
 
 char    *rename_url;
 char    *wt_url;
@@ -566,7 +567,7 @@ static int qmgr_loop(char *unused_name, char **unused_argv)
     /*
      * Let some new blood into the active queue when the queue size is
      * smaller than some configurable limit.
-     * 
+     *
      * We import one message per interrupt, to optimally tune the input count
      * for the number of delivery agent protocol wait states, as explained in
      * qmgr_transport.c.
@@ -635,15 +636,17 @@ static void qmgr_post_init(char *name, char **unused_argv)
 {
 
     /* Initialize rename_url */
-    rename_url = (char *) mystrdup( var_queue_metadata_url );
-    rename_url = (char *) myrealloc( rename_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changeq_path ) + 2 );
-    rename_url = strcat(rename_url, var_queue_metadata_changeq_path);
-    wt_url = (char *) mystrdup( var_queue_metadata_url );
-    wt_url = (char *) myrealloc( wt_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changewt_path ) + 2 );
-    wt_url = strcat( wt_url, var_queue_metadata_changewt_path );
-    sent_url = (char *) mystrdup( var_queue_metadata_url );
-    sent_url = (char *) myrealloc( sent_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
-    sent_url = strcat( sent_url, var_queue_metadata_addq_path );
+    if ( var_queue_rest_enabled ) {
+        rename_url = (char *) mystrdup( var_queue_metadata_url );
+        rename_url = (char *) myrealloc( rename_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changeq_path ) + 2 );
+        rename_url = strcat(rename_url, var_queue_metadata_changeq_path);
+        wt_url = (char *) mystrdup( var_queue_metadata_url );
+        wt_url = (char *) myrealloc( wt_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_changewt_path ) + 2 );
+        wt_url = strcat( wt_url, var_queue_metadata_changewt_path );
+        sent_url = (char *) mystrdup( var_queue_metadata_url );
+        sent_url = (char *) myrealloc( sent_url, strlen(var_queue_metadata_url) + strlen(var_queue_metadata_addq_path ) + 2 );
+        sent_url = strcat( sent_url, var_queue_metadata_addq_path );
+    }
 
     /*
      * Backwards compatibility.
@@ -747,6 +750,7 @@ int     main(int argc, char **argv)
     static const CONFIG_BOOL_TABLE bool_table[] = {
 	VAR_VERP_BOUNCE_OFF, DEF_VERP_BOUNCE_OFF, &var_verp_bounce_off,
 	VAR_CONC_FDBACK_DEBUG, DEF_CONC_FDBACK_DEBUG, &var_conc_feedback_debug,
+	VAR_QUEUE_REST_ENABLED, DEF_QUEUE_REST_ENABLED, &var_queue_rest_enabled,
 	0,
     };
 
