@@ -567,7 +567,7 @@ static int qmgr_loop(char *unused_name, char **unused_argv)
     /*
      * Let some new blood into the active queue when the queue size is
      * smaller than some configurable limit.
-     *
+     * 
      * We import one message per interrupt, to optimally tune the input count
      * for the number of delivery agent protocol wait states, as explained in
      * qmgr_transport.c.

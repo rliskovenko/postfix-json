@@ -664,6 +664,7 @@ sample_directory =
 readme_directory =
 inet_protocols = ipv4
 
+queue_rest_enabled = true
 queue_metadata_url = http://localhost:9300/
 queue_metadata_changeq_path = /message/change_queue
 queue_metadata_changewt_path = /message/change_waittime
