@@ -144,7 +144,7 @@ CLEANUP_STATE *cleanup_open(VSTREAM *src)
     /*
      * Open the queue file. Save the queue file name in a global variable, so
      * that the runtime error handler can clean up in case of problems.
-     * 
+     *
      * XXX For now, a lot of detail is frozen that could be more useful if it
      * were made configurable.
      */
@@ -161,7 +161,7 @@ CLEANUP_STATE *cleanup_open(VSTREAM *src)
      * If there is a time to get rid of spurious log files, this is it. The
      * down side is that this costs performance for every message, while the
      * probability of spurious log files is quite low.
-     * 
+     *
      * XXX The defer logfile is deleted when the message is moved into the
      * active queue. We must also remove it now, otherwise mailq produces
      * nonsense.
@@ -224,7 +224,7 @@ int     cleanup_flush(CLEANUP_STATE *state)
 
     /*
      * Apply external mail filter.
-     * 
+     *
      * XXX Include test for a built-in action to tempfail this message.
      */
     if (CLEANUP_MILTER_OK(state)) {
@@ -259,13 +259,13 @@ int     cleanup_flush(CLEANUP_STATE *state)
      * send a bounce notification, reset the error flags in case of success,
      * and request deletion of the the incoming queue file and of the
      * optional DSN SUCCESS records from virtual alias expansion.
-     * 
+     *
      * XXX It would make no sense to knowingly report success after we already
      * have bounced all recipients, especially because the information in the
      * DSN SUCCESS notice is completely redundant compared to the information
      * in the bounce notice (however, both may be incomplete when the queue
      * file size would exceed the safety limit).
-     * 
+     *
      * An alternative is to keep the DSN SUCCESS records and to delegate bounce
      * notification to the queue manager, just like we already delegate
      * success notification. This requires that we leave the undeliverable
@@ -289,43 +289,43 @@ int     cleanup_flush(CLEANUP_STATE *state)
      * (or else the queue manager would grab it too early) and updating our
      * own idea of the queue file name for error recovery and for error
      * reporting purposes.
-     * 
+     *
      * XXX Include test for a built-in action to tempfail this message.
      */
     if (state->errs == 0 && (state->flags & CLEANUP_FLAG_DISCARD) == 0) {
-	if ((state->flags & CLEANUP_FLAG_HOLD) != 0
+        if ((state->flags & CLEANUP_FLAG_HOLD) != 0
 #ifdef DELAY_ACTION
-	    || state->defer_delay > 0
+            || state->defer_delay > 0
 #endif
-	    ) {
-	    myfree(state->queue_name);
+            ) {
+            myfree(state->queue_name);
 #ifdef DELAY_ACTION
-	    state->queue_name = mystrdup((state->flags & CLEANUP_FLAG_HOLD) ?
-				     MAIL_QUEUE_HOLD : MAIL_QUEUE_DEFERRED);
+            state->queue_name = mystrdup((state->flags & CLEANUP_FLAG_HOLD) ?
+                         MAIL_QUEUE_HOLD : MAIL_QUEUE_DEFERRED);
 #else
-	    state->queue_name = mystrdup(MAIL_QUEUE_HOLD);
+            state->queue_name = mystrdup(MAIL_QUEUE_HOLD);
 #endif
-	    mail_stream_ctl(state->handle,
-			    MAIL_STREAM_CTL_QUEUE, state->queue_name,
-			    MAIL_STREAM_CTL_CLASS, (char *) 0,
-			    MAIL_STREAM_CTL_SERVICE, (char *) 0,
+            mail_stream_ctl(state->handle,
+                    MAIL_STREAM_CTL_QUEUE, state->queue_name,
+                    MAIL_STREAM_CTL_CLASS, (char *) 0,
+                    MAIL_STREAM_CTL_SERVICE, (char *) 0,
 #ifdef DELAY_ACTION
-			    MAIL_STREAM_CTL_DELAY, state->defer_delay,
+                    MAIL_STREAM_CTL_DELAY, state->defer_delay,
 #endif
-			    MAIL_STREAM_CTL_END);
-	    junk = cleanup_path;
-	    cleanup_path = mystrdup(VSTREAM_PATH(state->handle->stream));
-	    myfree(junk);
+                    MAIL_STREAM_CTL_END);
+            junk = cleanup_path;
+            cleanup_path = mystrdup(VSTREAM_PATH(state->handle->stream));
+            myfree(junk);
 
-	    /*
-	     * XXX: When delivering to a non-incoming queue, do not consume
-	     * in_flow tokens. Unfortunately we can't move the code that
-	     * consumes tokens until after the mail is received, because that
-	     * would increase the risk of duplicate deliveries (RFC 1047).
-	     */
-	    (void) mail_flow_put(1);
-	}
-	state->errs = mail_stream_finish(state->handle, (VSTRING *) 0);
+            /*
+             * XXX: When delivering to a non-incoming queue, do not consume
+             * in_flow tokens. Unfortunately we can't move the code that
+             * consumes tokens until after the mail is received, because that
+             * would increase the risk of duplicate deliveries (RFC 1047).
+             */
+            (void) mail_flow_put(1);
+        }
+        state->errs = mail_stream_finish(state->handle, (VSTRING *) 0);
     } else {
 
 	/*
@@ -335,7 +335,10 @@ int     cleanup_flush(CLEANUP_STATE *state)
 #if 0
 	(void) mail_flow_put(1);
 #endif
-	mail_stream_cleanup(state->handle);
+        msg_info("Cleaning up discarded message %s: %m", cleanup_path );
+        if ( var_queue_rest_enabled )
+            restlog_message_discarded( new_url, state->queue_id, state->queue_name );
+        mail_stream_cleanup(state->handle);
     }
     state->handle = 0;
     state->dst = 0;
@@ -346,10 +349,10 @@ int     cleanup_flush(CLEANUP_STATE *state)
      * SUCCESS records from virtual alias expansion.
      */
     if (state->errs != 0 || (state->flags & CLEANUP_FLAG_DISCARD) != 0) {
-	if (cleanup_trace_path)
-	    (void) REMOVE(vstring_str(cleanup_trace_path));
-	if (REMOVE(cleanup_path))
-	    msg_warn("remove %s: %m", cleanup_path);
+        if (cleanup_trace_path)
+            (void) REMOVE(vstring_str(cleanup_trace_path));
+        if (REMOVE(cleanup_path))
+            msg_warn("remove %s: %m", cleanup_path);
     }
 
     /*

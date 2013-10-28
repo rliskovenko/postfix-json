@@ -21,6 +21,8 @@ void restlog_queued( const char *url, const char *queue_id,
     const char *queue_name, const char *env_sender,
     const char* recip, const int rcpt_count, const char *subject,
     const unsigned long msg_size );
+void restlog_message_discarded( const char *url, const char *queue_id,
+    const char *queue_name);
 void restlog_message_sent( const char *url, const char *queue_name,
     const char *queue_id, const int flag );
 

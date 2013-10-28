@@ -182,6 +182,27 @@ void restlog_message_sent( const char *url, const char *queue_name,
 /*
 /* queue -- name of postfix queue
 /* queue_id -- internal message id
+/* action = "message_discarded"
+*/
+void restlog_message_discarded( const char *url, const char *queue_id, const char *queue_name ) {
+    json_object *root;
+    CURLcode res;
+
+    /* Create JSON object to transfer to index */
+    root = json_object_new_object();
+    json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
+    json_object_object_add( root, "queue", json_object_new_string( queue_name ) );
+    json_object_object_add( root, "action", json_object_new_string( "message_discarded" ) );
+
+    res = perform_put( url, root );
+    if ( res != CURLE_OK ) {
+            msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
+    }
+}
+
+/*
+/* queue -- name of postfix queue
+/* queue_id -- internal message id
 /* action = "message_expired"
 */
 void restlog_message_expired( const char *url, const char *queue_name, const char *queue_id ) {
