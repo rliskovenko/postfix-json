@@ -295,7 +295,7 @@ case "$SYSTEM.$RELEASE" in
 		    SYSLIBS="-ldb"
 		    ;;
 		esac
-		for name in nsl resolv $GDBM_LIBS json m curl
+		for name in nsl resolv $GDBM_LIBS json-c m curl
 		do
 		    for lib in /usr/lib64 /lib64 /usr/lib /lib
 		    do
@@ -366,7 +366,7 @@ EOF
 		    SYSLIBS="-ldb"
 		    ;;
 		esac
-		for name in nsl resolv curl m json
+		for name in nsl resolv curl m json-c
 		do
 		    for lib in /usr/lib64 /lib64 /usr/lib /usr/lib/* /lib /lib/*
 		    do

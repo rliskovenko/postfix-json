@@ -103,7 +103,7 @@ int     mail_run_foreground(const char *dir, char **argv)
 	    RETURN(wpid == -1 ? -1 :
 		   WIFEXITED(status) ? WEXITSTATUS(status) : 1)
 	}
-	sleep(var_fork_delay);
+	usleep(var_fork_delay * 1000);
     }
     RETURN(-1);
 }
@@ -133,7 +133,7 @@ int     mail_run_background(const char *dir, char **argv)
 	default:
 	    RETURN(pid);
 	}
-	sleep(var_fork_delay);
+	usleep(var_fork_delay * 1000);
     }
     RETURN(-1);
 }

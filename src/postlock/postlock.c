@@ -244,7 +244,7 @@ int     main(int argc, char **argv)
 	    mbox_release(mp);
 	    exit(EX_TEMPFAIL);
 	}
-	sleep(var_fork_delay);
+	usleep(var_fork_delay * 1000);
     }
     switch (pid) {
     case 0:
