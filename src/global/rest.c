@@ -8,6 +8,7 @@
 #include <events.h>
 #include <vstream.h>
 #include <dict.h>
+#include <bounce_log.h>
 
 /* Service */
 #include <curl/curl.h>
@@ -45,7 +46,7 @@ CURLcode perform_put( const char *url, json_object *json ) {
     int retval;
     struct curl_slist *headers = NULL;
 
-    if ( ! server_name ) {
+    if ( server_name == 0 ) {
         server_name = (char *) mymalloc( (ssize_t) 1024 );
         if ( gethostname(server_name, (size_t) 1024) )
             server_name = (char *) mystrdup("undetected");
@@ -83,8 +84,13 @@ CURLcode perform_put( const char *url, json_object *json ) {
 /* action = "mesage_queue_changed"
 */
 void restlog_change_queue( const char *url, const char *queue_from, const char *queue_to, const char *queue_id ) {
-    json_object *root;
-    CURLcode res;
+    json_object *root, *reason_list;
+    CURLcode    res;
+    BOUNCE_LOG  *bounce_log;
+    RCPT_BUF    *rcpt_buf;
+    DSN_BUF     *dsn_buf;
+    RECIPIENT   *rcpt = &rcpt_buf->rcpt;
+    DSN         *dsn = &dsn_buf->dsn;
 
     /* Create JSON object to transfer to index */
     root = json_object_new_object( );
@@ -92,10 +98,27 @@ void restlog_change_queue( const char *url, const char *queue_from, const char *
     json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
     json_object_object_add( root, "queue_to", json_object_new_string( queue_to ) );
     json_object_object_add( root, "action", json_object_new_string( "message_queue_changed" ) );
-
+    /* Grab reasons from bounce log */
+    reason_list = json_object_new_object();
+    if ( ( bounce_log = bounce_log_open( "defer", queue_id, O_RDONLY, 0) ) != 0 ) {
+        dsn_buf = dsb_create();
+        rcpt_buf = rcpb_create();
+        while ( bounce_log_read( bounce_log, rcpt_buf, dsn_buf ) != 0 ) {
+            rcpt = &rcpt_buf->rcpt;
+            dsn = &dsn_buf->dsn;
+            json_object_object_add( reason_list, rcpt->address, json_object_new_string( dsn->reason ));
+        }
+        rcpb_free( rcpt_buf );
+        dsb_free( dsn_buf );
+        if (bounce_log_close( bounce_log ))
+            msg_warn("close %s %s: %m", queue_to, queue_id);
+    } else {
+        msg_warn("Error opening bounce log %s: %m", queue_to, queue_id);
+    }
+    json_object_object_add( root, "delay_reason", reason_list );
     res = perform_put( url, root );
     if ( res != CURLE_OK ) {
-            msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
+            msg_warn("curl_easy_perform() failed: %s %m", curl_easy_strerror(res) );
     }
 }
 
