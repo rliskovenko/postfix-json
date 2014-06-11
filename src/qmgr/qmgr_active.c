@@ -113,6 +113,27 @@
 #include "qmgr.h"
 #include "rest.h"
 
+typedef struct {
+    int     dt_sec;			/* make sure it's signed */
+    int     dt_usec;			/* make sure it's signed */
+} DELTA_TIME;
+
+#define DELTA(x, y, z) \
+    do { \
+        (x).dt_sec = (y).tv_sec - (z).tv_sec; \
+        (x).dt_usec = (y).tv_usec - (z).tv_usec; \
+        while ((x).dt_usec < 0) { \
+            (x).dt_usec += 1000000; \
+            (x).dt_sec -= 1; \
+        } \
+        while ((x).dt_usec >= 1000000) { \
+            (x).dt_usec -= 1000000; \
+            (x).dt_sec += 1; \
+        } \
+        if ((x).dt_sec < 0) \
+            (x).dt_sec = (x).dt_usec = 0; \
+    } while (0)
+
 extern char* rename_url;
 extern char* wt_url;
 extern char* sent_url;
@@ -226,11 +247,11 @@ int     qmgr_active_feed(QMGR_SCAN *scan_info, const char *queue_id)
      * mail addresses have been processed by the cleanup service so they
      * should be in canonical form. Generate requests to deliver this
      * message.
-     * 
+     *
      * Throwing away queue files seems bad, especially when they made it this
      * far into the mail system. Therefore we save bad files to a separate
      * directory for further inspection.
-     * 
+     *
      * After queue manager restart it is possible that a queue file is still
      * being delivered. In that case (the file is locked), defer delivery by
      * a minimal amount of time.
@@ -281,11 +302,11 @@ void    qmgr_active_done(QMGR_MESSAGE *message)
      * The bounce queue directory blocks are most likely in memory anyway. If
      * these lookups become a performance problem we will have to build an
      * in-core cache into the bounce daemon.
-     * 
+     *
      * Don't bounce when the bounce log is empty. The bounce process obviously
      * failed, and the delivery agent will have requested that the message be
      * deferred.
-     * 
+     *
      * Bounces are sent asynchronously to avoid stalling while the cleanup
      * daemon waits for the qmgr to accept the "new mail" trigger.
      *
@@ -364,7 +385,7 @@ static void qmgr_active_done_2_generic(QMGR_MESSAGE *message)
     /*
      * If we did not read all recipients from this file, go read some more,
      * but remember whether some recipients have to be tried again.
-     * 
+     *
      * Throwing away queue files seems bad, especially when they made it this
      * far into the mail system. Therefore we save bad files to a separate
      * directory for further inspection by a human being.
@@ -388,7 +409,7 @@ static void qmgr_active_done_2_generic(QMGR_MESSAGE *message)
      * still exist from a previous partial delivery attempt. So as long as
      * any recipient has NOTIFY=SUCCESS we have to always look for the trace
      * file and be prepared for the file not to exist.
-     * 
+     *
      * See also comments in bounce/bounce_notify_util.c.
      */
     if ((message->tflags & (DEL_REQ_FLAG_USR_VRFY | DEL_REQ_FLAG_RECORD))
@@ -431,11 +452,12 @@ static void qmgr_active_done_25_trace_flush(int status, char *context)
 static void qmgr_active_done_25_generic(QMGR_MESSAGE *message)
 {
     const char *myname = "qmgr_active_done_25_generic";
+    DELTA_TIME msg_delay;
 
     /*
      * If we get to this point we have tried all recipients for this message.
      * If the message is too old, try to bounce it.
-     * 
+     *
      * Bounces are sent asynchronously to avoid stalling while the cleanup
      * daemon waits for the qmgr to accept the "new mail" trigger.
      */
@@ -444,8 +466,11 @@ static void qmgr_active_done_25_generic(QMGR_MESSAGE *message)
 	    (*message->sender ? var_max_queue_time : var_dsn_queue_time)) {
 	    msg_info("%s: from=<%s>, status=expired, returned to sender",
 		     message->queue_id, message->sender);
-        if ( var_queue_rest_enabled )
-            restlog_message_sent( sent_url, message->queue_name, message->queue_id, QMSG_EXPIRED );
+    if ( var_queue_rest_enabled ) {
+        DELTA(msg_delay, message->active_time, message->arrival_time );
+        restlog_message_sent( sent_url, message->queue_name, message->queue_id,
+                (double) (msg_delay.dt_sec + msg_delay.dt_usec/1000000), QMSG_EXPIRED );
+    }
 	    if (message->verp_delims == 0 || var_verp_bounce_off)
 		adefer_flush(BOUNCE_FLAG_KEEP,
 			     message->queue_name,
@@ -524,13 +549,14 @@ static void qmgr_active_done_3_generic(QMGR_MESSAGE *message)
 {
     const char *myname = "qmgr_active_done_3_generic";
     int     delay;
+    DELTA_TIME msg_delay;
 
     /*
      * Some recipients need to be tried again. Move the queue file time
      * stamps into the future by the amount of time that the message is
      * delayed, and move the message to the deferred queue. Impose minimal
      * and maximal backoff times.
-     * 
+     *
      * Since we look at actual time in queue, not time since last delivery
      * attempt, backoff times will be distributed. However, we can still see
      * spikes in delivery activity because the interval between deferred
@@ -564,8 +590,11 @@ static void qmgr_active_done_3_generic(QMGR_MESSAGE *message)
 	    /* Same format as logged by postsuper. */
 	    msg_info("%s: removed", message->queue_id);
 	}
-        if ( var_queue_rest_enabled )
-            restlog_message_sent( sent_url, message->queue_name, message->queue_id, QMSG_SENT );
+        if ( var_queue_rest_enabled ) {
+            DELTA(msg_delay, message->active_time, message->arrival_time );
+            restlog_message_sent( sent_url, message->queue_name, message->queue_id,
+                (double) (msg_delay.dt_sec + msg_delay.dt_usec/1000000), QMSG_SENT );
+        }
     }
 
     /*

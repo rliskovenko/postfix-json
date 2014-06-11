@@ -183,7 +183,7 @@ void restlog_queued( const char *url, const char *queue_id,
 /* action = "message_sent"
 */
 void restlog_message_sent( const char *url, const char *queue_name,
-    const char *queue_id, const int flag ) {
+    const char *queue_id, const double msg_delay, const int flag ) {
     json_object *root;
     CURLcode res;
 
@@ -191,6 +191,7 @@ void restlog_message_sent( const char *url, const char *queue_name,
     root = json_object_new_object();
     json_object_object_add( root, "queue_id", json_object_new_string( queue_id ) );
     json_object_object_add( root, "queue", json_object_new_string( queue_name ) );
+    json_object_object_add( root, "delay", json_object_new_double( msg_delay ) ) ;
     if ( flag == QMSG_SENT )
         json_object_object_add( root, "action", json_object_new_string( "message_sent" ) );
     else

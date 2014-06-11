@@ -24,6 +24,6 @@ void restlog_queued( const char *url, const char *queue_id,
 void restlog_message_discarded( const char *url, const char *queue_id,
     const char *queue_name);
 void restlog_message_sent( const char *url, const char *queue_name,
-    const char *queue_id, const int flag );
+    const char *queue_id, const double msg_delay, const int flag );
 
 #endif // REST_H_INCLUDED
