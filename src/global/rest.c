@@ -16,6 +16,7 @@
 
 /* Own */
 #include <string.h>
+#include <vstring.h>
 #include "rest.h"
 
 static CURL *curl_handler;
@@ -40,14 +41,17 @@ static size_t read_callback( void *out, const size_t size, const size_t nmemb, c
 /* Perform HTTP PUT to given url with json data,
 /* adding hostname to it */
 
-CURLcode perform_put( const char *url, json_object *json ) {
+CURLcode perform_put( const char *url, const char *queue_id, json_object *json ) {
     struct inmem_s json_data;
     CURLcode res;
     int retval;
     struct curl_slist *headers = NULL;
+    VSTRING *vstr_queue_id_hdr = vstring_alloc(100);
+    char *queue_id_copy = (char *)alloca( strlen(queue_id) + 1 );
 
+    strcpy(queue_id_copy, queue_id);
     if ( server_name == 0 ) {
-        server_name = (char *) mymalloc( (ssize_t) 1024 );
+        server_name = (char *) mymalloc( (ssize_t) sizeof(char) * 1024 );
         if ( gethostname(server_name, (size_t) 1024) )
             server_name = (char *) mystrdup("undetected");
     }
@@ -58,7 +62,10 @@ CURLcode perform_put( const char *url, json_object *json ) {
         msg_info("json_data: %s", json_data.ptr );
     curl_handler = curl_easy_init();
     if ( curl_handler ) {
+        vstr_queue_id_hdr = vstring_sprintf( vstr_queue_id_hdr, "Queue-Id: %s",
+                queue_id_copy );
         headers = curl_slist_append( headers, "Content-Type: application/json");
+        headers = curl_slist_append( headers, vstring_str( vstr_queue_id_hdr ) );
         curl_easy_setopt( curl_handler, CURLOPT_HTTPHEADER, headers );
         curl_easy_setopt( curl_handler, CURLOPT_URL, url );
         curl_easy_setopt( curl_handler, CURLOPT_NOPROGRESS, 1L );
@@ -69,11 +76,13 @@ CURLcode perform_put( const char *url, json_object *json ) {
         curl_easy_setopt( curl_handler, CURLOPT_READFUNCTION, (curl_read_callback) read_callback );
         curl_easy_setopt( curl_handler, CURLOPT_INFILESIZE, json_data.left );
         res = curl_easy_perform( curl_handler );
-        curl_slist_free_all( headers );
         curl_easy_cleanup( curl_handler );
     } else {
         msg_error("curl_handler BROKEN!");
     }
+    vstring_free( vstr_queue_id_hdr );
+    curl_slist_free_all( headers );
+    myfree( server_name );
     return res;
 }
 
@@ -116,7 +125,7 @@ void restlog_change_queue( const char *url, const char *queue_from, const char *
         msg_warn("Error opening bounce log %s: %m", queue_to, queue_id);
     }
     json_object_object_add( root, "delay_reason", reason_list );
-    res = perform_put( url, root );
+    res = perform_put( url, queue_id, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s %m", curl_easy_strerror(res) );
     }
@@ -137,7 +146,7 @@ void restlog_change_wait_time( const char *url, const char *queue_id, size_t wai
     json_object_object_add( root, "wait_time", json_object_new_int( wait_time ) );
     json_object_object_add( root, "action", json_object_new_string( "message_next_retry" ) );
 
-    res = perform_put( url, root );
+    res = perform_put( url, queue_id, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -171,7 +180,7 @@ void restlog_queued( const char *url, const char *queue_id,
     json_object_object_add( root, "subject", json_object_new_string( subject ) );
     json_object_object_add( root, "action", json_object_new_string( "message_added" ) );
 
-    res = perform_put( url, root );
+    res = perform_put( url, queue_id, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -197,7 +206,7 @@ void restlog_message_sent( const char *url, const char *queue_name,
     else
         json_object_object_add( root, "action", json_object_new_string( "message_expired" ) );
 
-    res = perform_put( url, root );
+    res = perform_put( url, queue_id, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -218,7 +227,7 @@ void restlog_message_discarded( const char *url, const char *queue_id, const cha
     json_object_object_add( root, "queue", json_object_new_string( queue_name ) );
     json_object_object_add( root, "action", json_object_new_string( "message_discarded" ) );
 
-    res = perform_put( url, root );
+    res = perform_put( url, queue_id, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
@@ -239,7 +248,7 @@ void restlog_message_expired( const char *url, const char *queue_name, const cha
     json_object_object_add( root, "queue", json_object_new_string( queue_name ) );
     json_object_object_add( root, "action", json_object_new_string( "message_expired" ) );
 
-    res = perform_put( url, root );
+    res = perform_put( url, queue_id, root );
     if ( res != CURLE_OK ) {
             msg_warn("curl_easy_perform() failed: %s", curl_easy_strerror(res) );
     }
